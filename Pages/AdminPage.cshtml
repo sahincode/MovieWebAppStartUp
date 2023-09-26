@@ -1,0 +1,100 @@
+﻿@page
+@model MoviesWebApp.Pages.AdminPageModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <p>
+        <a asp-page="/moviefolder/Create">Create New</a>;
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Actors)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Director)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].IMDB)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].ImageURL)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Movies)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Actors)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Director)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IMDB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageURL)
+                    </td>
+                    <td>
+                        <a asp-page="./moviefolder/Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./moviefolder/Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./moviefolder/Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(Lmodel=> Lmodel.LogoPageInfo.Title)
+                </th>
+            </tr>
+        </thead>
+
+        
+    </table>
+

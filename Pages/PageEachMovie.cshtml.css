@@ -1,0 +1,54 @@
+﻿.video-movie{
+    width:83%;
+    height:450px;
+
+}
+.card-movie-each{
+    width:100%;
+    height:650px;
+    align-items:center;
+    padding-left:150px;
+}
+.trailer-picture img {
+    width:100%;
+    height:100%;
+    position:static;
+}
+
+.picture-div {
+    width: 165px;
+    height:150px;
+}
+.row{
+    padding-right:0px;
+}
+.card-bodymovie{
+    margin-right:50px;
+    padding-bottom:100px;
+    
+}
+.page-eachdescription{
+    width:100%;
+
+}
+.divforinfo{
+    width:46%;
+}
+.p-genre{
+   font-size:18px;
+   margin:1px;
+   padding:1px;
+}
+.picture-div{
+    border-radius:5px;
+    width:11%;
+    height:150px;
+
+
+}
+.card-img-each{
+    border-radius:5px;
+    width:11%;
+    height:150px;
+    position:absolute;
+}

@@ -1,0 +1,60 @@
+﻿@page
+@model PageEachMovieModel
+@{
+    ViewData["Title"] = "PageEachMovie";
+}
+<div class="card-movie-each" >
+    <video class="video-movie" controls>
+        <source src="https://youtu.be/m87rP0uNtn8?si=kgdp-fAh7Ncxqjq9" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+  <div class="card-bodymovie">
+    <div class="row">
+            <div class="col-12 col-lg-2 d-none d-lg-block">
+                <div class="picture-div">
+                    <img class="card-img-each"
+                         src='@(Model.Movie.ImageURL == null
+                          ? $"https://fakeimg.pl/300x300/?text={Model.Movie.Title}"
+                          : "/uploads/images/" + Model.Movie.ImageURL)'
+                         alt="@Model.Movie.Title">
+                </div>
+                
+                <div class="d-grid mt-2 gap-2">
+                    <button class="btn btn-primary" type="button">Trailer</button>
+                </div>
+            </div>
+            <div class="divforinfo col-12 col-lg-7 border-sm-end">
+                <h1 class="card-title fs-4">@Html.DisplayFor(model=>model.Movie.Title)</h1>
+                <div class="page-eachdescription">
+                    <p>@Html.DisplayFor(model=>model.Movie.Description)</p>
+                </div>
+                <div class="row">
+                    <div class="moviedatashower col-12 col-md-4">
+                        <p class="p-genre"> <strong>Genre:</strong> @Html.DisplayFor(m=>m.Movie.Genre)</p>
+                        <p class="p-genre"> <strong>Actors:</strong> @Html.DisplayFor(m=>m.Movie.Actors)</p>
+                        <p class="p-genre"> <strong>Director:</strong> @Html.DisplayFor(m=>m.Movie.Director)</p>
+                        <p class="p-genre"> <strong>Country:</strong> @Html.DisplayFor(m=>m.Movie.Country)</p>
+
+
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <p class="p-genre"> <strong>IMDB:</strong> @Html.DisplayFor(m=>m.Movie.IMDB)</p>
+
+                        <p class="p-genre"> <strong>Duration:</strong> @Html.DisplayFor(m=>m.Movie.Duration)</p>
+                        <p class="p-genre"> <strong>Release:</strong> @Html.DisplayFor(m=>m.Movie.ReleaseDate.Year)</p>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="d-grid gap-2">
+                    <button class="stream-btn btn btn-primary" type="button">Stream in HD</button>
+                    <button class="stream-btn btn btn-primary" type="button">Dovnload in HD</button>
+                </div>
+            </div>
+           
+    </div>
+  </div>
+</div>
