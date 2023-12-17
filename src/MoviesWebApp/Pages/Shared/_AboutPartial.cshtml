@@ -1,0 +1,29 @@
+﻿@namespace MoviesWebApp.Pages.moviefolder
+@using MoviesWebApp.Core.Models;
+<div id="row">
+    <div class="name-logo-div">
+        <h2 class="logo-text">FALCON</h2>
+        <i class=" fa-solid fa-circle-play fa-3x custom-color"></i>
+        <h2 class="logo-text">INSCOPE</h2>
+    </div>
+
+
+    <div class="input-div">
+
+        <input type="text" id="search-input" placeholder="Write name of the movie ">
+        <button id="search-button" type="button"> <i class="fa fa-search color-input"></i> </button>
+
+    </div>
+
+
+
+
+    @foreach (var logo in Model.LogoPageInfos)
+    {
+        <div class="logo-info">
+            @Html.Raw(logo.infoAboutApp)
+        </div>
+
+    }
+</div>
+

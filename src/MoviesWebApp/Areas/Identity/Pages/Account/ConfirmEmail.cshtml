@@ -1,0 +1,20 @@
+﻿@page "{uid}/{token}"
+@using MoviesWebApp.Core.Models;
+@model ConfirmEmailModel
+
+<div class="container">
+    <div class="row text-center"></div>
+    @if (Model.EmailVerified)
+    {
+        <div class=" alert alert-success " role="alert">
+
+            <p>Your account Verified succesfully 
+               
+            </p>
+        </div>
+    }
+    else
+    {
+        <p>Something went wrong or your toke is expired</p>
+    }
+</div>

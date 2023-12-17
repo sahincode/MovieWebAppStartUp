@@ -1,0 +1,132 @@
+﻿@page 
+@using MoviesWebApp.Areas.Admin.Pages.AdminMovie
+
+@model IndexModel
+@{
+    int counter = 0;
+    string currency = "azn";
+    string percentage = "%";
+}
+@section cssFiles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+}
+<style>
+    .table-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 40px;
+        background-color: #435d7d !important;
+    }
+
+        .table-title .title {
+            font-weight: 700;
+        }
+
+        .table-title span {
+            font-weight: 300;
+        }
+
+    .create-btn {
+        width: 110px;
+    }
+
+</style>
+<div class="container-fluid">
+    <div class="table-title text-white">
+        <h1 class="title">Books <span>Table</span></h1>
+        <a class="btn btn-success create-btn" asp-action="Create" asp-controller="Book">Create</a>
+    </div>
+    <table class="table table-hover table-striped shadow">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Actors)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Director)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].ReleaseDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].IMDB)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Movies[0].ImageURL)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model.Movies)
+            {
+                counter++;
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Actors)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Genre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Director)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.ReleaseDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.IMDB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.ImageURL)
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@movie.ID">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a class="btn btn-danger delete-btn" asp-page="./Edit" asp-route-id="@movie.ID">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                        <a class="btn btn-danger delete-btn" asp-page="./Edit" asp-route-id="@movie.ID">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section jsFiles{
+    <script src="~/assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.min.js"></script>
+}

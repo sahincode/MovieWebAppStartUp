@@ -1,0 +1,88 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@using MoviesWebApp.Core.Models;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MoviesWebApp</title>
+
+    <link rel="stylesheet" href="~/AppAssets/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/AppAssets/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MoviesWebApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script type="module" src="Pages/About.cshtml.js" asp-append-version="true" defer></script>
+</head>
+<body class="body-layout">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow ">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/LogoPageEdit/Logo">
+                    <div class="logo-div-layout">
+                        <h2 class="logo-text-layout">FALCON</h2>
+                        <i class=" fa-solid fa-circle-play fa-lg custom-color"></i>
+                        <h2 class="logo-text-layout">INSCOPE</h2>
+                    </div>
+
+
+                </a>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/LogoPageEdit/Logo">Home</a>
+                        </li>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/admin-movie/Index">Movies</a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/AdminPage">Admin</a>
+
+                            </li>
+
+
+
+
+
+                        }
+                    </ul>
+
+                </div>
+                <div navbar-collapse collapse d-sm-inline-flex justify-content-between>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+  
+        <main role="main" class="body-main"> @RenderBody() </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - MoviesWebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/AppAssets/AppAssets/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/AppAssets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AppAssets/js/site.js" asp-append-version="true"></script>
+    <script type="module" src="Pages/About.cshtml.js" asp-append-version="true" defer></script>
+    <script type="module" src="/Pages/Search/SearchResults.cshtml.js" asp-append-version="true" defer></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
