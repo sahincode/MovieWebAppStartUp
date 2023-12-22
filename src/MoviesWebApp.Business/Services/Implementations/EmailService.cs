@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTO;
+
 using MoviesWebApp.Core.Models;
 
 using System.Net;

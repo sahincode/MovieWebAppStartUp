@@ -3,11 +3,11 @@ using MoviesWebApp.Core.Models;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace MoviesWebApp.Core.DTO
+namespace MoviesWebApp.ViewModels
 {
-    public class MovieDto
+    public class MovieCreateViewModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         [StringLength(50, MinimumLength = 1)]
         [Required]
         public string Title { get; set; }
