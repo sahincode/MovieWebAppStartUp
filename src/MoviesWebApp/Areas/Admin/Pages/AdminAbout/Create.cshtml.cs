@@ -25,7 +25,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
         }
 
         [BindProperty]
-        public LogoPageInfo LogoPageInfo { get; set; } = default!;
+        public About LogoPageInfo { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using MoviesWebApp.Business.Services.Interfaces;
+using MoviesWebApp.Core.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data;
 using MoviesWebApp.Data.DAL;
@@ -14,52 +17,33 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
 {
     public class DeleteModel : PageModel
     {
-        private readonly MoviesWebAppContext _context;
+        private readonly IMovieService _service;
+        private readonly IMapper _mapper;
 
-        public DeleteModel(MoviesWebAppContext context)
+        public DeleteModel(IMovieService service ,IMapper mapper)
         {
-            _context = context;
+            this._service = service;
+            this._mapper = mapper;
         }
 
         [BindProperty]
-        public Movie Movies { get; set; } = default!;
+        public MovieDeleteDto Movie { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            if (id == null || _context.Movies == null)
-            {
-                return NotFound();
-            }
-
-            var movies = await _context.Movies.FirstOrDefaultAsync(m => m.ID == id);
-
-            if (movies == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                Movies = movies;
-            }
+            var movie =  await _service.GetById(id);
+            if (movie == null) return NotFound();
+            Movie = _mapper.Map<MovieDeleteDto>(movie);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (id == null || _context.Movies == null)
-            {
-                return NotFound();
-            }
-            var movies = await _context.Movies.FindAsync(id);
-
-            if (movies != null)
-            {
-                Movies = movies;
-                _context.Movies.Remove(Movies);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            var movie = await _service.GetById(id);
+            if (movie == null) return NotFound();
+            Movie = _mapper.Map<MovieDeleteDto>(movie);
+             await _service.Delete(Movie);
+            return Page();
         }
     }
 }

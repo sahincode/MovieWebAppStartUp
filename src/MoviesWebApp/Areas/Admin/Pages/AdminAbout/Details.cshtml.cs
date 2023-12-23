@@ -21,7 +21,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
             _context = context;
         }
 
-      public LogoPageInfo LogoPageInfo { get; set; } = default!; 
+      public About LogoPageInfo { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,7 +30,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
                 return NotFound();
             }
 
-            var logopageinfo = await _context.LogoPageInfo.FirstOrDefaultAsync(m => m.ID == id);
+            var logopageinfo = await _context.LogoPageInfo.FirstOrDefaultAsync(m => m.Id == id);
             if (logopageinfo == null)
             {
                 return NotFound();

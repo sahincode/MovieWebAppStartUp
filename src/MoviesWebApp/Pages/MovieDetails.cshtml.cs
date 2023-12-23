@@ -16,7 +16,7 @@ namespace MoviesWebApp.Pages
         }
 
         public Movie Movie { get; set; } = default!;
-        public LogoPageInfo LogoPageInfo { get; set; } = default!;
+        public About LogoPageInfo { get; set; } = default!;
 
 
         public async Task<IActionResult> OnGetAsync(int id)
@@ -26,8 +26,8 @@ namespace MoviesWebApp.Pages
                 return NotFound();
             }
 
-            var movie= await _context.Movies.FirstOrDefaultAsync(m => m.ID == id);
-            var logoInfo = await _context.LogoPageInfo.FirstOrDefaultAsync(m => m.ID == id);
+            var movie= await _context.Movies.FirstOrDefaultAsync(m => m.Id == id);
+            var logoInfo = await _context.LogoPageInfo.FirstOrDefaultAsync(m => m.Id== id);
             if (movie == null)
             {
                 return NotFound();

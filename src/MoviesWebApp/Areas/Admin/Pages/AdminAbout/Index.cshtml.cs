@@ -21,7 +21,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
             _context = context;
         }
 
-        public IList<LogoPageInfo> LogoPageInfo { get;set; } = default!;
+        public IList<About> LogoPageInfo { get;set; } = default!;
 
         public async Task OnGetAsync()
         {

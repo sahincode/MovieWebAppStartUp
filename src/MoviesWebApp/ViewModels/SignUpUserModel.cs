@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MoviesWebApp.Core.Models
+namespace MoviesWebApp.ViewModels
 {
     public class SignUpUserModel
     {

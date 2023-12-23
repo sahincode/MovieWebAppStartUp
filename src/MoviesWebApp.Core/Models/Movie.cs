@@ -1,11 +1,12 @@
 ﻿
+using MoviesWebApp.Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace MoviesWebApp.Core.Models
 {
-    public class Movie
+    public class Movie :BaseEntity
     {
-        public int ID { get; set; }
+        
         [StringLength(50, MinimumLength = 1)]
         [Required]
         public string Title { get; set; }
@@ -26,21 +27,11 @@ namespace MoviesWebApp.Core.Models
         [Range(0,10)]
        
         public float IMDB { get; set; }
-        public string? ImageURL { get; set; }
+        public string ImageURL { get; set; }
         public  string VideoURL { get; set; }
          
 
     }
-    public enum Genre:byte
-    {
-        Action,
-        Comedy,
-        Drama,
-        Fantasy,
-        Horror,
-        Mystery,
-        Romance,
-        Thriller
-    }
+   
    
 }

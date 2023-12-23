@@ -1,36 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MoviesWebApp.Core.DTO;
+using MoviesWebApp.Business.Exceptions.FormatExceptions;
+using MoviesWebApp.Business.Services.Interfaces;
+using MoviesWebApp.Core.DTOs.MovieDTOs;
+using MoviesWebApp.Core.Enums;
 using MoviesWebApp.Core.Models;
-using MoviesWebApp.Data;
 using MoviesWebApp.Data.DAL;
+using MoviesWebApp.ViewModels;
+using NuGet.ProjectModel;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
 {
     public class CreateModel : PageModel
     {
-        private readonly MoviesWebAppContext _context;
-        private readonly IMapper _mapper;
-        public readonly IWebHostEnvironment _environment;
+        private readonly IMovieService _movieService;
 
-        public CreateModel(MoviesWebAppContext context,
-            IMapper mapper,
-            IWebHostEnvironment environment)
-        {
-            _context = context;
-            _mapper = mapper;
-            _environment = environment;
-        }
+        [BindProperty]
+        public MovieCreateDto Movie { get; set; }
         public List<SelectListItem> GenreList { get; set; } = new();
-
-        public IActionResult OnGet()
+        public CreateModel(IMovieService movieService)
+        {
+            this._movieService = movieService;
+        }
+        public IActionResult OnGetAsync()
         {
             var claims = User.Claims;
 
@@ -39,50 +33,22 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
 
             return Page();
         }
-
-        [BindProperty]
-        public MovieDto Movies { get; set; } 
-
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-
-
             if (!ModelState.IsValid)
-                {
-                    return Page();
-                }
+            {
+                return Page();
+            }
+            try
+            {
+                await _movieService.CreateAsync(Movie);
 
-                // The rest of your code
-                // ...
+            }catch(MovieFileFormatException ex) 
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return Page();
+            }
             
-
-            var movie =  _mapper.Map<Movie>(Movies);
-            
-            var FolderImage = Path.Combine(_environment.WebRootPath, "uploads", "images");
-            var FolderVideo = Path.Combine(_environment.WebRootPath, "uploads", "images");
-            if (!Directory.Exists(FolderImage) || !Directory.Exists(FolderImage))
-            {
-                Directory.CreateDirectory(FolderImage);
-                Directory.CreateDirectory(FolderVideo);
-            }
-            var filename = Guid.NewGuid() + Path.GetExtension(Movies.Image.FileName);
-                var filenameVideo = Guid.NewGuid() + Path.GetExtension(Movies.Video.FileName);
-            var filefullpath=Path.Combine(FolderImage, filename);
-            var filepathVideo = Path.Combine(FolderVideo, filenameVideo);
-            using (var FileStream= new FileStream(filefullpath, FileMode.Create))
-            {
-                await Movies.Image.CopyToAsync(FileStream);
-            }
-            using (var FileStream = new FileStream(filepathVideo, FileMode.Create))
-            {
-                await Movies.Image.CopyToAsync(FileStream);
-            }
-            movie.ImageURL = filename;
-            movie.VideoURL = filenameVideo;
-            _context.Movies.Add(movie);
-            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

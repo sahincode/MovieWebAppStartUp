@@ -21,7 +21,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
         }
 
         [BindProperty]
-        public LogoPageInfo LogoPageInfo { get; set; } = default!;
+        public About LogoPageInfo { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,7 +30,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
                 return NotFound();
             }
 
-            var logopageinfo =  await _context.LogoPageInfo.FirstOrDefaultAsync(m => m.ID == id);
+            var logopageinfo =  await _context.LogoPageInfo.FirstOrDefaultAsync(m => m.Id == id);
             if (logopageinfo == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LogoPageInfoExists(LogoPageInfo.ID))
+                if (!LogoPageInfoExists(LogoPageInfo.Id))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
 
         private bool LogoPageInfoExists(int id)
         {
-          return (_context.LogoPageInfo?.Any(e => e.ID == id)).GetValueOrDefault();
+          return (_context.LogoPageInfo?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

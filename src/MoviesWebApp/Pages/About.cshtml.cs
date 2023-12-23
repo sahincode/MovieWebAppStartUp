@@ -24,7 +24,7 @@ namespace MoviesWebApp.Pages
         }
         //public LogoPageInfo LogoPageInfo { get; set; } = default!;
         public IList<Movie> Movies { get; set; } = default!;
-        public IList<LogoPageInfo> LogoPageInfos { get; set; } = default!;
+        public IList<About> LogoPageInfos { get; set; } = default!;
         
 
         public async Task OnGetAsync()
