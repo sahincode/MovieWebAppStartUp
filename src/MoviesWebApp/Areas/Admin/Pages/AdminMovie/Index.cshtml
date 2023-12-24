@@ -36,7 +36,7 @@
 <div class="container-fluid">
     <div class="table-title text-white">
         <h1 class="title">Books <span>Table</span></h1>
-        <a class="btn btn-success create-btn" asp-action="Create" asp-controller="Book">Create</a>
+        <a class="btn btn-success create-btn" asp-page="Create">Create</a>
     </div>
     <table class="table table-hover table-striped shadow">
         <thead>
@@ -110,14 +110,14 @@
                         @Html.DisplayFor(modelItem => movie.ImageURL)
                     </td>
                     <td>
-                        <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@movie.Id">
+                        <a class="btn btn-warning" asp-page="./Update" asp-route-id="@movie.Id">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <a class="btn btn-danger delete-btn" asp-page="./Edit" asp-route-id="@movie.Id">
+                        <a class="btn btn-danger delete-btn" >
                             <i class="fa-solid fa-trash"></i>
                         </a>
-                        <a class="btn btn-danger delete-btn" asp-page="./Edit" asp-route-id="@movie.Id">
-                            <i class="fa-solid fa-trash"></i>
+                        <a class="btn btn-danger delete-btn" asp-page="./Details" asp-route-id="@movie.Id">
+                            <i class="fa-solid fa-circle-info"></i>                     
                         </a>
                     </td>
                 </tr>

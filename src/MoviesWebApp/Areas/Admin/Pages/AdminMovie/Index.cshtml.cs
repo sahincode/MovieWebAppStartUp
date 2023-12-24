@@ -16,7 +16,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
         private readonly IMovieService _movieService;
         private readonly IMapper _mapper;
 
-        public List<MovieIndexDto> Movies { get; set; } = default!;
+        public List<MovieIndexDto> Movies { get; set; } = new List<MovieIndexDto>();
 
         public IndexModel(IMovieService movieService ,IMapper mapper)
         {

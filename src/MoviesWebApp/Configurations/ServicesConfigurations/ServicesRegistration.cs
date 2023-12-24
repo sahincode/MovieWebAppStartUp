@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Business.Services.Implementations;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
+using MoviesWebApp.Core.Repositories.Interfaces;
 using MoviesWebApp.Data.DAL;
+using MoviesWebApp.Data.Repositories.Implementations;
 using Westwind.AspNetCore.LiveReload;
 
 namespace MoviesWebApp.Configurations.ServicesConfigurations
@@ -21,17 +23,18 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
 
             });
 
-
-            //services.AddIdentity<ApplicationUser, IdentityRole>();
-
             services.AddDbContext<MoviesWebAppContext>(options =>
              options.UseSqlServer(configuration.GetConnectionString("MoviesWebAppContext") ?? throw new InvalidOperationException("Connection string 'MoviesWebAppContext' not found.")));
-            ///configured services 
-
+         
 
             services.Configure<SMTPConfigModel>(configuration.GetSection("SMTPConfig"));
-
+            // services addition
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IMovieService, MovieService>();
+            //repository addition 
+            services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IAboutRepository, AboutRepository>();
+            //Externa login services addition 
             services.AddAuthentication().AddGoogle(gOptions =>
             {
                 gOptions.ClientId = configuration["Authentication:Google:ClientId"];

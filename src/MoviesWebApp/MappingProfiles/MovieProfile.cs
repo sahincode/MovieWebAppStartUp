@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MoviesWebApp.Core.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.ViewModels;
 
@@ -8,7 +9,11 @@ namespace MoviesWebApp.MappingProfiles
     {
         public MovieProfile()
         {
-            CreateMap<MovieCreateViewModel, Movie>().ReverseMap();
+            CreateMap<MovieCreateDto, Movie>().ReverseMap();
+            CreateMap<MovieDeleteDto, Movie>().ReverseMap();
+            CreateMap<MovieUpdateDto, Movie>().ReverseMap();
+            CreateMap<MovieIndexDto, Movie>().ReverseMap();
+
 
         }
     }
