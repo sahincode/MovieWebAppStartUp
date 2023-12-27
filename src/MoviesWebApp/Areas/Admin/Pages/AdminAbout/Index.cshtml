@@ -44,18 +44,18 @@
             <tr>
                 <th>
 
-                    @Html.DisplayNameFor(model => model.LogoPageInfo[0].infoAboutApp)
+                    @Html.DisplayNameFor(model => model.LogoPageInfos[0].InfoAboutApp)
 
                 </th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.LogoPageInfo)
+            @foreach (var item in Model.LogoPageInfos)
             {
                 <tr>
                     <td>
 
-                        @Html.DisplayFor(modelItem => item.infoAboutApp)
+                        @Html.DisplayFor(modelItem => item.InfoAboutApp)
                     </td>
                     <td>
                         <a class="btn btn-warning" asp-page="./Update" asp-route-id="@item.Id">

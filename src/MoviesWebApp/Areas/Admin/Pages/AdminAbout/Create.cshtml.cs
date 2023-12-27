@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MoviesWebApp.Business.Services.Interfaces;
+using MoviesWebApp.Core.DTOs.AboutDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
 
@@ -13,32 +15,35 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
     public class CreateModel : PageModel
     {
         private readonly MoviesWebAppContext _context;
+        private readonly IAboutService _aboutService;
 
-        public CreateModel(MoviesWebAppContext context)
+        [BindProperty]
+        public AboutCreateDto LogoPageInfo { get; set; } = default!;
+        public CreateModel(MoviesWebAppContext context , IAboutService aboutService)
         {
             _context = context;
+            this._aboutService = aboutService;
         }
-
         public IActionResult OnGet()
         {
             return Page();
         }
-
-        [BindProperty]
-        public About LogoPageInfo { get; set; } = default!;
-        
-
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.LogoPageInfo == null || LogoPageInfo == null)
+          if(!ModelState.IsValid)
             {
                 return Page();
             }
-
-            _context.LogoPageInfo.Add(LogoPageInfo);
-            await _context.SaveChangesAsync();
-
+            try
+            {
+                await _aboutService.CreateAsync(LogoPageInfo);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"{ex.Message}");
+            }
+         
             return RedirectToPage("./Index");
         }
     }

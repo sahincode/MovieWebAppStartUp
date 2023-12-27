@@ -12,7 +12,7 @@ namespace MoviesWebApp.Business.Services.Interfaces
     public  interface IMovieService
     {
         Task CreateAsync(MovieCreateDto entity);
-        Task UpdateAsync(MovieUpdateDto entity);
+        Task UpdateAsync(int id ,MovieUpdateDto entity);
         Task Delete (MovieDeleteDto movie);
         Task SoftDelete(int id);
         Task< Movie > GetById(int id);

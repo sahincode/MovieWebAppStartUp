@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoviesWebApp.Core.Models
+namespace MoviesWebApp.Core.DTOs.AboutDTOs
 {
-    public class BaseEntity
+    public class AboutIndexDto
     {
         public int Id { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime CreationTime { get; set; }
+        public string InfoAboutApp { get; set; }
+        public DateTime CreationTime { get;set; }
         public DateTime UpdateTime { get; set; }
-        public DateTime DeletedTime { get;set; }
+        public bool IsDeleted { get;set; }
 
     }
 }

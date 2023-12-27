@@ -5,39 +5,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using MoviesWebApp.Business.Services.Interfaces;
+using MoviesWebApp.Core.DTOs.AboutDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data;
 using MoviesWebApp.Data.DAL;
-
-
 namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
 {
     public class DetailsModel : PageModel
     {
-        private readonly MoviesWebAppContext _context;
+        private readonly IAboutService _aboutService;
 
-        public DetailsModel(MoviesWebAppContext context)
+        public About  LogoPageInfo { get; set; } = default!;
+        public DetailsModel( IAboutService aboutService)
         {
-            _context = context;
+            this._aboutService = aboutService;
         }
-
-      public About LogoPageInfo { get; set; } = default!; 
-
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.LogoPageInfo == null)
+            if (id == null )
             {
                 return NotFound();
             }
-
-            var logopageinfo = await _context.LogoPageInfo.FirstOrDefaultAsync(m => m.Id == id);
-            if (logopageinfo == null)
+            var about = await _aboutService.GetById(id);
+            if (about == null) return NotFound();
+            else
             {
-                return NotFound();
-            }
-            else 
-            {
-                LogoPageInfo = logopageinfo;
+                LogoPageInfo = about;
             }
             return Page();
         }

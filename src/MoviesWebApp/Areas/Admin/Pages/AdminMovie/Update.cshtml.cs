@@ -32,7 +32,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
                 GenreList.Add(new SelectListItem() { Text = genreEnum.ToString(), Value = ((int)genreEnum).ToString() });
             return Page();
         }
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -40,7 +40,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
             }
             try
             {
-                 await _service.UpdateAsync(Movie);
+                 await _service.UpdateAsync(id ,Movie);
             }
             catch (MovieFileFormatException ex)
             {

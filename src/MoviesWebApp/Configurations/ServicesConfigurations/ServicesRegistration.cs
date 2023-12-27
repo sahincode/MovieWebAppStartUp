@@ -31,6 +31,7 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             // services addition
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IAboutService, AboutService>();
             //repository addition 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IAboutRepository, AboutRepository>();

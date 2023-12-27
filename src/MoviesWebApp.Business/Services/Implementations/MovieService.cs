@@ -8,6 +8,7 @@ using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
+using MoviesWebApp.Data.Repositories.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,8 +48,6 @@ namespace MoviesWebApp.Business.Services.Implementations
             var movie = _mapper.Map<Movie>(entity);
             movie.ImageURL = await FileHelper.SaveImage(rootPath, imagePassPath, entity.Image);
             movie.VideoURL = await FileHelper.SaveImage(rootPath, videoPassPath, entity.Video);
-            movie.CreationTime = DateTime.UtcNow.AddHours(4);
-            movie.UpdateTime = DateTime.UtcNow.AddHours(4);
             await _movieRepository.CreateAsync(movie);
             await _movieRepository.CommitChange();
         }
@@ -71,41 +70,49 @@ namespace MoviesWebApp.Business.Services.Implementations
         public async Task<IEnumerable<Movie>> GetAll(Expression<Func<Movie, bool>>? predicate, params string[] ? includes)
         {
             return await _movieRepository.GetAll(predicate, includes);
+
         }
 
-        public Task<Movie> GetById(int id)
+        public async  Task<Movie> GetById(int id)
         {
-            return _movieRepository.Get(m => m.Id == id);
+            
+            return await _movieRepository.Get(m => m.Id == id) is not null ?
+               await _movieRepository.Get(m => m.Id == id) :
+               throw new EntityNotFoundException($"The movie with the ID equal to" +
+               $" {id} was not found in the database.");
         }
         public async Task SoftDelete(int id)
         {
             var movie = await _movieRepository.Get(m => m.Id == id);
-            if (movie == null) throw new NullEntityException("", $"The movie which Id is equal to {id} \n not found");
+            if (movie == null) throw new NullEntityException("", $"The movie with the ID equal to" +
+               $" {id} was not found in the database.");
             movie.IsDeleted = !movie.IsDeleted;
+           await   _movieRepository.CommitChange();
 
         }
 
 
-        public async Task UpdateAsync(MovieUpdateDto entity)
+        public async Task UpdateAsync(int id, MovieUpdateDto entity)
         {
             string rootPath = _environment.WebRootPath;
 
 
-            var movie = _mapper.Map<Movie>(entity);
+            var updatedMovie = await  _movieRepository.Get(m => m.Id == id);
+
+            updatedMovie=_mapper.Map(entity,updatedMovie);
             if (entity.Image != null)
             {
                 if (entity.Image.ContentType != "image/png" && entity.Image.ContentType != "image/jpeg")
                     throw new MovieFileFormatException("Image", "please add png or jpeg file");
-                movie.ImageURL = await FileHelper.SaveImage(rootPath, imagePassPath, entity.Image);
+                updatedMovie.ImageURL = await FileHelper.SaveImage(rootPath, imagePassPath, entity.Image);
             }
 
             if (entity.Video != null)
             {
                 if (entity.Video.ContentType != "video/mp4" && entity.Video.ContentType != "video/mpeg")
                     throw new MovieFileFormatException("Video", "please add mp4  or mpeg file");
-                movie.VideoURL = await FileHelper.SaveImage(rootPath, videoPassPath, entity.Video);
-            }  
-            movie.UpdateTime = DateTime.UtcNow.AddHours(4);
+                updatedMovie.VideoURL = await FileHelper.SaveImage(rootPath, videoPassPath, entity.Video);
+            }
             await _movieRepository.CommitChange();
         }
 
