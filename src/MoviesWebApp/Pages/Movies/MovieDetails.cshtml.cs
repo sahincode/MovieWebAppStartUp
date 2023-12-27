@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
 
-namespace MoviesWebApp.Pages
+namespace MoviesWebApp.Pages.Movies
 {
-    public class PageEachMovieModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly MoviesWebAppContext _context;
 
-        public PageEachMovieModel(MoviesWebAppContext context)
+        public DetailsModel(MoviesWebAppContext context)
         {
             _context = context;
         }
@@ -27,7 +27,7 @@ namespace MoviesWebApp.Pages
             }
 
             var movie= await _context.Movies.FirstOrDefaultAsync(m => m.Id == id);
-            var logoInfo = await _context.LogoPageInfo.FirstOrDefaultAsync(m => m.Id== id);
+            var logoInfo = await _context.Abouts.FirstOrDefaultAsync(m => m.Id== id);
             if (movie == null)
             {
                 return NotFound();

@@ -32,7 +32,7 @@ namespace MoviesWebApp.Pages
             if (_context.Movies != null)
             {
                 Movies = await _context.Movies.ToListAsync();
-                LogoPageInfos = await _context.LogoPageInfo.ToListAsync();
+                LogoPageInfos = await _context.Abouts.ToListAsync();
             }
         }
         public IActionResult OnGetGetMovies(string input)

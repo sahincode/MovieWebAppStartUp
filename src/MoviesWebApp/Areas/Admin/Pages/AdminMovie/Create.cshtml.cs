@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesWebApp.Business.Exceptions.FormatExceptions;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.DTOs.MovieDTOs;
-using MoviesWebApp.Core.Enums;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
 using MoviesWebApp.ViewModels;
@@ -16,21 +15,25 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
     public class CreateModel : PageModel
     {
         private readonly IMovieService _movieService;
+        private readonly IGenreService _genreService;
 
         [BindProperty]
         public MovieCreateDto Movie { get; set; }
-        public List<SelectListItem> GenreList { get; set; } = new();
-        public CreateModel(IMovieService movieService)
+        public SelectList GenreList { get; set; } 
+        public CreateModel(IMovieService movieService ,IGenreService genreService)
         {
             this._movieService = movieService;
+            this._genreService = genreService;
         }
-        public IActionResult OnGetAsync()
+        public async  Task<IActionResult> OnGetAsync()
         {
             var claims = User.Claims;
 
-            foreach (Genre genreEnum in Enum.GetValues(typeof(Genre)))
-                GenreList.Add(new SelectListItem() { Text = genreEnum.ToString(), Value = ((int)genreEnum).ToString() });
-
+           List<Genre> genres  =_genreService.GetAll(g => g.IsDeleted == false).Result.ToList();
+            if (genres != null)
+            {
+                GenreList = new SelectList(genres, "Id", "Name");
+            }
             return Page();
         }
         public async Task<IActionResult> OnPostAsync()

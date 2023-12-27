@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using MoviesWebApp.Core.Enums;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,10 +21,6 @@ namespace MoviesWebApp.Core.DTOs.MovieDTOs
         public string Title { get; set; }
         public string Description { get; set; }
         public string Actors { get; set; }
-        [EnumDataType(typeof(Genre))]
-        public Genre Genre { get; set; }
-
-
         public string Director { get; set; }
         public string Country { get; set; }
         [Range(0, 300)]

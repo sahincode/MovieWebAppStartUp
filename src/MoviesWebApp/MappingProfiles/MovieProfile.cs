@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MoviesWebApp.Core.DTOs.AboutDTOs;
+using MoviesWebApp.Core.DTOs.GenreDTOs;
 using MoviesWebApp.Core.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.ViewModels;
@@ -19,7 +20,10 @@ namespace MoviesWebApp.MappingProfiles
             CreateMap<AboutCreateDto, About>().ReverseMap();
             CreateMap<AboutUpdateDto, About>().ReverseMap();
             CreateMap<AboutIndexDto, About>().ReverseMap();
-
+            //Genre model mapping profile
+            CreateMap<GenreCreateDto, Genre>().ReverseMap();
+            CreateMap<GenreUpdateDto, Genre>().ReverseMap();
+            CreateMap<GenreIndexDto, Genre>().ReverseMap();
 
         }
     }

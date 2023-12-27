@@ -10,9 +10,13 @@ namespace MoviesWebApp.Data.DAL
         {
         }
 
-        public DbSet<MoviesWebApp.Core.Models.Movie> Movies { get; set; } = default!;
+        public DbSet<Movie> Movies { get; set; } = default!;
 
-        public DbSet<About> LogoPageInfo { get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<MovieGenre> MovieGenres { get; set; }
+
+
         public override int SaveChanges()
         {
             var datas = ChangeTracker.Entries<BaseEntity>();

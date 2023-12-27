@@ -25,7 +25,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
         }
         public async Task<IActionResult> OnGetAsync()
         {
-            IEnumerable<Movie>movies  = await  _movieService.GetAll( null ,null);
+            IEnumerable<Movie>movies  = await  _movieService.GetAll( null ,"MovieGenres");
             if(movies is null) return NotFound();
            foreach (Movie movie in movies)
             {

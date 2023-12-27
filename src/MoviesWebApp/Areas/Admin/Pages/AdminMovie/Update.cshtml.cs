@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesWebApp.Business.Exceptions.FormatExceptions;
+using MoviesWebApp.Business.Services.Implementations;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.DTOs.MovieDTOs;
-using MoviesWebApp.Core.Enums;
+
+using MoviesWebApp.Core.Models;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
 {
@@ -13,14 +15,16 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
     {
         private readonly IMovieService _service;
         private readonly IMapper _mapper;
+        private readonly IGenreService _genreService;
 
         [BindProperty]
         public MovieUpdateDto Movie { get; set; } = default!;
-        public List<SelectListItem> GenreList { get; set; } = new();
-        public UpdateModel( IMovieService service ,IMapper mapper)
+        public SelectList GenreList { get; set; } 
+        public UpdateModel( IMovieService service ,IMapper mapper ,IGenreService genreService)
         {
             this._service = service;
             this._mapper = mapper;
+            this._genreService = genreService;
         }
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -28,8 +32,11 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
             if (movie is null) return NotFound();
             Movie =_mapper.Map<MovieUpdateDto>(movie);
 
-            foreach (Genre genreEnum in Enum.GetValues(typeof(Genre)))
-                GenreList.Add(new SelectListItem() { Text = genreEnum.ToString(), Value = ((int)genreEnum).ToString() });
+            List<Genre> genres = _genreService.GetAll(g => g.IsDeleted == false ).Result.ToList();
+            if (genres != null)
+            {
+                GenreList = new SelectList(genres, "Id", "Name");
+            }
             return Page();
         }
         public async Task<IActionResult> OnPostAsync(int id)

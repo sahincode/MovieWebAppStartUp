@@ -14,21 +14,21 @@ using MoviesWebApp.Core.DTOs.GenreDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
 
-namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
+namespace MoviesWebApp.Areas.Admin.Pages.AdminGenre
 {
     public class UpdateModel : PageModel
     {
-        private readonly IAboutService _aboutService;
+        private readonly IGenreService _genreService;
         private readonly IMapper _mapper;
 
-        public UpdateModel( IAboutService aboutService ,IMapper mapper)
+        public UpdateModel( IGenreService genreService ,IMapper mapper)
         {
-            this._aboutService = aboutService;
+            this._genreService = genreService;
             this._mapper = mapper;
         }
 
         [BindProperty]
-        public AboutUpdateDto LogoPageInfos { get; set; } = default!;
+        public GenreUpdateDto GenreUpdateDto { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -37,12 +37,12 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
                 return NotFound();
             }
 
-            var logoPageInfos = await  _aboutService.Get(a => a.Id == id && a.IsDeleted == false);
-            if (logoPageInfos == null)
+            var genre = await  _genreService.Get(a => a.Id == id && a.IsDeleted == false);
+            if (genre == null)
             {
                 return NotFound();
             }
-            LogoPageInfos= _mapper.Map<AboutUpdateDto>(logoPageInfos);
+            GenreUpdateDto = _mapper.Map<GenreUpdateDto>(genre);
             return Page();
         }
         public async Task<IActionResult> OnPostAsync(int? id )
@@ -52,7 +52,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
             if(id == null) return NotFound();
             try
             {
-                await _aboutService.UpdateAsync(id, LogoPageInfos);
+                await _genreService.UpdateAsync(id, GenreUpdateDto);
             }
             catch (EntityNotFoundException ex)
             {

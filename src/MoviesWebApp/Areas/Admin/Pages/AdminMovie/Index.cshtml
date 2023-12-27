@@ -51,7 +51,7 @@
                     @Html.DisplayNameFor(model => model.Movies[0].Actors)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Movies[0].Genre)
+                   Genres :
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Movies[0].Director)
@@ -87,9 +87,11 @@
                     <td>
                         @Html.DisplayFor(modelItem => movie.Actors)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => movie.Genre)
-                    </td>
+                    @for (int i = 0; i <= movie.MovieGenres.Count; i++)
+                    {
+                        @(movie.MovieGenres[i].Genre.Name + (i != movie.MovieGenres.Count - 1 ? " , " : ""))
+
+                    }
                     <td>
                         @Html.DisplayFor(modelItem => movie.Director)
 

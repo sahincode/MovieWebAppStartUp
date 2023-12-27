@@ -14,31 +14,31 @@ using MoviesWebApp.Data;
 using MoviesWebApp.Data.DAL;
 
 
-namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout 
+namespace MoviesWebApp.Areas.Admin.Pages.AdminGenre 
 { 
     public class IndexModel : PageModel
     {
-        private readonly IAboutService _aboutService;
+        private readonly IGenreService _genreService;
         private readonly IMapper _mapper;
 
-        public IndexModel( IAboutService aboutService ,IMapper mapper)
+        public IndexModel( IGenreService genreService ,IMapper mapper)
         {
-            this._aboutService = aboutService;
+            this._genreService = genreService;
             this._mapper = mapper;
         }
 
-        public IList<AboutIndexDto> LogoPageInfos { get;set; } = default!;
+        public IList<GenreIndexDto> GenreIndexDtos { get;set; } = default!;
 
         public async Task<IActionResult> OnGetAsync()
         {
-            IEnumerable<About> abouts = await  _aboutService.GetAll(null, null);
-            List<AboutIndexDto> aboutIndexDtos = new List<AboutIndexDto>();
-            foreach(var about in abouts)
+            IEnumerable<Genre> genres = await  _genreService.GetAll(null, null);
+            List<GenreIndexDto> genreIndexDtos = new List<GenreIndexDto>();
+            foreach(var about in genres)
             {
-                AboutIndexDto aboutIndexDto = _mapper.Map<AboutIndexDto>(about);
-                aboutIndexDtos.Add(aboutIndexDto);
+                GenreIndexDto genreIndexDto = _mapper.Map<GenreIndexDto>(about);
+                genreIndexDtos.Add(genreIndexDto);
             }
-            LogoPageInfos = aboutIndexDtos;
+            GenreIndexDtos = genreIndexDtos;
             return Page();
         }
     }

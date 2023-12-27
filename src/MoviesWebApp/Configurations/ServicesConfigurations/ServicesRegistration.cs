@@ -32,9 +32,13 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IAboutService, AboutService>();
+            services.AddScoped<IGenreService, GenreService>();
+
             //repository addition 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IAboutRepository, AboutRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
+
             //Externa login services addition 
             services.AddAuthentication().AddGoogle(gOptions =>
             {

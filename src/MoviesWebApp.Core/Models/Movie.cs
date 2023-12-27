@@ -1,6 +1,4 @@
-﻿
-using MoviesWebApp.Core.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MoviesWebApp.Core.Models
 {
@@ -15,8 +13,7 @@ namespace MoviesWebApp.Core.Models
 
         public string  Actors { get; set; }
         [EnumDataType(typeof(Genre))]
-        public Genre Genre { get; set; }
-
+       public List<MovieGenre> MovieGenres { get; set; }
 
         public string Director { get; set; }
         public string Country { get; set; }

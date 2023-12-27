@@ -25,7 +25,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-          var movie = await _movieService.GetById(id);
+          var movie = await _movieService.Get(m=> m.Id==id , "MovieGenres");
             if (movie == null) return NotFound();
             Movie = movie;
             return Page();
