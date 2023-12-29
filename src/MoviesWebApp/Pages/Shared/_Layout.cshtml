@@ -20,7 +20,7 @@
 </head>
 <body class="body-layout">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow ">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="./About">
                     <div class="logo-div-layout">
@@ -33,34 +33,34 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item ms-3">
-                            <a class="nav-bar-link" asp-area="" asp-page="/About">About</a>
+                            <a class="nav-bar-link link-subline" asp-area="" asp-page="/About">About</a>
                         </li>
                         <li class="nav-item ms-3">
-                            <a class="nav-bar-link" asp-area="" asp-page="/Home">Home</a>
+                            <a class="nav-bar-link link-subline" asp-area="" asp-page="/Home">Home</a>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item ms-3">
-                                <a class="nav-bar-link" asp-area="" asp-page="/Movies/Index">Movies</a>
+                                <a class="nav-bar-link link-subline" asp-area="" asp-page="/Movies/Index">Movies</a>
 
                             </li>
                         
                             <li class="dropdown nav-item ms-3">
-                                <a class="nav-bar-link " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-bar-link link-subline" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     Genres
                                 </a>
 
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <ul class="dropdown-menu dropdown-nav-bar mt-5" aria-labelledby="dropdownMenuLink">
                                     <li><a class="dropdown-item" href="#">Action</a></li>
                                     <li><a class="dropdown-item" href="#">Another action</a></li>
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item ms-3">
-                                <a class="nav-bar-link" asp-page="/Movies/TopIMDB">Top IMDB</a>
+                                <a class="nav-bar-link link-subline" asp-page="/Movies/TopIMDB">Top IMDB</a>
                             </li>
                             <li class="nav-item ms-3">
-                                <a class="nav-bar-link" asp-page="/Serials/Index">Serials</a>
+                                <a class="nav-bar-link link-subline" asp-page="/Serials/Index">Serials</a>
                             </li>
 
                         }
@@ -100,7 +100,7 @@
                         <div class="footer-title">
                             <h3 class="footer-text">Explore</h3>
                         </div>
-                        <ul style="list-style-type:none;" class="footer-list list-group">
+                        <ul style="list-style-type:none;" class="footer-ul footer-list list-group">
 
                             <li><a href="#">New Movies</a></li>
                             <li><a href="#">Best Movies</a></li>
@@ -118,7 +118,7 @@
                         <div class="footer-title">
                             <h3 class="footer-text">Extras</h3>
                         </div>
-                        <ul style="list-style-type:none;" class="footer-list list-group">
+                        <ul style="list-style-type:none;" class="footer-ul footer-list list-group">
 
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Privacy Policy</a></li>
