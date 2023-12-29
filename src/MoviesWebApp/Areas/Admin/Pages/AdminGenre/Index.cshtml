@@ -36,7 +36,7 @@
 </style>
 <div class="container-fluid">
     <div class="table-title text-white">
-        <h1 class="title">About<span>Table</span></h1>
+        <h1 class="title">Genre<span>|Table</span></h1>
         <a class="btn btn-success create-btn" asp-page="./Create">Create</a>
     </div>
     <table class="table table-hover table-striped shadow">
@@ -64,7 +64,7 @@
                         <a class="btn btn-danger delete-btn" >
                             <i class="fa-solid fa-trash"></i>
                         </a>
-                        <a class="btn btn-danger delete-btn" asp-page="./Details" asp-route-id="@item.Id">
+                        <a class="btn btn-info " asp-page="./Details" asp-route-id="@item.Id">
                             <i class="fa-solid fa-circle-info"></i>
                         </a>
                     </td>

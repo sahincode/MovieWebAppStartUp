@@ -18,7 +18,7 @@ namespace MoviesWebApp.Core.DTOs.MovieDTOs
         public string Title { get; set; }
         public string Description { get; set; }
         public string Actors { get; set; }
-        public List<MovieGenre> MovieGenres { get; set; }
+        public List<MovieGenre> Genres { get; set; }
         public string Director { get; set; }
         public string Country { get; set; }
         [Range(0, 300)]

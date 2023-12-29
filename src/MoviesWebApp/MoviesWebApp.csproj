@@ -322,4 +322,8 @@
     <ProjectReference Include="..\MoviesWebApp.Business\MoviesWebApp.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Pages\Account\" />
+  </ItemGroup>
+
 </Project>

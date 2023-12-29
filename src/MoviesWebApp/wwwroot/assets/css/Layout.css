@@ -97,14 +97,24 @@ a.navbar-brand {
     background-color:#d81010;
     color:black;
 }
-  
-    /*footer design section*/
-    .footer {
-        background-color: #263636;
-        bottom: 0;
-        width: 100%;
-        line-height: 40px;
-    }
+.dropdown-nav-bar button {
+    background:none;
+    border:none;
+    background-color: none;
+    text-decoration-color: #3e8f8a;
+}
+.dropdown-nav-bar button:hover {
+        background-color: #d81010;
+
+        color: black;
+}
+/*footer design section*/
+.footer {
+    background-color: #263636;
+    bottom: 0;
+    width: 100%;
+    line-height: 40px;
+}
 
 
 

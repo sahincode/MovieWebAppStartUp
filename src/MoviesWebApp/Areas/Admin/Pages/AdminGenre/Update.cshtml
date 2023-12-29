@@ -28,14 +28,14 @@
 </style>
 <div class="container-fluid">
     <div class="table-title text-white">
-        <h1 class="title">About<span>Update</span></h1>
+        <h1 class="title">Genre<span>|Update</span></h1>
         <a class="btn btn-success create-btn" style="min-width :150px !important" asp-page="./Index">Back to List</a>
     </div>
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="GenreUpdateDto.Name" class="control-label"></label>
-                <textarea id="editorid" style="width:900px; height:500px !important" asp-for="GenreUpdateDto.Name" class="form-control"></textarea>
+            <input asp-for="GenreUpdateDto.Name" class="form-control col-xs-2 col-sm-3 col-md-4 col-lg-6 col-xl-8" />
                 <span asp-validation-for="GenreUpdateDto.Name" class="text-danger"></span>
             </div>
             <div class="form-group">

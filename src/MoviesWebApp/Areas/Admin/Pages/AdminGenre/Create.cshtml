@@ -27,15 +27,15 @@
 </style>
 <div class="container-fluid">
     <div class="table-title text-white">
-        <h1 class="title">About<span>Create</span></h1>
+        <h1 class="title">Genre<span>|Create</span></h1>
         <a class="btn btn-success create-btn" style="min-width:150px !important;" asp-page="./Index">Back to List</a>
     </div>
 
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
+        <div class="form-group row">
             <label asp-for="GenreCreateDto.Name" class="control-label"></label>
-            <textarea id="editorid" style="width:900px; height:500px !important" asp-for="GenreCreateDto.Name" class="form-control"></textarea>
+            <input  asp-for="GenreCreateDto.Name" class="form-control col-xs-2 col-sm-3 col-md-4 col-lg-6 col-xl-8"/>
             <span asp-validation-for="GenreCreateDto.Name" class="text-danger"></span>
         </div>
         <div class="form-group">
@@ -45,16 +45,4 @@
 
 
 </div>
-@section Scripts{
-    <script src="~/ckeditor/styles.js"></script>
-    <script src="~/ckeditor/ckeditor.js"></script>
-
-    <script type="text/javascript">
-        CKEDITOR.replace('editorid')
-    </script>
-}
-@{
-    await Html.RenderPartialAsync("_ValidationScriptsPartial");
-}
-
 

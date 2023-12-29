@@ -14,9 +14,10 @@
 
             <ul class="dropdown-menu dropdown-nav-bar" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item " href="#">Account</a></li>
-
-                <li><a class="dropdown-item" href="#">Log Out</a></li>
-
+                <form class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+                
             </ul>
         </li>
 
