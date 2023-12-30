@@ -1,6 +1,6 @@
 ﻿var searchedmovie = JSON.parse(localStorage.getItem('wanteddata'));
 const movieContainer = document.getElementById('row-search');
-console.log(movieContainer);
+
 if (searchedmovie.length>0) {
     searchedmovie.forEach(movie => {
         // Create an element to display each movie

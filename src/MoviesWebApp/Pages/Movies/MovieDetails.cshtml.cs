@@ -1,41 +1,45 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using MoviesWebApp.Business.Services.Interfaces;
+using MoviesWebApp.Core.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
 
 namespace MoviesWebApp.Pages.Movies
 {
-    public class DetailsModel : PageModel
+    public class MovieDetailsModel : PageModel
     {
-        private readonly MoviesWebAppContext _context;
+        private readonly IMovieService _service;
+        private readonly IMapper _mapper;
 
-        public DetailsModel(MoviesWebAppContext context)
+        public MovieIndexDto Movie { get; set; } = default!;
+        public MovieDetailsModel( IMovieService service ,IMapper mapper)
         {
-            _context = context;
+            this._service = service;
+            this._mapper = mapper;
         }
 
-        public Movie Movie { get; set; } = default!;
-        public About LogoPageInfo { get; set; } = default!;
-
-
-        public async Task<IActionResult> OnGetAsync(int id)
+        public async Task<IActionResult> OnGet(int ? id)
         {
-            if (id == null || _context.Movies == null)
+            if (id == null )
             {
                 return NotFound();
             }
 
-            var movie= await _context.Movies.FirstOrDefaultAsync(m => m.Id == id);
-            var logoInfo = await _context.Abouts.FirstOrDefaultAsync(m => m.Id== id);
+            var movie = await _service.Get(m => m.Id == id && m.IsDeleted == false, "MovieGenres");
+            
             if (movie == null)
             {
                 return NotFound();
             }
             else
             {
-                Movie = movie;
-                LogoPageInfo = logoInfo;
+
+                Movie = _mapper.Map<MovieIndexDto>(movie);
+
+               
             }
             return Page();
         }

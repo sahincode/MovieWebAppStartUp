@@ -326,4 +326,11 @@
     <Folder Include="Areas\Admin\Pages\Account\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Pages\Shared\_LoginPartial.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

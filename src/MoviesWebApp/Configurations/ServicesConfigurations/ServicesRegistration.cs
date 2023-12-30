@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MoviesWebApp.Business.MappingProfiles;
 using MoviesWebApp.Business.Services.Implementations;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
@@ -15,7 +16,7 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
         public static void ConfigureServices(this IServiceCollection services, ConfigurationManager configuration)
         {
             services.AddLiveReload();
-            services.AddAutoMapper(typeof(Program));
+            services.AddAutoMapper(typeof(MapProfile));
             services.AddControllers();
             services.AddRazorPages(options =>
             {

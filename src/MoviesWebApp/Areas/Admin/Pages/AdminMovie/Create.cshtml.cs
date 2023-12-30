@@ -7,7 +7,7 @@ using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
-using MoviesWebApp.ViewModels;
+
 using NuGet.ProjectModel;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
@@ -18,7 +18,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
         private readonly IGenreService _genreService;
 
         [BindProperty]
-        public MovieCreateDto Movie { get; set; }
+        public Core.DTOs.MovieDTOs.MovieCreateDto Movie { get; set; }
         public SelectList GenreList { get; set; } 
         public CreateModel(IMovieService movieService ,IGenreService genreService)
         {

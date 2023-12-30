@@ -12,10 +12,14 @@
     <title>@ViewData["Title"] - MoviesWebApp</title>
 
     <link rel="stylesheet" href="~/assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+
     <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MoviesWebApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="~/assets/css/Layout.css"/>
+    <link rel="stylesheet" href="~/assets/css/main.css"/>
+    <link rel="stylesheet" href="~/assets/css/movie-details.css" />
+    <link rel="stylesheet" href="~/assets/css/moviepage.css" />
+
     <script type="module" src="Pages/About.cshtml.js" asp-append-version="true" defer></script>
 </head>
 <body class="body-layout">
@@ -41,7 +45,7 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item ms-3">
-                                <a class="nav-bar-link link-subline" asp-area="" asp-page="/Movies/Index">Movies</a>
+                                <a class="nav-bar-link link-subline" asp-area="" asp-page="/Movies/Movie">Movies</a>
 
                             </li>
                         

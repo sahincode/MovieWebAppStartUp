@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using MoviesWebApp.Core.Models;
 
-namespace MoviesWebApp.Areas.Identity.Pages.Account
+namespace MoviesWebApp.Pages.Shared
 {
     public class LoginModel : PageModel
     {
@@ -27,34 +27,34 @@ namespace MoviesWebApp.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        
+
         [BindProperty]
         public InputModel Input { get; set; }
 
-        
+
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public string ReturnUrl { get; set; }
 
-        
+
         [TempData]
         public string ErrorMessage { get; set; }
 
-        
+
         public class InputModel
         {
-            
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }
 
-           
+
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            
-            
+
+
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
         }
@@ -94,7 +94,7 @@ namespace MoviesWebApp.Areas.Identity.Pages.Account
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {

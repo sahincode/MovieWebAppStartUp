@@ -82,12 +82,10 @@ namespace MoviesWebApp.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+           
             [Required]
-            [Display(Name="Name")]
-            public string Name { get; set; }
-            [Required]
-            [Display(Name="Surname")]
-            public string Surname { get; set; }
+            [Display(Name="Username")]
+            public string Username { get; set; }
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -128,10 +126,9 @@ namespace MoviesWebApp.Areas.Identity.Pages.Account
             {
                 var user = new ApplicationUser()
                 {
-                    FirstName = Input.Name,
-                    LastName = Input.Surname,
+                  
                     Email = Input.Email,
-                    UserName = Input.Email
+                    UserName = Input.Username
 
                 };
 
@@ -155,44 +152,11 @@ namespace MoviesWebApp.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+           
             return Page();
         }
 
-        //private ApplicationUser CreateUser()
-        //{
-        //    try
-        //    {
-        //        return Activator.CreateInstance<ApplicationUser>();
-        //    }
-        //    catch
-        //    {
-        //        throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-        //            $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-        //            $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-        //    }
-        //}
-        //private async Task<IdentityResult> CreateUserAsync(SignUpUserModel usermodel)
-        //{
-        //    var user = new ApplicationUser()
-        //    {
-        //        FirstName = usermodel.FirstName,
-        //        LastName = usermodel.LastName,
-        //        Email = usermodel.Email,
-        //        UserName = usermodel.Email
-
-        //    };
-        //    var result = await _userManager.CreateAsync(user, usermodel.Password);
-        //    if (result.Succeeded)
-        //    {
-        //        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-        //        if (!string.IsNullOrEmpty(token))
-        //        {
-        //            await UserConfirmationEmail(user, token);
-        //        }
-        //    }
-        //    return result;
-        //}
+        
         private IUserEmailStore<ApplicationUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
@@ -214,8 +178,8 @@ namespace MoviesWebApp.Areas.Identity.Pages.Account
                 },
                 PlaceHolders = new List<KeyValuePair<string, string>>()
                 {
-                    new KeyValuePair<string, string>("{{UserName}}",user.FirstName),
-                    new KeyValuePair<string, string>("//UserName//",user.FirstName),
+                    new KeyValuePair<string, string>("{{UserName}}",user.UserName),
+                    new KeyValuePair<string, string>("//UserName//",user.UserName),
                     new KeyValuePair<string, string>("{{Link}}",string.Format(appdomain+confirmLink,user.Id,token ,user.Email))
                 }
             };

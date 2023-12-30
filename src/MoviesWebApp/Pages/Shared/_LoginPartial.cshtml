@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿﻿@using Microsoft.AspNetCore.Identity
 @using MoviesWebApp.Core.Models;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -6,10 +6,10 @@
 <ul class="navbar-nav d-blok">
     @if (SignInManager.IsSignedIn(User))
     {
-      
+
         <li class="dropdown nav-item ms-3">
             <a class="nav-bar-link " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                @User.Identity?.Name!
+                @User.Identity?.Name
             </a>
 
             <ul class="dropdown-menu dropdown-nav-bar" aria-labelledby="dropdownMenuLink">
@@ -17,7 +17,7 @@
                 <form class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
                     <button type="submit" class="dropdown-item">Logout</button>
                 </form>
-                
+
             </ul>
         </li>
 
