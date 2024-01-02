@@ -1,10 +1,11 @@
-﻿.body-main {
-    margin: auto;
+﻿.body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-
 .logo-text-layout {
     font-size: 24px;
-    color: #317167;
+    color: #317167 !important;
     font-weight: 500;
 }
 
@@ -25,8 +26,12 @@
 .custom-color {
     color: #317167;
 }
-/*nav-bar design section */
 
+/*body design section*/
+.body-main{
+    flex:1;
+}
+/*nav-bar design section */
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -123,6 +128,7 @@ a.navbar-brand {
     bottom: 0;
     width: 100%;
     line-height: 40px;
+    position:page;
 }
 
 
@@ -148,30 +154,4 @@ a.navbar-brand {
 
 .footer-ul a:hover {
     color: orangered;
-}
-
-.row [class^='col-'] {
-    margin-right: 5px;
-    margin-left: 5px;
-}
-
-/* Decrease gutter width for specific column sizes */
-.row [class^='col-sm-'] {
-    margin-right: 5px;
-    margin-left: 5px;
-}
-
-.row [class^='col-md-'] {
-    margin-right: 5px;
-    margin-left: 5px;
-}
-
-.row [class^='col-lg-'] {
-    margin-right: 5px;
-    margin-left: 5px;
-}
-
-.row [class^='col-xl-'] {
-    margin-right: 5px;
-    margin-left: 5px;
 }

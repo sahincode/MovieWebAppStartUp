@@ -1,51 +1,48 @@
 ﻿@page
-@model SearchResultsModel
+@model MoviesWebApp.Pages.Search.SearchResultsModel
+<div class="container-fluid">
+    <h1 class="fs-6 mt-2 btn btn-success">Moives</h1>
+    <div class="row mt-3">
+        @foreach (var movie in Model.MovieIndexDtos)
+        {
+            <div class=" movie col-xs-2 col-3 col-md-4 col-lg-6 col-xl-12">
 
+                <a class="a-movie" asp-page="/Movies/MovieDetails" asp-route-id="@movie.Id">
+                    <div class="card-body">
+                        <img class="card-img-top" src="@(movie.ImageURL is not null ?
+                            $"../assets/uploads/movies/images/{movie.ImageURL}":
+                        $"https://fakeimg.pl/300x300/?text= {movie.Title}" )" />
 
+                        <div class="movie-details">
+                            <h2 class="card-title ">@movie.Title</h2>
 
-    <div id="row-search">
-        <div class="movie"style="display:none">
+                        </div>
+                        <span class="movie-quality-span">HD</span>
 
-            <a class="a-movie" asp-page="/PageEachMovie" asp-route-id="">
-
-                <div class="card-body">
-
-
-
-
-                    <div class="movie-details">
-                        <h2 class="card-title "></h2>
-
+                        <i class=" play-icon fa-solid fa-circle-play"></i>
                     </div>
-                    <span class="movie-quality-span">HD</span>
 
-                    <i class=" fa-solid fa-circle-play"></i>
+                </a>
+            </div>
 
-
-
-
-                </div>
-
-
-
-
-
-            </a>
-
-
-
-
-        </div>
+        }
     </div>
 
+    <nav class="d-flex align-item-center justify-content-center" aria-label="...">
+        <ul class="pagination">
+            <li class="page-item @(!Model.MovieIndexDtos.HasPrev ? "disabled" :"")">
+                <a class="page-link" asp-page="/Movies/Movie" asp-route-paged="@(Model.MovieIndexDtos.CurrentPage-1)" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            @for (int i = 1; i <= Model.MovieIndexDtos.PageCount; i++)
+            {
+                <li class=" @(Model.MovieIndexDtos.CurrentPage==i ? "active" :"") page-item">
+                    <a class="page-link" asp-page="/Movies/Movie" asp-route-paged="@i">@i</a>
+                </li>
 
-
-
-
-
-
-
-
-
-
-
+            }
+            <li class="page-item @(!Model.MovieIndexDtos.HasNext ? "disabled" : "")">
+                <a class="page-link" asp-page="/Movies/Movie" asp-route-paged="@(Model.MovieIndexDtos.CurrentPage+1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>

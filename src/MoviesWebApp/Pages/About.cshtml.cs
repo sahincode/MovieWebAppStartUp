@@ -35,13 +35,7 @@ namespace MoviesWebApp.Pages
                 LogoPageInfos = await _context.Abouts.ToListAsync();
             }
         }
-        public IActionResult OnGetGetMovies(string input)
-        {
-            List<Movie> filteredmovie=_context.Movies.Where(movie=>movie.Title.Contains(input)).ToList();
-            JsonResult jsonResult = new JsonResult(filteredmovie);
-           
-            return jsonResult;
-        }
+        
 
     }
 }

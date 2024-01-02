@@ -1,29 +1,14 @@
-﻿const inputl = document.getElementById("search-input");
+﻿const input = document.getElementById("search-input");
 const movieContainer = document.getElementById("row");
 const inputbtn = document.getElementById("search-button");
- inputbtn.addEventListener("click", SearchData);
+inputbtn.addEventListener("click", SearchData);
 
 function SearchData() {
-    if (inputl.value.length >= 3) {
-        
-        fetch(`/Logo?handler=GetMovies&input=${inputl.value}`)
-            .then(response => response.json())
-            .then(data => {
 
-                localStorage.setItem('wanteddata', JSON.stringify(data))
-                
-                
-            }).catch(error => {
-                console.error("this error is occured:", error)
-            });
-
-
-
-
-
-
+    if (input.value.length >= 3) {
+        window.location.href = `/Search/SearchResults?p=${input.value}`;
     }
-    window.location.href = `/Search/SearchResults`;
+  
 
 };
 

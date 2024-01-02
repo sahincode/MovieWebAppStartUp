@@ -1,21 +1,4 @@
 ﻿
-#row-search {
-    height: 1000px;
-}
-
-
-
-.movie {
-    width: 190px;
-    height: 290px;
-}
-
-.a-movie {
-    width: 180px;
-    height: 280px;
-    text-decoration: none;
-    color: red;
-}
 
 .card-img-top {
     width: 100%;
@@ -72,15 +55,17 @@
     opacity: 0;
 }
 
-.movie {
-    width: 230px;
-    height: 350px;
-}
-
 .a-movie:hover .fa-solid {
     opacity: 1;
+    color: #179271;
 }
 
 .a-movie:hover .card-img-top {
+    color: #179271;
     filter: brightness(70%); /* Dim the image on hover */
+}
+
+.a-movie {
+    text-decoration: none;
+    color: #179271;
 }

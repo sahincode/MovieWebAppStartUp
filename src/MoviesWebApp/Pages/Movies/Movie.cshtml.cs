@@ -25,7 +25,7 @@ namespace MoviesWebApp.Pages.Movies
         {
             
             IQueryable<Movie> query = _movieRepository.Table.AsQueryable<Movie>();
-            PaginatedModelList<Movie> paginatedMovies = PaginatedModelList<Movie>.Create(query, paged, 5);
+            PaginatedModelList<Movie> paginatedMovies = PaginatedModelList<Movie>.Create(query, paged, 8);
                
             if (paginatedMovies != null)
             {
