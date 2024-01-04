@@ -76,19 +76,21 @@
     .a-movie:hover {
         color: #179271;
     }
+
 .page-item.active .page-link {
     background-color: #15b58a !important;
     color: #f9f69c !important;
     border-color: #15b58a !important;
 }
+
 .page-item .page-link {
-   
     color: #15b58a !important;
     border-color: #15b58a !important;
 }
+
 .movie {
-    width: 190px;
-    height: 290px;
-  
+    width: 172px;
+    height: 255px;
 }
+
 

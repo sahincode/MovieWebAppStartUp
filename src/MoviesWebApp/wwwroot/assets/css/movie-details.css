@@ -46,3 +46,8 @@ body{
 .trailer-button {
     padding:0 15px 0 15px;
 }
+.shady-border {
+    margin-top:-8px;
+    border-radius:2px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}

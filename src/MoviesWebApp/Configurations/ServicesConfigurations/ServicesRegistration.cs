@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MoviesWebApp.Business.DTOs.SettingDTOs;
 using MoviesWebApp.Business.MappingProfiles;
 using MoviesWebApp.Business.Services.Implementations;
 using MoviesWebApp.Business.Services.Interfaces;
@@ -22,11 +24,14 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             {
                 options.Conventions.AddPageRoute("/About", "");
 
+            }).AddFluentValidation(opt =>
+            {
+                opt.RegisterValidatorsFromAssemblyContaining<SettingCreateDtoValidator>();
             });
 
             services.AddDbContext<MoviesWebAppContext>(options =>
              options.UseSqlServer(configuration.GetConnectionString("MoviesWebAppContext") ?? throw new InvalidOperationException("Connection string 'MoviesWebAppContext' not found.")));
-         
+
 
             services.Configure<SMTPConfigModel>(configuration.GetSection("SMTPConfig"));
             // services addition
@@ -34,13 +39,21 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IAboutService, AboutService>();
             services.AddScoped<IGenreService, GenreService>();
+            services.AddScoped<ISettingService, SettingService>();
+            services.AddScoped<ISubscriberService, SubscriberService>();
+            services.AddScoped<IPrivacyService, PrivacyService>();
+
             services.AddScoped<LayoutService>();
-
-
             //repository addition 
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IAboutRepository, AboutRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<ISettingRepository, SettingRepository>();
+            services.AddScoped<ISubscriberRepository, SubscriberRepository>();
+            services.AddScoped<IPrivacyRepository, PrivacyRepository>();
+
+
+
 
             //Externa login services addition 
             services.AddAuthentication().AddGoogle(gOptions =>

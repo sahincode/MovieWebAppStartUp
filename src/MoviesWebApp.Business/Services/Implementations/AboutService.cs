@@ -1,20 +1,11 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
-using MoviesWebApp.Business.Exceptions.FormatExceptions;
 using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.InternalHelperServices;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTOs.AboutDTOs;
+using MoviesWebApp.Business.DTOs.AboutDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace MoviesWebApp.Business.Services.Implementations
 {
     public class AboutService : IAboutService

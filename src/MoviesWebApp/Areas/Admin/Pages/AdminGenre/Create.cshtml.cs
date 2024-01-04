@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTOs.AboutDTOs;
-using MoviesWebApp.Core.DTOs.GenreDTOs;
+using MoviesWebApp.Business.DTOs.AboutDTOs;
+using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
 

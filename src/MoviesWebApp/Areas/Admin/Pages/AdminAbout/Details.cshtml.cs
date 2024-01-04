@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTOs.AboutDTOs;
+using MoviesWebApp.Business.DTOs.AboutDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data;
 using MoviesWebApp.Data.DAL;
@@ -16,14 +16,14 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
     {
         private readonly IAboutService _aboutService;
 
-        public About  LogoPageInfo { get; set; } = default!;
-        public DetailsModel( IAboutService aboutService)
+        public About LogoPageInfo { get; set; } = default!;
+        public DetailsModel(IAboutService aboutService)
         {
             this._aboutService = aboutService;
         }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }

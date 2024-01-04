@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTOs.AboutDTOs;
-using MoviesWebApp.Core.DTOs.GenreDTOs;
+using MoviesWebApp.Business.DTOs.AboutDTOs;
+using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data;
 using MoviesWebApp.Data.DAL;
 
 
-namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout 
+namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
 { 
     public class IndexModel : PageModel
     {

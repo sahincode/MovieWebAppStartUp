@@ -20,9 +20,9 @@ namespace MoviesWebApp.Data.Repositories.Implementations
             this._context = context;
         }
         public DbSet<TEntity> Table => _context.Set<TEntity>();
-        public async Task CommitChange()
+        public async Task<int> CommitChange()
         {
-            await _context.SaveChangesAsync();
+           return   await _context.SaveChangesAsync();
         }
 
         public async Task CreateAsync(TEntity entity)

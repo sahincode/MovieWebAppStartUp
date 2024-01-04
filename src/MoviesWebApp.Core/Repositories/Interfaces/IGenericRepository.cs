@@ -16,7 +16,7 @@ namespace MoviesWebApp.Core.Repositories.Interfaces
         void Delete(TEntity entity);
         Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>>?predicate ,params string[] includes);
         Task<TEntity>Get(Expression<Func<TEntity, bool>>? predicate, params string[] includes);
-        Task CommitChange();
+        Task<int> CommitChange();
 
 
     }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTOs.AboutDTOs;
+using MoviesWebApp.Business.DTOs.AboutDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
 
@@ -14,14 +14,14 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
 {
     public class CreateModel : PageModel
     {
-        private readonly MoviesWebAppContext _context;
+        
         private readonly IAboutService _aboutService;
 
         [BindProperty]
         public AboutCreateDto LogoPageInfo { get; set; } = default!;
         public CreateModel(MoviesWebAppContext context , IAboutService aboutService)
         {
-            _context = context;
+           
             this._aboutService = aboutService;
         }
         public IActionResult OnGet()

@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Business.Exceptions.FormatExceptions;
 using MoviesWebApp.Business.Services.Implementations;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTOs.MovieDTOs;
+
 
 using MoviesWebApp.Core.Models;
 

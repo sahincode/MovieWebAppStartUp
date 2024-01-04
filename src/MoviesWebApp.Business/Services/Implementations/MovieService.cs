@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Business.Exceptions.FormatExceptions;
 using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.InternalHelperServices;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
 using MoviesWebApp.Data.Repositories.Implementations;

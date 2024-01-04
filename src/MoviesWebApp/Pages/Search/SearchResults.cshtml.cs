@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MoviesWebApp.Core.DTOs.MovieDTOs;
+using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
 using MoviesWebApp.ViewModels;
@@ -25,7 +25,7 @@ namespace MoviesWebApp.Pages.Search
         {
             IQueryable<Movie> query =  _movieRepository.Table.Where(movie => movie.Title.Trim().ToUpper().Contains(p.Trim().ToUpper()) || movie.Description.Trim().ToUpper().Contains(p.Trim().ToUpper())).AsQueryable<Movie>();
            
-            PaginatedModelList<Movie> paginatedMovies = PaginatedModelList<Movie>.Create(query, paged, 8);
+            PaginatedModelList<Movie> paginatedMovies = PaginatedModelList<Movie>.Create(query, paged, 50);
 
             if (paginatedMovies != null)
             {

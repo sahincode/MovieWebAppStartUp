@@ -5,7 +5,7 @@
 }
 
 <div class="mb-5 body">
-    <div id="row">
+    <div id="row" class="pt-5">
         <div class="name-logo-div">
             <h2 class="logo-text">FALCON</h2>
             <i class=" fa-solid fa-circle-play fa-3x custom-color"></i>
@@ -21,7 +21,7 @@
         </div>
         @foreach (var logo in Model.LogoPageInfos)
         {
-            <div class="logo-info container">
+            <div class="logo-info container ">
                 @Html.Raw(logo.InfoAboutApp)
             </div>
 

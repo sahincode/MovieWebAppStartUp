@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTOs.AboutDTOs;
-using MoviesWebApp.Core.DTOs.GenreDTOs;
+using MoviesWebApp.Business.DTOs.AboutDTOs;
+using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
 
@@ -21,7 +21,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
         private readonly IAboutService _aboutService;
         private readonly IMapper _mapper;
 
-        public UpdateModel( IAboutService aboutService ,IMapper mapper)
+        public UpdateModel(IAboutService aboutService, IMapper mapper)
         {
             this._aboutService = aboutService;
             this._mapper = mapper;
@@ -32,24 +32,24 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null )
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var logoPageInfos = await  _aboutService.Get(a => a.Id == id && a.IsDeleted == false);
+            var logoPageInfos = await _aboutService.Get(a => a.Id == id && a.IsDeleted == false);
             if (logoPageInfos == null)
             {
                 return NotFound();
             }
-            LogoPageInfos= _mapper.Map<AboutUpdateDto>(logoPageInfos);
+            LogoPageInfos = _mapper.Map<AboutUpdateDto>(logoPageInfos);
             return Page();
         }
-        public async Task<IActionResult> OnPostAsync(int? id )
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (!ModelState.IsValid) return Page();
-            
-            if(id == null) return NotFound();
+
+            if (id == null) return NotFound();
             try
             {
                 await _aboutService.UpdateAsync(id, LogoPageInfos);
@@ -62,6 +62,6 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminAbout
             return RedirectToPage("./Index");
         }
 
-      
+
     }
 }

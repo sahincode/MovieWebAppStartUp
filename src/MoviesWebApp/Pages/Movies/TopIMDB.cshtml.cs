@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MoviesWebApp.Core.DTOs.MovieDTOs;
+using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
 using MoviesWebApp.ViewModels;
@@ -22,7 +22,7 @@ namespace MoviesWebApp.Pages.Movies
         public async Task<IActionResult> OnGet(int id, int paged)
         {
             IQueryable<Movie> query =  _movieRepository.Table.OrderBy(x => x.IMDB);
-            PaginatedModelList<Movie> paginatedMovies = PaginatedModelList<Movie>.Create(query, paged, 8);
+            PaginatedModelList<Movie> paginatedMovies = PaginatedModelList<Movie>.Create(query, paged, 50);
             MovieIndexDtos.CurrentPage = paginatedMovies.CurrentPage;
             MovieIndexDtos.PageCount = paginatedMovies.PageCount;
             MovieIndexDtos.HasNext = paginatedMovies.HasNext;

@@ -4,16 +4,16 @@
     ViewData["Title"] = "PageEachMovie";
 }
 <div class="container ">
-    <div class="mt-5 ms-5">
-        <video class="video-movie mt" controls>
+    <div class="mt-5 ms-5 me-5">
+        <video class="video-movie  w-100" controls>
             <source src="https://youtu.be/m87rP0uNtn8?si=kgdp-fAh7Ncxqjq9" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
 
-        <div class="container">
+        <div class="container mb-3  shady-border">
 
-            <div class="row ">
-                <div class="col-12 col-lg-2 d-md-block  d-lg-block">
+            <div class="row pt-2 ">
+                <div class="col-12 col-lg-2 d-none  d-lg-block">
                     <div class="picture-div">
                         <img class="card-img-each"
                              src='@(Model.Movie.ImageURL == null
@@ -21,20 +21,21 @@
         : "../assets/uploads/movies/images/" + Model.Movie.ImageURL)'
                              alt="@Model.Movie.Title">
 
-                        <div class=" trailer-button ps-2 pe-2 gap-2">
+                        <div class=" d-grid gap-2 mt-2 gap-2">
                             <button class="btn btn-primary" type="button">Trailer</button>
                         </div>
                     </div>
 
-                   
+
                 </div>
-                <div class="mb-5 col-12  col-md-6 col-lg-3 col-xl-4  border-sm-end">
+                <div class="mb-5 col-12   col-lg-6  border-sm-end">
                     <h1 class="card-title fs-4">@Html.DisplayFor(model=>model.Movie.Title)</h1>
                     <div class="page-each-description">
                         <p>@Html.DisplayFor(model=>model.Movie.Description)</p>
                     </div>
-                    <div class="row mb-3">
-                        <div class="movie-data-shower col-12 col-md-4 ">
+
+                    <div class="row">
+                        <div class="movie-data-shower col-12 col-md-8 ">
                             <p class="p-genre">
                                 <strong>Genre:</strong> @if (Model.Movie.Genres != null)
                                 {
@@ -60,9 +61,10 @@
 
 
                         </div>
+
                     </div>
                 </div>
-                <div class="ms-2 ms-lg-2 col-12 col-lg-4">
+                <div class=" col-12 col-lg-4  justify-content-end">
                     <div class="d-grid gap-2">
                         <button class="stream-btn btn btn-primary" type="button">Stream in HD</button>
                         <button class="stream-btn btn btn-primary" type="button">Download in HD</button>

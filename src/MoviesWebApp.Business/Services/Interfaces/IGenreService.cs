@@ -1,4 +1,4 @@
-﻿using MoviesWebApp.Core.DTOs.GenreDTOs;
+﻿using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Core.Models;
 using System;
 using System.Collections.Generic;

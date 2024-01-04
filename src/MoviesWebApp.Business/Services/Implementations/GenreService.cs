@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Core.DTOs.AboutDTOs;
-using MoviesWebApp.Core.DTOs.GenreDTOs;
+using MoviesWebApp.Business.DTOs.AboutDTOs;
+using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
 using System;

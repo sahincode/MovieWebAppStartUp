@@ -1,11 +1,15 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using MoviesWebApp.Business.DTOs.SubscriberDTOs;
 @using MoviesWebApp.Business.Services.Implementations;
 @using MoviesWebApp.Core.Models;
+
+
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject LayoutService LayoutService
 @{
     var genres = await LayoutService.GetGenres();
+    var setting = await LayoutService.GetSetting();
 }
 
 <!DOCTYPE html>
@@ -20,10 +24,14 @@
     <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MoviesWebApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="stylesheet" href="~/assets/css/main.css"/>
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css
+" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/assets/css/main.css" />
     <link rel="stylesheet" href="~/assets/css/movie-details.css" />
     <link rel="stylesheet" href="~/assets/css/movie.css" />
-    
+
 
     <script type="module" src="Pages/About.cshtml.js" asp-append-version="true" defer></script>
 </head>
@@ -41,13 +49,11 @@
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item ms-3">
-                            <a class="nav-bar-link link-subline" asp-area="" asp-page="/About">About</a>
-                        </li>
+                        
                         <li class="nav-item ms-3">
                             <a class="nav-bar-link link-subline" asp-area="" asp-page="/Home">Home</a>
                         </li>
-                        @if (SignInManager.IsSignedIn(User)==false)
+                        @if (SignInManager.IsSignedIn(User) == false)
                         {
                             <li class="nav-item ms-3">
                                 <a class="nav-bar-link link-subline" asp-area="" asp-page="/Movies/Movie">Movies</a>
@@ -60,17 +66,18 @@
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-nav-bar mt-5" aria-labelledby="dropdownMenuLink">
-                                    @foreach(var genre in genres ){
+                                    @foreach (var genre in genres)
+                                    {
                                         <li><a class="dropdown-item" asp-page="/Genre" asp-route-id="@genre.Id">@genre.Name</a></li>
                                     }
-                                  
+
                                 </ul>
                             </li>
                             <li class="nav-item ms-3">
                                 <a class="nav-bar-link link-subline" asp-page="/Movies/TopIMDB">Top IMDB</a>
                             </li>
                             <li class="nav-item ms-3">
-                                <a class="nav-bar-link link-subline" asp-page="/Serials/Index">Serials</a>
+                                <a class="nav-bar-link link-subline" asp-page="/Series/Index">TV-Series</a>
                             </li>
 
                         }
@@ -84,15 +91,15 @@
         </nav>
     </header>
 
-    <main role="main" class="body-main"> 
-        <div class="body" >
+    <main role="main" class="body-main">
+        <div class="body container-body">
             @RenderBody()
 
         </div>
-        </main>
+    </main>
 
     <footer class="border-top footer text-muted">
-        <div  class="footer-main-div container-fluid">
+        <div class="footer-main-div container-fluid">
             <div class="row justify-content-between  section-padding">
                 <div class=" col-xl-3 col-lg-4 col-sm-6">
                     <div class="single-footer pb--40">
@@ -102,11 +109,11 @@
                         <div class="footer-contact">
                             <p>
                                 <span class="label footer-text">Address:</span><span class="text">
-                                    @* @settings.FirstOrDefault(x=>x.TKey == "Address").TValue*@
+                                    @setting.Address
                                 </span>
                             </p>
-                            <p><span class="label footer-text">Contact:</span><span class="text">@*@settings.FirstOrDefault(x=>x.TKey == "Phone").TValue*@ </span></p>
-                            <p><span class="label footer-text">Email:</span><span class="text">@*@settings.FirstOrDefault(x=>x.TKey == "Email").TValue*@</span></p>
+                            <p><span class="label footer-text">Contact:</span><span class="text">@setting.Contact</span></p>
+                            <p><span class="label footer-text">Email:</span><span class="text">@setting.Email</span></p>
                         </div>
                     </div>
                 </div>
@@ -117,9 +124,9 @@
                         </div>
                         <ul style="list-style-type:none;" class="footer-ul footer-list list-group">
 
-                            <li><a href="#">New Movies</a></li>
-                            <li><a href="#">Best Movies</a></li>
-                            <li><a href="#">Serials</a></li>
+                            <li><a href="/Movies/NewMovies?paged=1">New Movies</a></li>
+                            <li><a href="/Movies/BestMovies?paged=1">Best Movies</a></li>
+                            <li><a href="#">Series</a></li>
                             <li><a href="#">News</a></li>
 
 
@@ -135,8 +142,8 @@
                         </div>
                         <ul style="list-style-type:none;" class="footer-ul footer-list list-group">
 
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="/About">About Us</a></li>
+                            <li><a href="/Privacy">Privacy Policy</a></li>
                             <li><a href="#">FAQs</a></li>
                             <li><a href="#">Contact us</a></li>
 
@@ -148,28 +155,28 @@
                         <h3 style="color:#198754;">Newsletter Subscribe</h3>
                     </div>
                     <div class="me-4 mb-30">
-                        <form action="https://demo.hasthemes.com/pustok-preview/pustok/php/mail.php">
-                            <input type="email" class="form-control" placeholder="Enter Your Email Address Here...">
-                            <div class="mb-3 mt-3 ">
-                                <button class="btn btn-success w-100">Subscribe</button>
-                            </div>
-                        </form>
+
+                        <input  class="form-control" id="subscribe-input" placeholder="Enter Your Email Address Here...">
+                        <div class="mb-3 mt-3 ">
+                            <button id="subscribe-button" class="btn btn-success w-100">Subscribe</button>
+                        </div>
+
                     </div>
                     <div class="social-block">
-                        <h3 class="title ms-3">STAY CONNECTED</h3>
+                        <h3 class="title ">STAY CONNECTED</h3>
                         <ul style="list-style-type:none;" class="social-list me-5  d-flex justify-content-between align-items-center">
                             <li class="single-social facebook">
-                                <a href="#">
+                                <a href="@setting.FaceUrl">
                                     <i style="color:#198754" class="fs-5 rounded-circle fa-brands fa-facebook"></i>
                                 </a>
                             </li>
-                            <li class="single-social twitter"><a href="#"><i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-x-twitter"></i></a></li>
+                            <li class="single-social twitter"><a href="@setting.XUrl"><i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-x-twitter"></i></a></li>
                             <li class="single-social whatsapp">
-                                <a href="#">
+                                <a href="@setting.WhatUrl">
                                     <i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-square-whatsapp"></i>
                                 </a>
                             </li>
-                            <li class="single-social instagram"><a href="#"><i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-square-instagram"></i></a></li>
+                            <li class="single-social instagram"><a href="@setting.InstaUrl"><i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-square-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -187,12 +194,14 @@
         </div>
 
     </footer>
-
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.all.min.js
+"></script>
     <script src="~/assets/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/assets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/assets/js/site.js" asp-append-version="true"></script>
+    <script src="~/assets/js/main.js" asp-append-version="true"></script>
     <script type="module" src="Pages/About.cshtml.js" asp-append-version="true" defer></script>
-  
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

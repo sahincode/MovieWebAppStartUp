@@ -29,22 +29,22 @@
         }
     </div>
 
-    @if (Model.MovieIndexDtos.Count >= 8)
+    @if (Model.MovieIndexDtos.Count >= 50)
     {
         <nav class="d-flex align-item-center justify-content-center" aria-label="...">
             <ul class="pagination">
                 <li class="page-item @(!Model.MovieIndexDtos.HasPrev ? "disabled" :"")">
-                    <a class="page-link" asp-page="/Movies/Movie" asp-route-paged="@(Model.MovieIndexDtos.CurrentPage-1)" tabindex="-1" aria-disabled="true">Previous</a>
+                    <a class="page-link" asp-page="/Movies/TopIMDB" asp-route-paged="@(Model.MovieIndexDtos.CurrentPage-1)" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-angles-left"></i> Prev</a>
                 </li>
                 @for (int i = 1; i <= Model.MovieIndexDtos.PageCount; i++)
                 {
                     <li class=" @(Model.MovieIndexDtos.CurrentPage==i ? "active" :"") page-item">
-                        <a class="page-link" asp-page="/Movies/Movie" asp-route-paged="@i">@i</a>
+                        <a class="page-link" asp-page="/Movies/TopIMDB" asp-route-paged="@i">@i</a>
                     </li>
 
                 }
                 <li class="page-item @(!Model.MovieIndexDtos.HasNext ? "disabled" : "")">
-                    <a class="page-link" asp-page="/Movies/Movie" asp-route-paged="@(Model.MovieIndexDtos.CurrentPage+1)">Next</a>
+                    <a class="page-link" asp-page="/Movies/Movie" asp-route-paged="@(Model.MovieIndexDtos.CurrentPage+1)">Next <i class="fa-solid fa-angles-right"></i></a>
                 </li>
             </ul>
         </nav>

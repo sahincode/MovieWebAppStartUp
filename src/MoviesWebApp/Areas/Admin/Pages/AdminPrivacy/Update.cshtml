@@ -1,0 +1,56 @@
+﻿@page
+@model MoviesWebApp.Areas.Admin.Pages.AdminPrivacy.UpdateModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+<style>
+    .table-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 40px;
+        background-color: #435d7d !important;
+    }
+
+        .table-title .title {
+            font-weight: 700;
+        }
+
+        .table-title span {
+            font-weight: 300;
+        }
+
+    .create-btn {
+        width: 110px;
+    }
+
+</style>
+<div class="container-fluid">
+    <div class="table-title text-white">
+        <h1 class="title">Privacy<span>Update</span></h1>
+        <a class="btn btn-success create-btn" style="min-width :150px !important" asp-page="./Index">Back to List</a>
+    </div>
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+            <label asp-for="PrivacyUpdateDtos.Info" class="control-label"></label>
+            <textarea id="editorid" style="width:900px; height:500px !important" asp-for="PrivacyUpdateDtos.Info" class="form-control"></textarea>
+            <span asp-validation-for="PrivacyUpdateDtos.Info" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
+@section Scripts{
+    <script src="~/ckeditor/styles.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.replace('editorid')
+    </script>
+}
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
