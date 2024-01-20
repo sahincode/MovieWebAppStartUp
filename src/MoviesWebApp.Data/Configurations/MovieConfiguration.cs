@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MoviesWebApp.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoviesWebApp.Data.Configurations
 {
@@ -24,7 +19,7 @@ namespace MoviesWebApp.Data.Configurations
             builder.Property(m => m.VideoURL).
                 IsRequired().HasMaxLength(100);
             builder.Property(m => m.Country).
-                IsRequired().HasMaxLength(50);
+                IsRequired().HasMaxLength(100);
             builder.Property(m => m.Director).
                 IsRequired().HasMaxLength(70);
             builder.Property(m => m.Duration).IsRequired();

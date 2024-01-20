@@ -1,0 +1,41 @@
+﻿@page
+@model MoviesWebApp.Areas.Admin.Pages.AdminSerial.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid">
+    <div class="table-title text-white  d-block d-sm-flex">
+        <div>
+            <h1 class="title">Serial<span>@ViewData["Title"]</span></h1>
+        </div>
+        <div>
+            <a class="btn btn-success create-btn" style="min-width:150px !important;" asp-page="./Index">Back to List</a>
+        </div>
+    </div>
+
+    <form method="post" class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group col-lg-7 col-xl-8 ">
+            <label asp-for="SerialCreateDto.Name" class="control-label"></label>
+            <input asp-for="SerialCreateDto.Name" class="form-control" />
+            <span asp-validation-for="SerialCreateDto.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-7 col-xl-8">
+            <label asp-for="SerialCreateDto.Description" class="control-label"></label>
+            <textarea asp-for="SerialCreateDto.Description" class="form-control"></textarea>
+            <span asp-validation-for="SerialCreateDto.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-7 col-xl-8 ">
+            <label asp-for="SerialCreateDto.IMDB" class="control-label"></label>
+            <input  asp-for="SerialCreateDto.IMDB" class="form-control" />
+            <span asp-validation-for="SerialCreateDto.IMDB" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-7 col-xl-8 ">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+
+
+</div>
+

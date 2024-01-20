@@ -11,7 +11,7 @@ namespace MoviesWebApp.Business.DTOs.AboutDTOs
 {
     public class AboutUpdateDto
     {
-        [StringLength(12000)]
+
         public string InfoAboutApp { get; set; }
         public bool IsDeleted { get; set; }
     }

@@ -6,6 +6,9 @@ using MoviesWebApp.Business.DTOs.AboutDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
 using System.Linq.Expressions;
+using MoviesWebApp.Business.Exceptions.AboutModelExceptions;
+using MoviesWebApp.Business.Exceptions;
+
 namespace MoviesWebApp.Business.Services.Implementations
 {
     public class AboutService : IAboutService
@@ -27,11 +30,17 @@ namespace MoviesWebApp.Business.Services.Implementations
          
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(int? id)
         {
+            if ( id == null)
+            {
+                throw new NullIdException("Id can not be null!");
+            }
             var about = await _about.Get(a => a.Id == id);
-            if (about == null) throw new EntityNotFoundException($"The entity with the ID equal to {id} was not found in the database.");
+            
+            if (about == null) throw new AboutNotFoundException($" About with ID equal to {id} was not found in the database.");
               _about.Delete(about);
+           await  _about.CommitChange();
 
           
         }
@@ -64,7 +73,7 @@ namespace MoviesWebApp.Business.Services.Implementations
             var about =  await this.GetById(id);
             if (about == null) throw new EntityNotFoundException($"The entity with the ID equal to " +
                 $"{id} was not found in the database.");
-            _about.Delete(about);
+            about.IsDeleted = !about.IsDeleted;
             await  _about.CommitChange();
 
         }

@@ -18,7 +18,7 @@ namespace MoviesWebApp.Business.DTOs.PrivacyDTOs
             RuleFor(a => a.Info).NotNull().WithMessage("Can not be null").
                                     NotEmpty().WithMessage("Can not be empty").
                                     MaximumLength(8000).WithMessage("Can't be greater than 8000 chars").
-                                    MinimumLength(500).WithMessage("Can not be less than 500 chars");
+                                    MinimumLength(100).WithMessage("Can not be less than 500 chars");
         }
     }
 }

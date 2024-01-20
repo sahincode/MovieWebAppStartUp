@@ -7,7 +7,8 @@ using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 
 using MoviesWebApp.Data.DAL;
-
+using MoviesWebApp.Business.Services.Implementations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
 {
@@ -24,7 +25,8 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
             this._mapper = mapper;
         }
         public async Task<IActionResult> OnGetAsync()
-        {
+         {
+            
             IEnumerable<Movie>movies  = await  _movieService.GetAll( null ,"MovieGenres");
             if(movies is null) return NotFound();
            foreach (Movie movie in movies)

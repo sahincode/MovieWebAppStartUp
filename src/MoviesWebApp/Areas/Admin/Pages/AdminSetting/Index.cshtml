@@ -10,28 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 }
-<style>
-    .table-title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 15px 40px;
-        background-color: #435d7d !important;
-    }
 
-        .table-title .title {
-            font-weight: 700;
-        }
-
-        .table-title span {
-            font-weight: 300;
-        }
-
-    .create-btn {
-        width: 110px;
-    }
-
-</style>
 <div class="container-fluid">
     <div class="table-title text-white">
         <h1 class="title">Settings<span>|Table</span></h1>
@@ -79,8 +58,8 @@
                     
                     
                     <td style="min-width:165px;">
-                       
-                        <a class="btn btn-danger delete-btn">
+
+                        <a class="btn btn-danger btn-delete">
                             <i class="fa-solid fa-trash"></i>
                         </a>
                         <a class="btn btn-info" asp-page="./Details" asp-route-id="@setting.Id">

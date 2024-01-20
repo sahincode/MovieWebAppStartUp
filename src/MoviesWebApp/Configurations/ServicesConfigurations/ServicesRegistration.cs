@@ -42,6 +42,11 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<ISettingService, SettingService>();
             services.AddScoped<ISubscriberService, SubscriberService>();
             services.AddScoped<IPrivacyService, PrivacyService>();
+            services.AddScoped<ISerialService, SerialService>();
+            services.AddScoped<ISeasonService, SeasonService>();
+            services.AddScoped < ICountryService, CountryService>();
+
+
 
             services.AddScoped<LayoutService>();
             //repository addition 
@@ -51,6 +56,12 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<ISettingRepository, SettingRepository>();
             services.AddScoped<ISubscriberRepository, SubscriberRepository>();
             services.AddScoped<IPrivacyRepository, PrivacyRepository>();
+            services.AddScoped<ISerialRepository, SerialRepository>();
+            services.AddScoped<ISeasonRepository, SeasonRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+
+
+
 
 
 

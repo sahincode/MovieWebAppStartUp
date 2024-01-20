@@ -14,7 +14,7 @@ namespace MoviesWebApp.Business.Services.Interfaces
     {
         Task CreateAsync(AboutCreateDto entity);
         Task UpdateAsync(int ? id ,AboutUpdateDto entity);
-        Task Delete(int  id);
+        Task Delete(int? id);
         Task ToggleDelete(int id);
         Task<About> GetById(int? id);
         Task<About> Get(Expression<Func<About, bool>>? predicate, params string[]? includes);

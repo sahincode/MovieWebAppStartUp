@@ -1,21 +1,12 @@
-﻿ using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Business.DTOs.AboutDTOs;
-using MoviesWebApp.Business.DTOs.GenreDTOs;
+using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
-using MoviesWebApp.Data;
-using MoviesWebApp.Data.DAL;
-using MoviesWebApp.Business.DTOs.PrivacyDTOs;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminSubscriber
-{ 
+{
     public class IndexModel : PageModel
     {
         private readonly IAboutService _aboutService;

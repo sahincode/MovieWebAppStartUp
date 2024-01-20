@@ -8,16 +8,20 @@
     <Platforms>Any CPU</Platforms>
   </PropertyGroup>
 
+ 
+
   <ItemGroup>
-    <Compile Remove="wwwroot\AppAssets\**" />
-    <Content Remove="wwwroot\AppAssets\**" />
-    <EmbeddedResource Remove="wwwroot\AppAssets\**" />
-    <None Remove="wwwroot\AppAssets\**" />
+    <Content Remove="wwwroot\admin\js\main.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\admin\js\main.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\About.cshtml.js" />
   </ItemGroup>
   <ItemGroup>
+   
     <None Include="wwwroot\ckeditor\adapters\jquery.js" />
     <None Include="wwwroot\ckeditor\build-config.js" />
     <None Include="wwwroot\ckeditor\CHANGES.md" />

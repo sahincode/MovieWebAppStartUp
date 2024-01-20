@@ -1,0 +1,27 @@
+﻿@page
+@model MoviesWebApp.Areas.Admin.Pages.AdminCountry.UpdateModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+<div class="container-fluid">
+    <div class="table-title text-white">
+        <h1 class="title">About<span> @ViewData["Title"]</span></h1>
+        <a class="btn btn-success create-btn" style="min-width:150px !important;" asp-page="./Index">Back to List</a>
+    </div>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="CountryUpdateDto.Name" class="control-label"></label>
+            <input asp-for="CountryUpdateDto.Name" class="form-control" />
+            <span asp-validation-for="CountryUpdateDto.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+
+
+</div>

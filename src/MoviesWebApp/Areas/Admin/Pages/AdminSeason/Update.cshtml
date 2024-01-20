@@ -1,0 +1,44 @@
+﻿@page
+@model MoviesWebApp.Areas.Admin.Pages.AdminSeason.UpdateModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+<div class="container-fluid">
+    <div class="table-title text-white  d-block d-sm-flex">
+        <div>
+            <h1 class="title">Seasons<span>@ViewData["Title"]</span></h1>
+        </div>
+        <div>
+            <a class="btn btn-success create-btn" style="min-width:150px !important;" asp-page="./Index">Back to List</a>
+        </div>
+    </div>
+
+    <form method="post" class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group col-lg-3 col-xl-4">
+            <label asp-for="SeasonUpdateDto.SeasonNumber" class="control-label"></label>
+            <input asp-for="SeasonUpdateDto.SeasonNumber" class="form-control" />
+            <span asp-validation-for="SeasonUpdateDto.SeasonNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-3 col-xl-4">
+            <label asp-for="SeasonUpdateDto.SerialId" class="control-label">Serial</label>
+            <select asp-for="SeasonUpdateDto.SerialId" class="form-select" asp-items="Model.Serials">
+            </select>
+            <span asp-validation-for="SeasonUpdateDto.SerialId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-lg-3 col-xl-4">
+            <label asp-for="SeasonUpdateDto.Country" class="control-label"></label>
+            <select asp-for="SeasonUpdateDto.Country" class="form-select" asp-items="Model.Countries">
+            </select>
+            <span asp-validation-for="SeasonUpdateDto.Country" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-7 col-xl-8 ">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+
+
+</div>

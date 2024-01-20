@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using MoviesWebApp.Business.DTOs.AboutDTOs;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
@@ -11,31 +12,34 @@ namespace MoviesWebApp.Pages
 
     public class LogoModel : PageModel
     {
+        private readonly IAboutService _aboutService;
         private readonly IEmailService _emailServices;
-        private readonly MoviesWebAppContext _context;
 
-        
+
         public LogoModel(
-            MoviesWebAppContext context, IEmailService emailServices)
+            IAboutService aboutService, IEmailService emailServices)
         {
-           
-            _context=context;
+
+
+            this._aboutService = aboutService;
             _emailServices = emailServices;
         }
         //public LogoPageInfo LogoPageInfo { get; set; } = default!;
-        public IList<Movie> Movies { get; set; } = default!;
-        public IList<About> LogoPageInfos { get; set; } = default!;
-        
 
-        public async Task OnGetAsync()
+        public About LogoPageInfos { get; set; } = default!;
+
+
+        public async Task<IActionResult> OnGetAsync()
         {
-            if (_context.Movies != null)
+
+            LogoPageInfos = _aboutService.GetAll(a => a.IsDeleted == false).Result.FirstOrDefault();
+            if (LogoPageInfos == null)
             {
-                Movies = await _context.Movies.ToListAsync();
-                LogoPageInfos = await _context.Abouts.ToListAsync();
+                return NotFound();
             }
+            return Page();
         }
-        
+
 
     }
 }

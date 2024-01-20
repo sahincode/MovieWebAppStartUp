@@ -17,18 +17,29 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
         private readonly IMovieService _service;
         private readonly IMapper _mapper;
         private readonly IGenreService _genreService;
+        private readonly ICountryService _countryService;
 
         [BindProperty]
         public MovieUpdateDto Movie { get; set; } = default!;
-        public SelectList GenreList { get; set; } 
-        public UpdateModel( IMovieService service ,IMapper mapper ,IGenreService genreService)
+        public SelectList GenreList { get; set; }
+        public SelectList Countries { get; set; }
+
+        public UpdateModel( IMovieService service ,
+            IMapper mapper ,IGenreService genreService,
+            ICountryService countryService)
         {
             this._service = service;
             this._mapper = mapper;
             this._genreService = genreService;
+            this._countryService = countryService;
         }
         public async Task<IActionResult> OnGetAsync(int id)
         {
+            var countries = await _countryService.GetAll(null, null);
+            if (countries != null)
+            {
+                Countries = new SelectList(countries, "Name", "Name");
+            }
             var movie = await _service.GetById(id);
             if (movie is null) return NotFound();
             Movie =_mapper.Map<MovieUpdateDto>(movie);
@@ -42,6 +53,12 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
         }
         public async Task<IActionResult> OnPostAsync(int id)
         {
+            var countries = await _countryService.GetAll(null, null);
+            if (countries != null)
+            {
+                Countries = new SelectList(countries, "Name", "Name");
+            }
+
             if (!ModelState.IsValid)
             {
                 return Page();
