@@ -17,7 +17,8 @@ namespace MoviesWebApp.Data.Configurations
                 IsRequired().HasMaxLength(100);
             builder.Property(m => m.Description).
                 IsRequired().HasMaxLength(300);
-          
+           
+
         }
     }
 }

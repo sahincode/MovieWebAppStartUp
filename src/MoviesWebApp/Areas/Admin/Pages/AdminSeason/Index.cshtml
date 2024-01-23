@@ -23,7 +23,7 @@
         <thead>
             <tr>
                 <th> @Html.DisplayNameFor(model => model.SeasonIndexDtos[0].Country)</th>
-                <th> @Html.DisplayNameFor(model => model.SeasonIndexDtos[0].SeasonNumber)</th>
+                <th> @Html.DisplayNameFor(model => model.SeasonIndexDtos[0].Name)</th>
                 <th>Serial</th>
 
             </tr>
@@ -60,13 +60,13 @@
                                 </div>
                             </div>
                             <div class="modal-body">
-                               Name: @item.Country
+                                Name: @item.Country
                             </div>
                             <div class="modal-body">
-                                Description : @item.SeasonNumber
+                                Description : @item.Name
                             </div>
                             <div class="modal-body">
-                               IMDB : @item.Serial.Name
+                                IMDB : @item.Serial.Name
                             </div>
 
                         </div>
@@ -74,7 +74,7 @@
                 </div>
                 <tr>
                     <td class="about-info-td">@item.Country</td>
-                    <td class="about-info-td">@item.SeasonNumber</td>
+                    <td class="about-info-td">@item.Name</td>
                     <td class="about-info-td">@item.Serial.Name</td>
 
                     <td class="td-min d-flex">

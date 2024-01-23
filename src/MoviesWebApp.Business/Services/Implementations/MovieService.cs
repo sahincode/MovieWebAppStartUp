@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Business.Exceptions.FormatExceptions;
 using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
@@ -8,13 +7,7 @@ using MoviesWebApp.Business.InternalHelperServices;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
-using MoviesWebApp.Data.Repositories.Implementations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoviesWebApp.Business.Services.Implementations
 {
@@ -52,30 +45,34 @@ namespace MoviesWebApp.Business.Services.Implementations
             await _movieRepository.CommitChange();
         }
 
-        public async Task Delete(MovieDeleteDto dto)
+        public async Task Delete(int id)
         {
             string rootPath = _environment.WebRootPath;
-            string imageFullPath = Path.Combine(rootPath, imagePassPath, dto.ImageURL);
-            string videoFullPath = Path.Combine(rootPath, imagePassPath, dto.VideoURL);
+            var movie = await _movieRepository.Get(m => m.Id == id);
+            if (movie == null) throw new NullEntityException("", $"The movie with the ID equal to" +
+               $" {id} was not found in the database.");
+            string imageFullPath = Path.Combine(rootPath, imagePassPath, movie.ImageURL);
+            string videoFullPath = Path.Combine(rootPath, imagePassPath, movie.VideoURL);
             System.IO.File.Delete(imageFullPath);
             System.IO.File.Delete(videoFullPath);
+            _movieRepository.Delete(movie);
             await _movieRepository.CommitChange();
         }
 
-        public async Task<Movie> Get(Expression<Func<Movie, bool>>? predicate, params string[] ? includes)
+        public async Task<Movie> Get(Expression<Func<Movie, bool>>? predicate, params string[]? includes)
         {
             return await _movieRepository.Get(predicate, includes);
         }
 
-        public async Task<IEnumerable<Movie>> GetAll(Expression<Func<Movie, bool>>? predicate, params string[] ? includes)
+        public async Task<IEnumerable<Movie>> GetAll(Expression<Func<Movie, bool>>? predicate, params string[]? includes)
         {
             return await _movieRepository.GetAll(predicate, includes);
 
         }
 
-        public async  Task<Movie> GetById(int id)
+        public async Task<Movie> GetById(int id)
         {
-            
+
             return await _movieRepository.Get(m => m.Id == id) is not null ?
                await _movieRepository.Get(m => m.Id == id) :
                throw new EntityNotFoundException($"The movie with the ID equal to" +
@@ -87,19 +84,19 @@ namespace MoviesWebApp.Business.Services.Implementations
             if (movie == null) throw new NullEntityException("", $"The movie with the ID equal to" +
                $" {id} was not found in the database.");
             movie.IsDeleted = !movie.IsDeleted;
-           await   _movieRepository.CommitChange();
+            await _movieRepository.CommitChange();
 
         }
 
 
-        public async Task UpdateAsync(int id, MovieUpdateDto entity)
+        public async Task UpdateAsync( MovieUpdateDto entity)
         {
             string rootPath = _environment.WebRootPath;
 
 
-            var updatedMovie = await  _movieRepository.Get(m => m.Id == id);
+            var updatedMovie = await _movieRepository.Get(m => m.Id == entity.Id);
 
-            updatedMovie=_mapper.Map(entity,updatedMovie);
+            updatedMovie = _mapper.Map(entity, updatedMovie);
             if (entity.Image != null)
             {
                 if (entity.Image.ContentType != "image/png" && entity.Image.ContentType != "image/jpeg")
@@ -116,7 +113,7 @@ namespace MoviesWebApp.Business.Services.Implementations
             await _movieRepository.CommitChange();
         }
 
-       
+
     }
 }
 

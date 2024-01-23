@@ -18,9 +18,9 @@
         <form method="post" class="row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group col-lg-3 col-xl-4">
-                <label asp-for="SeasonCreateDto.SeasonNumber" class="control-label"> Season Number</label>
-                <input asp-for="SeasonCreateDto.SeasonNumber" class="form-control" />
-                <span asp-validation-for="SeasonCreateDto.SeasonNumber" class="text-danger"></span>
+                <label asp-for="SeasonCreateDto.Name" class="control-label"> Name</label>
+                <input asp-for="SeasonCreateDto.Name" class="form-control" />
+                <span asp-validation-for="SeasonCreateDto.Name" class="text-danger"></span>
             </div>
             <div class="form-group col-lg-3 col-xl-4">
                 <label asp-for="SeasonCreateDto.SerialId" class="control-label"> Serial</label>
@@ -35,6 +35,14 @@
                 </select>
                 <span asp-validation-for="SeasonCreateDto.Country" class="text-danger"></span>
             </div>
+            <div class="form-group col-md-3 position-relative">
+                <img width="200" height="300" id="Imgpre" src="https://fakeimg.pl/250x400/?text= Movies Image " alt="Movies Image " />
+                <br />
+                <br />
+                <input type="file" id="ImageIN" asp-for="SeasonCreateDto.Image" />
+                <span asp-validation-for="SeasonCreateDto.Image" class="text-danger"></span>
+
+            </div>
             <div class="form-group col-lg-7 col-xl-8 ">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -43,4 +51,21 @@
     </div>
 
 </div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#ImageIN").change(function () {
+                const file = this.files[0];
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#Imgpre").attr("src", e.target.result);
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 

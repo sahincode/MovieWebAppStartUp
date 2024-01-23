@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace MoviesWebApp.Core.Models
 {
-    public  class Episode :BaseEntity
+    public class Episode : BaseEntity
     {
-        public int  EpisodeNumber { get; set; }
+
         public string Actors { get; set; }
+        public string Name { get; set; }
         public string Director { get; set; }
         public int Duration { get; set; }
         public DateTime ReleaseDate { get; set; }
-      
         public string ImageURL { get; set; }
         public string VideoURL { get; set; }
         public int SeasonId { get; set; }
-        public Season Season { get;set ; }
+        public Season Season { get; set; }
+        public List<EpisodeGenre> EpisodeGenres { get; set; }
+
 
     }
 }

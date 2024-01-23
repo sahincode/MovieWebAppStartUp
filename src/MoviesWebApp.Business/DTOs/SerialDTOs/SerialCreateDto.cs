@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace MoviesWebApp.Business.DTOs.SerialDTOs
 {
@@ -7,6 +8,7 @@ namespace MoviesWebApp.Business.DTOs.SerialDTOs
         public string Name { get; set; }
         public string Description { get; set; }
         public float IMDB { get; set; }
+
     }
     public class SerialCreateDtoValidator : AbstractValidator<SerialCreateDto>
     {

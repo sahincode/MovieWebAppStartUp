@@ -7,7 +7,7 @@ namespace MoviesWebApp.Business.Services.Interfaces;
 public interface ISeasonService
 {
     Task CreateAsync(SeasonCreateDto entity);
-    Task UpdateAsync(int? id, SeasonUpdateDto entity);
+    Task UpdateAsync(SeasonUpdateDto entity);
     Task Delete(int id);
     Task ToggleDelete(int id);
     Task<Season> GetById(int? id);

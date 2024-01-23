@@ -65,7 +65,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
             }
             try
             {
-                 await _service.UpdateAsync(id ,Movie);
+                 await _service.UpdateAsync(Movie);
             }
             catch (MovieFileFormatException ex)
             {

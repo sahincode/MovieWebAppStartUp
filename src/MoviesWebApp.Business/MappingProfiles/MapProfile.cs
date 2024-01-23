@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MoviesWebApp.Business.DTOs.AboutDTOs;
 using MoviesWebApp.Business.DTOs.CountryDTOs;
+using MoviesWebApp.Business.DTOs.EpisodeDTOs;
 using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Business.DTOs.PrivacyDTOs;
@@ -41,14 +42,16 @@ namespace MoviesWebApp.Business.MappingProfiles
             CreateMap<SerialCreateDto, Serial>().ReverseMap();
             CreateMap<SerialUpdateDto, Serial>().ReverseMap();
             CreateMap<SerialIndexDto, Serial>().ReverseMap();
+            CreateMap<SerialUserIndexDto, Serial>().ReverseMap();
+
             //Season model mapping profile
             CreateMap<SeasonCreateDto, Season>().ReverseMap();
             CreateMap<SeasonUpdateDto, Season>().ReverseMap();
             CreateMap<SeasonIndexDto, Season>().ReverseMap();
             //Episode model mapping profile
-            //CreateMap<EpisodeCreateDto, Serial>().ReverseMap();
-            //CreateMap<EpisodeUpdateDto, Serial>().ReverseMap();
-            //CreateMap<EpisodeIndexDto, Serial>().ReverseMap();
+            CreateMap<EpisodeCreateDto, Episode>().ReverseMap();
+            CreateMap<EpisodeUpdateDto, Episode>().ReverseMap();
+            CreateMap<EpisodeIndexDto, Episode>().ReverseMap();
             //Serial model mapping profile
             CreateMap<CountryCreateDto, Country>().ReverseMap();
             CreateMap<CountryUpdateDto, Country>().ReverseMap();

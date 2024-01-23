@@ -328,6 +328,9 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Pages\Account\" />
+    <Folder Include="wwwroot\assets\uploads\episodes\images\" />
+    <Folder Include="wwwroot\assets\uploads\episodes\videos\" />
+    <Folder Include="wwwroot\assets\uploads\movies\videos\" />
   </ItemGroup>
 
   <ItemGroup>

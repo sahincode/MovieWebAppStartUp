@@ -14,8 +14,11 @@ namespace MoviesWebApp.Business.DTOs.SeasonDTOs
         public DateTime UpdateTime { get; set; }
         public DateTime DeletedTime { get; set; }
         public bool IsDeleted { get; set; }
-        public int SeasonNumber { get; set; }
+        public string Name { get; set; }
+
         public string Country { get; set; }
         public Serial Serial { get; set; }
+        public string ImageUrl{ get; set; }
+
     }
 }

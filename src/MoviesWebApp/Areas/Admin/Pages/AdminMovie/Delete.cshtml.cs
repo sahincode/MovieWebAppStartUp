@@ -11,7 +11,7 @@ using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data;
 using MoviesWebApp.Data.DAL;
-
+using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
 {
@@ -20,7 +20,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
         private readonly IMovieService _service;
         private readonly IMapper _mapper;
 
-        public DeleteModel(IMovieService service ,IMapper mapper)
+        public DeleteModel(IMovieService service, IMapper mapper)
         {
             this._service = service;
             this._mapper = mapper;
@@ -31,7 +31,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            var movie =  await _service.GetById(id);
+            var movie = await _service.GetById(id);
             if (movie == null) return NotFound();
             Movie = _mapper.Map<MovieDeleteDto>(movie);
             return Page();
@@ -39,10 +39,14 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            var movie = await _service.GetById(id);
-            if (movie == null) return NotFound();
-            Movie = _mapper.Map<MovieDeleteDto>(movie);
-             await _service.Delete(Movie);
+            try
+            {
+                await _service.Delete(id);
+            }
+            catch (NullEntityException ex)
+            {
+                return NotFound();
+            }
             return Page();
         }
     }

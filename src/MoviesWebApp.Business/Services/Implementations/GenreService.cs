@@ -1,16 +1,10 @@
 ﻿using AutoMapper;
+using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.Services.Interfaces;
-using MoviesWebApp.Business.DTOs.AboutDTOs;
-using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoviesWebApp.Business.Services.Implementations
 {

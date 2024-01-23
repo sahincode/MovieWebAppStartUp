@@ -15,8 +15,8 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSeason
         private readonly ICountryService _countryService;
         private readonly ISerialService _serialService;
 
-        public UpdateModel(ISeasonService seasonService, IMapper mapper ,
-            ICountryService countryService ,ISerialService serialService)
+        public UpdateModel(ISeasonService seasonService, IMapper mapper,
+            ICountryService countryService, ISerialService serialService)
         {
             this._seasonService = seasonService;
             this._mapper = mapper;
@@ -36,15 +36,15 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSeason
             {
                 return NotFound();
             }
-            var countries = await  _countryService.GetAll(null, null);
-            if (countries !=null)
+            var countries = await _countryService.GetAll(null, null);
+            if (countries != null)
             {
                 Countries = new SelectList(countries, "Name", "Name");
             }
             var serials = await _serialService.GetAll(null, null);
             if (serials != null)
             {
-                Serials = new SelectList(serials, "Name", "Name");
+                Serials = new SelectList(serials, "Id", "Name");
             }
 
             var serial = await _seasonService.Get(a => a.Id == id && a.IsDeleted == false);
@@ -55,8 +55,11 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSeason
             SeasonUpdateDto = _mapper.Map<SeasonUpdateDto>(serial);
             return Page();
         }
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPostAsync(SeasonUpdateDto seasonUpdateDto)
         {
+            if (!ModelState.IsValid) return Page();
+
+
             var countries = await _countryService.GetAll(null, null);
             if (countries != null)
             {
@@ -65,14 +68,13 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSeason
             var serials = await _serialService.GetAll(null, null);
             if (serials != null)
             {
-                Serials = new SelectList(serials, "Name", "Name");
+                Serials = new SelectList(serials, "Id", "Name");
             }
-            if (!ModelState.IsValid) return Page();
-
-            if (id == null) return NotFound();
+           
+           
             try
             {
-                await _seasonService.UpdateAsync(id, SeasonUpdateDto);
+                await _seasonService.UpdateAsync(seasonUpdateDto);
             }
             catch (EntityNotFoundException ex)
             {

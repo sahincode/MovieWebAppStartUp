@@ -1,4 +1,5 @@
-﻿using FluentValidation.AspNetCore;
+﻿using EpisodesWebApp.Business.Services.Implementations;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Business.DTOs.SettingDTOs;
@@ -44,7 +45,9 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<IPrivacyService, PrivacyService>();
             services.AddScoped<ISerialService, SerialService>();
             services.AddScoped<ISeasonService, SeasonService>();
-            services.AddScoped < ICountryService, CountryService>();
+            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<IEpisodeService, EpisodeService>();
+
 
 
 
@@ -59,6 +62,10 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<ISerialRepository, SerialRepository>();
             services.AddScoped<ISeasonRepository, SeasonRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IEpisodeRepository, EpisodeRepository>();
+            services.AddScoped<IEpisodeGenreRepository, EpisodeGenreRepository>();
+
+
 
 
 

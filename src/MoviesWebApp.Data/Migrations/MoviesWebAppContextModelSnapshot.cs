@@ -307,9 +307,6 @@ namespace MoviesWebApp.Data.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int>("EpisodeNumber")
-                        .HasColumnType("int");
-
                     b.Property<string>("ImageURL")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -317,6 +314,11 @@ namespace MoviesWebApp.Data.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("date");
@@ -337,6 +339,41 @@ namespace MoviesWebApp.Data.Migrations
                     b.HasIndex("SeasonId");
 
                     b.ToTable("Episodes");
+                });
+
+            modelBuilder.Entity("MoviesWebApp.Core.Models.EpisodeGenre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeletedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EpisodeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EpisodeId");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("EpisodeGenres");
                 });
 
             modelBuilder.Entity("MoviesWebApp.Core.Models.Genre", b =>
@@ -384,8 +421,8 @@ namespace MoviesWebApp.Data.Migrations
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
@@ -522,11 +559,18 @@ namespace MoviesWebApp.Data.Migrations
                     b.Property<DateTime>("DeletedTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("SeasonNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("SerialId")
                         .HasColumnType("int");
@@ -731,6 +775,25 @@ namespace MoviesWebApp.Data.Migrations
                     b.Navigation("Season");
                 });
 
+            modelBuilder.Entity("MoviesWebApp.Core.Models.EpisodeGenre", b =>
+                {
+                    b.HasOne("MoviesWebApp.Core.Models.Episode", "Episode")
+                        .WithMany("EpisodeGenres")
+                        .HasForeignKey("EpisodeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MoviesWebApp.Core.Models.Genre", "Genre")
+                        .WithMany()
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Episode");
+
+                    b.Navigation("Genre");
+                });
+
             modelBuilder.Entity("MoviesWebApp.Core.Models.MovieGenre", b =>
                 {
                     b.HasOne("MoviesWebApp.Core.Models.Genre", "Genre")
@@ -759,6 +822,11 @@ namespace MoviesWebApp.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Serial");
+                });
+
+            modelBuilder.Entity("MoviesWebApp.Core.Models.Episode", b =>
+                {
+                    b.Navigation("EpisodeGenres");
                 });
 
             modelBuilder.Entity("MoviesWebApp.Core.Models.Genre", b =>

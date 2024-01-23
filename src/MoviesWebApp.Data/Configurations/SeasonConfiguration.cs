@@ -10,6 +10,10 @@ namespace MoviesWebApp.Data.Configurations
         {
             builder.Property(m => m.Country).
                IsRequired().HasMaxLength(70);
+            builder.Property(m => m.Name).
+              IsRequired().HasMaxLength(100);
+            builder.Property(m => m.ImageUrl).
+              IsRequired().HasMaxLength(100);
             builder.HasOne(s => s.Serial).WithMany(s => s.Seasons);
         }
     }

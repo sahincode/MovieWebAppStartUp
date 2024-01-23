@@ -1,0 +1,183 @@
+﻿@page
+@using MoviesWebApp.Areas.Admin.Pages.AdminEpisode
+
+@model IndexModel
+@{
+    int counter = 0;
+
+}
+@section cssFiles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+}
+
+<div class="container-fluid">
+    <div class="table-title text-white">
+        <h1 class="title">Episodes<span>|Table</span></h1>
+        <a class="btn btn-success create-btn" asp-page="Create">Create</a>
+    </div>
+    <table class="table table-hover table-striped shadow">
+        <thead>
+            <tr>
+                <th>NO</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Episodes[0].Name)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Episodes[0].Actors)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Episodes[0].Genres)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Episodes[0].Director)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Episodes[0].Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Episodes[0].Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Episodes[0].ReleaseDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Episodes[0].IMDB)
+                </th>
+
+                <th>
+                    Controls
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model.Episodes)
+            {
+                <div class="modal fade" id="item@(movie.Id)Modal" tabindex="-1" aria-labelledby="item@(movie.Id)ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title btn btn-success" id="item@(movie.Id)ModalLabel">About</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="border-bottom-info">
+                                <div>
+                                    <h5 class="font-weight-bold">Created Time:<span class="text-danger"> @(movie.CreationTime.ToString("dddd, dd MMMM yyyy hh:mm:ss"))</span></h5>
+                                </div>
+                                <div>
+                                    <h5 class="font-weight-bold">Updated Time:<span class="text-danger"> @(movie.UpdateTime.ToString("dddd, dd MMMM yyyy hh:mm:ss"))</span></h5>
+                                </div>
+                                <div class="border-bottom-1">
+                                    <form hidden method="post" id="soft-delete-form" asp-page-handler="ToggleDelete" asp-route-id="@movie.Id" asp-page="./Index"></form>
+                                    <h5 class="font-weight-bold">
+                                        Deleted Status:
+                                        <button type="submit" class="@(movie.IsDeleted == true ? " btn btn-danger":" btn btn-success")" form="soft-delete-form">
+                                            <i class="fa-solid @(movie.IsDeleted == true ? "fa-check":"fa-x")"></i>
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                Title : @Html.DisplayFor(modelItem => movie.Name)
+                            </div>
+                            <hr>
+                            <div class="modal-body">
+                                Actors : @Html.DisplayFor(modelItem => movie.Actors)
+                            </div>
+                            <hr>
+                            <div class="modal-body">
+                                Genres : @if (movie.Genres != null)
+                                {
+                                    @for (int i = 0; i < movie.Genres.Count; i++)
+                                    {
+                                        @(movie.Genres[i].Genre.Name + (i != movie.Genres.Count - 1 ? " , " : ""))
+
+                                    }
+                                }
+                            </div>
+                            <hr> <div class="modal-body">
+                                Country : @Html.DisplayFor(modelItem => movie.Country)
+                            </div>
+                            <hr> <div class="modal-body">
+                                Director : @Html.DisplayFor(modelItem => movie.Director)
+                            </div>
+                            <hr> <div class="modal-body">
+                                Duration : @Html.DisplayFor(modelItem => movie.Duration)
+                            </div>
+                            <hr>
+                            <div class="modal-body">
+                                Reliase Date : @Html.DisplayFor(modelItem => movie.ReleaseDate)
+                            </div>
+                            <hr>
+                            <div class="modal-body">
+                                IMDB: @Html.DisplayFor(modelItem => movie.IMDB)
+                            </div>
+                            <hr>
+
+                            <div class="modal-body w-100">
+                                <img src="~/assets/uploads/Episodes/images/@movie.ImageURL" />
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                counter++;
+                <tr>
+                    <td>@counter</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Actors)
+                    </td>
+                    <td>
+                        @if (movie.Genres != null)
+                        {
+                            @for (int i = 0; i < movie.Genres.Count; i++)
+                            {
+                                @(movie.Genres[i].Genre.Name + (i != movie.Genres.Count - 1 ? " , " : ""))
+
+                            }
+                        }
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Director)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.ReleaseDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => movie.IMDB)
+                    </td>
+                    <td style="min-width:165px;">
+                        <a class="btn btn-warning" asp-page="./Update" asp-route-id="@movie.Id">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a class="btn btn-danger btn-delete">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                        <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#item@(movie.Id)Modal">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section jsFiles{
+    <script src="~/assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.1/sweetalert2.min.js"></script>
+}
