@@ -38,9 +38,9 @@ public class MoviesWebAppContext : IdentityDbContext<ApplicationUser>
         base.OnModelCreating(builder);
 
     }
-    public override int SaveChanges()
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        var datas = ChangeTracker.Entries<BaseEntity>();
+             var datas = ChangeTracker.Entries<BaseEntity>();
         foreach (var entry in datas)
         {
             var entity = entry.Entity;
@@ -65,9 +65,8 @@ public class MoviesWebAppContext : IdentityDbContext<ApplicationUser>
 
 
         }
-        return base.SaveChanges();
+        return base.SaveChangesAsync(cancellationToken);
     }
-   
 
 
 }

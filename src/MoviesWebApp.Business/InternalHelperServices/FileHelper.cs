@@ -30,7 +30,7 @@ namespace MoviesWebApp.Business.InternalHelperServices
                 await image.CopyToAsync(FileStream);
             }
           
-            return "";
+            return imageName;
         }
         public async  static Task<string> SaveVideo(string filePath, string passPath, IFormFile video)
         {

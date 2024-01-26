@@ -12,7 +12,7 @@ namespace MoviesWebApp.Business.DTOs.EpisodeDTOs
 {
     public class EpisodeUpdateDto
     {
-        public int Id { get; set; }
+        public int ? Id { get; set; }
 
         public string Name { get; set; }
         public string Actors { get; set; }
@@ -56,8 +56,8 @@ namespace MoviesWebApp.Business.DTOs.EpisodeDTOs
                                     MinimumLength(5).WithMessage("Can not be less than 5 digits");
             RuleFor(e => e.Duration).NotNull().WithMessage("Can not be null").
                                     NotEmpty().WithMessage("Can not be empty").
-                                    GreaterThan(300).WithMessage("Movie duration can't be greater than 300 minutes").
-                                    LessThan(0).WithMessage("Movie duration can't be less than 0 minute");
+                                    GreaterThan(0).WithMessage("Movie duration can't be less than 0 minutes").
+                                    LessThan(300).WithMessage("Movie duration can't be greater than 300 minute");
 
 
         }

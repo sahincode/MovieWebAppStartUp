@@ -25,7 +25,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSeason
 
         public async Task<IActionResult> OnGetAsync()
         {
-            IEnumerable<Season> seasons = await  _seasonService.GetAll(null, null);
+            IEnumerable<Season> seasons = await  _seasonService.GetAll(null, "Serial");
             List<SeasonIndexDto> seasonIndexDtos = new List<SeasonIndexDto>();
             foreach(var serial in seasons)
             {

@@ -331,6 +331,7 @@
     <Folder Include="wwwroot\assets\uploads\episodes\images\" />
     <Folder Include="wwwroot\assets\uploads\episodes\videos\" />
     <Folder Include="wwwroot\assets\uploads\movies\videos\" />
+    <Folder Include="wwwroot\assets\uploads\season\" />
   </ItemGroup>
 
   <ItemGroup>

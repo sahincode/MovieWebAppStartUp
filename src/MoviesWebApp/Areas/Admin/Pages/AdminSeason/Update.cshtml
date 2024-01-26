@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <form method="post" class="row">
+    <form method="post" class="row" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group col-lg-3 col-xl-4">
             <label asp-for="SeasonUpdateDto.Name" class="control-label"></label>
@@ -28,13 +28,14 @@
             </select>
             <span asp-validation-for="SeasonUpdateDto.SerialId" class="text-danger"></span>
         </div>
-
         <div class="form-group col-lg-3 col-xl-4">
-            <label asp-for="SeasonUpdateDto.Country" class="control-label"></label>
+            <label asp-for="SeasonUpdateDto.Country" class="control-label">Country</label>
             <select asp-for="SeasonUpdateDto.Country" class="form-select" asp-items="Model.Countries">
             </select>
             <span asp-validation-for="SeasonUpdateDto.Country" class="text-danger"></span>
         </div>
+
+       
         <div class="form-group col-md-3 position-relative">
             <img width="200" height="300" id="Imgpre" src="https://fakeimg.pl/250x400/?text= Movies Image " alt="Movies Image " />
             <br />

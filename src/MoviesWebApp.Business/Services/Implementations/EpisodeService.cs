@@ -110,14 +110,14 @@ namespace EpisodesWebApp.Business.Services.Implementations
             var genres = await _genreService.GetAll(g => g.IsDeleted == false);
             foreach (var genreId in entity.GenreIds)
             {
-                if (genres.Any(g => g.Id != genreId))
+                if (!genres.Any(g => g.Id == genreId))
                 {
                     throw new NotExistGenreException("GenreIds", "Some genre does not exist");
                 }
             }
-            var updatedEpisode = await _episodeRepository.Get(m => m.Id == entity.Id);
-            var result = updatedEpisode.EpisodeGenres.RemoveAll(g => entity.GenreIds.Any(gId => gId != g.Id));
-            var genreIds = entity.GenreIds.FindAll(gId => updatedEpisode.EpisodeGenres.Any(g => g.GenreId != g.Id));
+            var updatedEpisode = await _episodeRepository.Get(m => m.Id == entity.Id ,"EpisodeGenres");
+            var result = updatedEpisode.EpisodeGenres.RemoveAll(g => !entity.GenreIds.Any(gId => gId == g.Id));
+            var genreIds = entity.GenreIds.FindAll(gId => !updatedEpisode.EpisodeGenres.Any(g => g.GenreId == g.Id));
             foreach (var genreId in genreIds)
             {
                 EpisodeGenre episodeGenre = new EpisodeGenre()

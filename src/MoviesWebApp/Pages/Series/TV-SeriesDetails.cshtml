@@ -1,4 +1,79 @@
 ﻿@page
-@model MoviesWebApp.Pages.Series.SerialDetailcshtmlModel
+@model MoviesWebApp.Pages.Series.SerialDetailModel
 @{
+    ViewData["Page"] = "Watch Serial";
 }
+<div class="container ">
+    <div class="mt-5 ms-5 me-5">
+        <video class="video-movie  w-100" controls>
+            <source src="~/assets//uploads/episodes/videos/@Model.EpisodeIndexDtos.FirstOrDefault().VideoURL" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="container mb-3  shady-border">
+
+            <div class="row pt-2 ">
+                <div class="col-12 col-lg-2 d-none  d-lg-block">
+                    <div class="picture-div">
+                        <img class="card-img-each"
+                             src='@(Model?.EpisodeIndexDtos?.FirstOrDefault()?.ImageURL == null
+        ? $"https://fakeimg.pl/300x300/?text={Model.EpisodeIndexDtos?.FirstOrDefault()?.Name}"
+        : "../assets/uploads/episodes/images/" + Model.EpisodeIndexDtos?.FirstOrDefault()?.ImageURL)'
+                             alt="@Model.EpisodeIndexDtos?.FirstOrDefault()?.Name">
+
+                        <div class=" d-grid gap-2 mt-2 gap-2">
+                            <button class="btn btn-primary" type="button">Trailer</button>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="mb-5 col-12   col-lg-6  border-sm-end">
+                    <h1 class="card-title fs-4">@Model.EpisodeIndexDtos?.FirstOrDefault()?.Name</h1>
+                    <div class="page-each-description">
+                        <p>@Model.EpisodeIndexDtos?.FirstOrDefault()?.Season.Serial.Description</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="movie-data-shower col-12 col-md-8 ">
+                            <p class="p-genre">
+                                <strong class="text-success">Genre:</strong> @if (Model.EpisodeIndexDtos?.FirstOrDefault()?.EpisodeGenres != null)
+                                {
+                                    @for (int i = 0; i < Model.EpisodeIndexDtos?.FirstOrDefault()?.EpisodeGenres.Count; i++)
+                                    {
+                                        @(Model.EpisodeIndexDtos?.FirstOrDefault()?.EpisodeGenres[i].Genre.Name + (i != Model.EpisodeIndexDtos?.FirstOrDefault().EpisodeGenres.Count - 1 ? " , " : ""))
+
+                                    }
+                                }
+                            </p>
+                            <p class="p-genre"> <strong class="text-success">Actors:</strong> @Model.EpisodeIndexDtos?.FirstOrDefault()?.Actors</p>
+                            <p class="p-genre"> <strong class="text-success">Director:</strong> @Model.EpisodeIndexDtos?.FirstOrDefault()?.Director</p>
+                            <p class="p-genre"> <strong class="text-success">Country:</strong> @Model.EpisodeIndexDtos?.FirstOrDefault()?.Season.Country</p>
+
+
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <p class="p-genre"> <strong class="text-success">IMDB:</strong>@Model.EpisodeIndexDtos?.FirstOrDefault()?.Season.Serial.IMDB</p>
+
+                            <p class="p-genre"> <strong class="text-success">Duration:</strong> @Model.EpisodeIndexDtos?.FirstOrDefault()?.Duration</p>
+                            <p class="p-genre"> <strong class="text-success">Release:</strong> @Model.EpisodeIndexDtos?.FirstOrDefault()?.ReleaseDate.Year</p>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class=" col-12 col-lg-4  justify-content-end">
+                    <div class="d-grid gap-2">
+                        <button class="stream-btn btn btn-primary" type="button">Stream in HD</button>
+                        <button class="stream-btn btn btn-primary" type="button">Download in HD</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesWebApp.Business.DTOs.EpisodeDTOs;
 using MoviesWebApp.Business.Exceptions.EpisodeModelException;
 using MoviesWebApp.Business.Exceptions.FormatExceptions;
+using MoviesWebApp.Business.Exceptions.GenreModelExceptions;
 using MoviesWebApp.Business.Services.Implementations;
 using MoviesWebApp.Business.Services.Interfaces;
 
@@ -60,9 +61,10 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminEpisode
                 Serials = new SelectList(serials, "Id", "Name");
             }
 
-            var episode = await _service.GetById(id);
+            var episode = await _service.Get(null, "EpisodeGenres", "Season");
             if (episode is null) return NotFound();
             Episode = _mapper.Map<EpisodeUpdateDto>(episode);
+            Episode.GenreIds = episode.EpisodeGenres.Select(g => g.GenreId).ToList();
 
             List<Genre> genres = _genreService.GetAll(g => g.IsDeleted == false).Result.ToList();
             if (genres != null)
@@ -73,6 +75,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminEpisode
         }
         public async Task<IActionResult> OnPostAsync(int id)
         {
+            Episode.Id = id;
             var countries = await _countryService.GetAll(null, null);
             if (countries != null)
             {
@@ -88,6 +91,11 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminEpisode
             {
                 Serials = new SelectList(serials, "Id", "Name");
             }
+            List<Genre> genres = _genreService.GetAll(g => g.IsDeleted == false).Result.ToList();
+            if (genres != null)
+            {
+                GenreList = new SelectList(genres, "Id", "Name");
+            }
 
 
             if (!ModelState.IsValid)
@@ -96,9 +104,15 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminEpisode
             }
             try
             {
-                await _service.UpdateAsync( Episode);
+                await _service.UpdateAsync(Episode);
             }
             catch (EpisodeFileFormatException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return Page();
+
+            }
+            catch (NotExistGenreException ex)
             {
                 ModelState.AddModelError(ex.Property, ex.Message);
                 return Page();

@@ -25,12 +25,12 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSeason
         }
 
         [BindProperty]
-        public SeasonUpdateDto SeasonUpdateDto { get; set; } = default!;
+        public SeasonUpdateDto SeasonUpdateDto { get; set; }
         public SelectList Countries { get; set; }
 
         public SelectList Serials { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
             if (id == null)
             {
@@ -55,8 +55,14 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSeason
             SeasonUpdateDto = _mapper.Map<SeasonUpdateDto>(serial);
             return Page();
         }
-        public async Task<IActionResult> OnPostAsync(SeasonUpdateDto seasonUpdateDto)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
+            if (id is null)
+            {
+                ModelState.AddModelError("", "Id can not be null!");
+                return Page();
+            }
+            SeasonUpdateDto.Id = id;
             if (!ModelState.IsValid) return Page();
 
 
@@ -70,15 +76,16 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSeason
             {
                 Serials = new SelectList(serials, "Id", "Name");
             }
-           
-           
+
+
             try
             {
-                await _seasonService.UpdateAsync(seasonUpdateDto);
+                await _seasonService.UpdateAsync(SeasonUpdateDto);
             }
             catch (EntityNotFoundException ex)
             {
                 ModelState.AddModelError("", $"{ex.Message}");
+                return Page();
             }
 
             return RedirectToPage("./Index");

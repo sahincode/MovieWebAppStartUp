@@ -4,17 +4,17 @@
 }
 <div class="container-fluid ">
     <h1 class="fs-6 mt-2 btn btn-success">Serials</h1>
-    <div class="row mt-3">
+    <div class="row mt-3 ms-5">
         @foreach (var movie in Model.Serials)
         {
             @foreach (var season in movie.Seasons)
             {
                 <div class=" movie col-xs-2 col-3 col-md-4 col-lg-6 col-xl-12">
 
-                    <a class="a-movie" asp-page="/Serials/TV-SeriesDetails" asp-route-id="@season.Id">
+                    <a class="a-movie" asp-page="/Series/TV-SeriesDetails" asp-route-id="@season?.Id">
                         <div class="card-body">
                             <img class="card-img-top" src="@(season.ImageUrl is not null ?
-                            $"../assets/uploads/movies/images/{season.ImageUrl}":
+                            $"../assets/uploads/season/{season.ImageUrl}":
                         $"https://fakeimg.pl/300x300/?text= {movie.Name}" )" />
 
                             <div class="movie-details">
