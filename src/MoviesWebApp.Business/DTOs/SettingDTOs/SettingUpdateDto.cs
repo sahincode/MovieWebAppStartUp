@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MoviesWebApp.Business.DTOs.SettingDTOs
 {
-    public class SettingCreateDto
-    {
+    public class SettingUpdateDto
+    { public int Id { get; set; }
         public string Address { get; set; }
         public string Contact { get; set; }
         public string Email { get; set; }
@@ -17,9 +17,9 @@ namespace MoviesWebApp.Business.DTOs.SettingDTOs
         public string WhatUrl { get; set; }
         public string InstaUrl { get; set; }
     }
-    public class SettingCreateDtoValidator:AbstractValidator<SettingCreateDto> 
+    public class SettingUpdateDtoValidator : AbstractValidator<SettingUpdateDto> 
     {
-        public SettingCreateDtoValidator()
+        public SettingUpdateDtoValidator()
         {
             RuleFor(e => e.Address).NotNull().WithMessage("Can not be null").
                                    NotEmpty().WithMessage("Can not be empty").

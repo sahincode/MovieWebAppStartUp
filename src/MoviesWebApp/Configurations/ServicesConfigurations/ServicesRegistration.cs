@@ -1,7 +1,10 @@
 ﻿using EpisodesWebApp.Business.Services.Implementations;
+using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Business.DTOs.SettingDTOs;
 using MoviesWebApp.Business.MappingProfiles;
 using MoviesWebApp.Business.Services.Implementations;
@@ -16,19 +19,20 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
 {
     public static class ServicesRegistration
     {
+        [Obsolete]
         public static void ConfigureServices(this IServiceCollection services, ConfigurationManager configuration)
         {
             services.AddLiveReload();
             services.AddAutoMapper(typeof(MapProfile));
-            services.AddControllers();
+
+            services.AddMvc();
             services.AddRazorPages(options =>
             {
                 options.Conventions.AddPageRoute("/About", "");
 
-            }).AddFluentValidation(opt =>
-            {
-                opt.RegisterValidatorsFromAssemblyContaining<SettingCreateDtoValidator>();
-            });
+            }).AddFluentValidation(opts => opts.RegisterValidatorsFromAssemblyContaining<MovieUpdateDtoValidator>()
+            );
+           
 
             services.AddDbContext<MoviesWebAppContext>(options =>
              options.UseSqlServer(configuration.GetConnectionString("MoviesWebAppContext") ?? throw new InvalidOperationException("Connection string 'MoviesWebAppContext' not found.")));
@@ -47,6 +51,8 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<ISeasonService, SeasonService>();
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IEpisodeService, EpisodeService>();
+            services.AddScoped<INewsSlideService, NewsSlideService>();
+
 
 
 
@@ -64,13 +70,8 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IEpisodeRepository, EpisodeRepository>();
             services.AddScoped<IEpisodeGenreRepository, EpisodeGenreRepository>();
-
-
-
-
-
-
-
+            services.AddScoped<INewsSlideRepository, NewsSlideRepository>();
+            services.AddScoped<IMovieGenreRepository, MovieGenreRepository>();
 
 
             //Externa login services addition 
@@ -99,6 +100,7 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
                 AddEntityFrameworkStores<MoviesWebAppContext>().
                 AddDefaultTokenProviders().
                 AddDefaultUI();
+           
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Hosting;
 using MoviesWebApp.Core.Models;
 using System;
@@ -12,44 +13,48 @@ namespace MoviesWebApp.Business.InternalHelperServices
 {
     public class FileHelper
     {
-         public async static Task<string> SaveImage(string rootPath ,string passPath ,IFormFile image)
+        public async static Task<string> SaveImage(string rootPath, string passPath, IFormFile image)
         {
-            var folderImage = Path.Combine( rootPath, passPath);
-           
-            if (!Directory.Exists(folderImage) )
+            var folderImage = Path.Combine(rootPath, passPath);
+            string imageName = null;
+            if (!Directory.Exists(folderImage))
             {
                 Directory.CreateDirectory(folderImage);
-              
+
             }
-            var imageName = Guid.NewGuid().ToString() + image.FileName;
-            
+            imageName  = image.FileName.Length > 64 ?
+            Guid.NewGuid().ToString() + image.FileName.Substring(image.FileName.Length - 64, 64)
+                : Guid.NewGuid().ToString() + image.FileName;
             var fileFullPath = Path.Combine(folderImage, imageName);
-           
+
             using (var FileStream = new FileStream(fileFullPath, FileMode.Create))
             {
                 await image.CopyToAsync(FileStream);
             }
-          
+
             return imageName;
         }
-        public async  static Task<string> SaveVideo(string filePath, string passPath, IFormFile video)
+        public async static Task<string> SaveVideo(string filePath, string passPath, IFormFile video)
         {
-           
-            var FolderVideo = Path.Combine(filePath ,passPath);
-            if ( !Directory.Exists(FolderVideo))
+
+            var FolderVideo = Path.Combine(filePath, passPath);
+            string videoName = null;    
+            if (!Directory.Exists(FolderVideo))
             {
-                
+
                 Directory.CreateDirectory(FolderVideo);
             }
-            var videoName = Guid.NewGuid().ToString() + video.FileName;
-           
+            videoName = video.FileName.Length>64 ? 
+                Guid.NewGuid().ToString()+video.FileName.Substring(video.FileName.Length-64 ,64) 
+                : Guid.NewGuid().ToString()+ video.FileName;
+
             var fileFullPath = Path.Combine(FolderVideo, videoName);
-        
+
             using (var FileStream = new FileStream(fileFullPath, FileMode.Create))
             {
                 await video.CopyToAsync(FileStream);
             }
-           
+
             return videoName;
         }
     }

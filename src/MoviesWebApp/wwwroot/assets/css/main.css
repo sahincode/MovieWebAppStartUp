@@ -3,6 +3,7 @@
     flex-direction: column;
     min-height: 100vh;
 }
+
 .logo-text-layout {
     font-size: 24px;
     color: #317167 !important;
@@ -28,12 +29,62 @@
 }
 
 /*body design section*/
-.body-main{
-    flex:1;
+.body-main {
+    flex: 1;
 }
+
 .container-body {
     background-color: #D9FDCA;
 }
+/*home page css codes start*/
+.swiper-container {
+    height: 600px;
+    padding: 75px 75px 0px 75px;
+}
+
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+    .swiper-slide img {
+        width: 100%;
+        height: 100%;
+    }
+
+.slide-card {
+    position: absolute !important;
+    border-radius: 5px;
+    margin-left: 25px;
+    margin-top: 50px;
+    padding: 25px;
+    width: 70%;
+    height: 250px;
+    background-color: #282E3E;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.swiper-slide:hover .slide-card {
+    transition: all 1s ease;
+    visibility: visible;
+    opacity: 0.7;
+}
+
+.div-home-slide-bottom {
+    display: flex;
+    align-items: center;
+    background-color: #381862;
+    margin-top: 20px;
+    height: 50px;
+    width: 100%;
+    border-radius: 4px;
+    color: white;
+}
+/*home page css code end*/
 /*nav-bar design section */
 a.navbar-brand {
     white-space: normal;
@@ -128,7 +179,7 @@ a.navbar-brand {
     bottom: 0;
     width: 100%;
     line-height: 40px;
-    position:page;
+    position: page;
 }
 
 
@@ -165,5 +216,4 @@ a.navbar-brand {
     padding: 10px 32px 10px 32px !important;
     margin: 20px 10px 0px 10px !important;
     width: 240px !important;
-   
 }

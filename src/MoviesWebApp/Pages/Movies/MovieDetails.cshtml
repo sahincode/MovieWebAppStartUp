@@ -6,7 +6,7 @@
 <div class="container ">
     <div class="mt-5 ms-5 me-5">
         <video class="video-movie  w-100" controls>
-            <source src="https://youtu.be/m87rP0uNtn8?si=kgdp-fAh7Ncxqjq9" type="video/mp4" />
+            <source src="~/assets/uploads/movies/videos/@Model.Movie.VideoURL" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
 
@@ -22,7 +22,7 @@
                              alt="@Model.Movie.Title">
 
                         <div class=" d-grid gap-2 mt-2 gap-2">
-                            <button class="btn btn-primary" type="button">Trailer</button>
+                            <button class="btn btn-primary btn-details" type="button">Trailer</button>
                         </div>
                     </div>
 
@@ -66,8 +66,8 @@
                 </div>
                 <div class=" col-12 col-lg-4  justify-content-end">
                     <div class="d-grid gap-2">
-                        <button class="stream-btn btn btn-primary" type="button">Stream in HD</button>
-                        <button class="stream-btn btn btn-primary" type="button">Download in HD</button>
+                        <button class="stream-btn btn btn-primary btn-details" type="button">Stream in HD</button>
+                        <button class="stream-btn btn btn-primary btn-details" type="button">Download in HD</button>
                     </div>
                 </div>
 

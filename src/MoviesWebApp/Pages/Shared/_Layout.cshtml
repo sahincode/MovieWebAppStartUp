@@ -21,14 +21,13 @@
 
     <link rel="stylesheet" href="~/assets/lib/bootstrap/dist/css/bootstrap.min.css" />
 
-    <link rel="stylesheet" href="~/assets/css/site.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/assets/css/login.css" />
     <link rel="stylesheet" href="~/MoviesWebApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link href="
-https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css
-" rel="stylesheet">
-
-    <link rel="stylesheet" href="~/assets/css/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css" rel="stylesheet">
+    @RenderSection("swiperCSS" ,false)
+    <link rel="stylesheet" href="~/assets/css/main.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/assets/css/movie-details.css" />
     <link rel="stylesheet" href="~/assets/css/movie.css" />
 
@@ -103,9 +102,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css
             <div class="row justify-content-between  section-padding">
                 <div class=" col-xl-3 col-lg-4 col-sm-6">
                     <div class="single-footer pb--40">
-                        <div class="brand-footer footer-title">
-                            <img src="~/assets/image/logo--footer.png" alt="">
-                        </div>
+
                         <div class="footer-contact">
                             <p>
                                 <span class="label footer-text">Address:</span><span class="text">
@@ -126,8 +123,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css
 
                             <li><a href="/Movies/NewMovies?paged=1">New Movies</a></li>
                             <li><a href="/Movies/BestMovies?paged=1">Best Movies</a></li>
-                            <li><a asp-page="Series/Index" >Series</a></li>
-                            <li><a href="#">News</a></li>
+                            <li><a href="/Series/Index">Series</a></li>
+                            <li><a href="/Home">News</a></li>
 
 
 
@@ -166,17 +163,17 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css
                         <h3 class="title ">STAY CONNECTED</h3>
                         <ul style="list-style-type:none;" class="social-list me-5  d-flex justify-content-between align-items-center">
                             <li class="single-social facebook">
-                                <a href="@setting.FaceUrl">
+                                <a href="@setting.FaceUrl" target="_blank">
                                     <i style="color:#198754" class="fs-5 rounded-circle fa-brands fa-facebook"></i>
                                 </a>
                             </li>
-                            <li class="single-social twitter"><a href="@setting.XUrl"><i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-x-twitter"></i></a></li>
+                            <li class="single-social twitter"><a target="_blank" href="@setting.XUrl"><i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-x-twitter"></i></a></li>
                             <li class="single-social whatsapp">
-                                <a href="@setting.WhatUrl">
+                                <a href="@setting.WhatUrl" target="_blank">
                                     <i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-square-whatsapp"></i>
                                 </a>
                             </li>
-                            <li class="single-social instagram"><a href="@setting.InstaUrl"><i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-square-instagram"></i></a></li>
+                            <li class="single-social instagram"><a target="_blank" href="@setting.InstaUrl"><i style="color:#198754" class="fs-5  rounded-circle fa-brands fa-square-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -206,5 +203,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.all.min.js
 
 
     @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("swiperJS", required: false)
+
 </body>
 </html>

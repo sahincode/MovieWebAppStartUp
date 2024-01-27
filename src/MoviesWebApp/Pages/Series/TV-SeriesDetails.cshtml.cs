@@ -30,7 +30,11 @@ namespace MoviesWebApp.Pages.Series
         {
 
             if (id is null) return NotFound();
-            List<Episode> episodes = _episodeService.GetAll(e => e.IsDeleted == false, "Season", "EpisodeGenres").Result.ToList();
+            List<Episode> episodes = _episodeService.GetAll(e => e.IsDeleted == false && e.SeasonId == id, "Season", "EpisodeGenres").Result.ToList();
+            if (episodes.Count==0)
+            {
+                return NotFound();
+            }
             List<EpisodeIndexDto> episodeIndexDtos = new List<EpisodeIndexDto>();
             foreach (Episode episode in episodes)
             {

@@ -8,64 +8,48 @@
 @{
     ViewData["Title"] = "Log in";
 }
-<div class="free-div-login">
-</div>
-<div class="modal  fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class=" modal-dialog">
-        <div class=" modal-content w-75 ">
-            <div class="modal-header ">
-                <h5 class="modal-title" id="exampleModalLabel">Log In</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form  id="form-login" method="post" class="row">
-                    <div asp-validation-summary="ModelOnly"></div>
-                    <div class="mb-3 d-flex ">
-                        <i class="fas fa-envelope prefix grey-text me-1 mt-2"></i>
-                        <input asp-for="Input.Email" class="form-control validate" placeholder="Your Email" autocomplete="current-password" aria-required="true" />
-                    </div>
-                    <div class="mb-3 mt-4 d-flex ">
-                        <i class="fas fa-lock prefix grey-text me-1 mt-2"></i>
-                        <input asp-for="Input.Password" id="defaultForm-pass" placeholder="Your Password" class="form-control validate">
 
-                    </div>
-                    <div class="ms-2">
-                        <div class="mb-3 d-block">
-                            <a class="text-decoration-none" asp-page="./ForgotPassword">Forgot your password?</a>
-                        </div>
-                        <div class="d-block mb-3">
-                            <p class="font-weight-bold mb-1">New to  <b>FALCONOINSCOPE</b></p>
-                            <a class="text-decoration-none " asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Sign Up</a>
-                        </div>
-                        <div class=" mb-3 checkbox d-block">
-                            <label asp-for="Input.RememberMe" class="form-label">
-                                <input class="form-check-input" asp-for="Input.RememberMe" />
-                                @Html.DisplayNameFor(m => m.Input.RememberMe)
-                            </label>
-                        </div>
-                    </div>
-                   
-                       
 
-                    
-                   
-                </form>
+
+<div class=" d-flex align-items-center justify-content-center">
+    <div class="form-container  shadow">
+
+        <form  method="post" >
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="mb-3 d-flex ">
+                <i class="fas fa-envelope prefix grey-text me-1 mt-2"></i>
+                <input asp-for="Input.Email" class="form-control validate" placeholder="Your Email" autocomplete="current-password"  />
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button form="form-login" type="submit" class="btn btn-primary">Sign In</button>
+            <div class="mb-3 mt-4 d-flex ">
+                <i class="fas fa-lock prefix grey-text me-1 mt-2"></i>
+                <input asp-for="Input.Password"  placeholder="Your Password" class="form-control validate">
+
             </div>
-        </div>
+            <div class="ms-2">
+                <div class="mb-3 d-block">
+                    <a class="text-decoration-none" asp-page="./ForgotPassword">Forgot your password?</a>
+                </div>
+                <div class=" d-block d-sm-flex mb-3">
+                    <p class="font-weight-bold mb-1">New to  <b>FALCONOINSCOPE</b></p>
+                    <a class="text-decoration-none ms-3" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Sign Up</a>
+                </div>
+                <div class=" mb-3 checkbox d-block">
+                    <label asp-for="Input.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+                <div class="modal-footer">
+
+                    <button form="form-register" type="submit" class=" sign-button">Sign In</button>
+                </div>
+            </div>
+
+        </form>
     </div>
 </div>
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <script>
-        $(document).ready(function () {
-            // Open the login modal on page load
-            $('#loginModal').modal('show');
-        });
-    </script>
+
 }
 

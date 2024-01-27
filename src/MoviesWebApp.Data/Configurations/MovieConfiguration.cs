@@ -11,7 +11,7 @@ namespace MoviesWebApp.Data.Configurations
             builder.Property(m => m.Title).
                 IsRequired().HasMaxLength(50);
             builder.Property(m => m.Description).
-               IsRequired().HasMaxLength(200); 
+               IsRequired().HasMaxLength(300); 
             builder.Property(m => m.Actors).
                 IsRequired().HasMaxLength(70); 
             builder.Property(m => m.ImageURL).

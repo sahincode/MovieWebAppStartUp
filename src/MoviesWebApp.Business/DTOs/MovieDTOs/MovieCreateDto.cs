@@ -20,12 +20,12 @@ namespace MoviesWebApp.Business.DTOs.MovieDTOs
         public List<int> GenreIds { get; set; }
         public string Director { get; set; }
         public string Country { get; set; }
-        [Range(0, 300)]
+
         public int Duration { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 
-        [Range(0, 10)]
+
         public float IMDB { get; set; }
         public IFormFile Image { get; set; }
         public IFormFile Video { get; set; }
@@ -40,7 +40,7 @@ namespace MoviesWebApp.Business.DTOs.MovieDTOs
                                     MinimumLength(5).WithMessage("Can not be less than 5 digits");
             RuleFor(e => e.Description).NotNull().WithMessage("Can not be null").
                                    NotEmpty().WithMessage("Can not be empty").
-                                   MaximumLength(200).WithMessage("Can not be greater than 200 digits").
+                                   MaximumLength(300).WithMessage("Can not be greater than 300 digits").
                                    MinimumLength(5).WithMessage("Can not be less than 5 digits");
             RuleFor(e => e.Actors).NotNull().WithMessage("Can not be null").
                                     NotEmpty().WithMessage("Can not be empty").
@@ -60,7 +60,10 @@ namespace MoviesWebApp.Business.DTOs.MovieDTOs
                                     GreaterThan(300).WithMessage("Movie duration can't be greater than 300 minutes").
                                     LessThan(0).WithMessage("Movie duration can't be less than 0 minute");
 
-
+            RuleFor(e => e.Duration).NotNull().WithMessage("Can not be null").
+                                  NotEmpty().WithMessage("Can not be empty").
+                                  GreaterThan(0).WithMessage("Movie duration can't be less than 0 points").
+                                  LessThan(10).WithMessage("Movie duration can't be greater than 10 points");
         }
     }
 }

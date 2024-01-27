@@ -1,0 +1,24 @@
+﻿.form-container {
+    padding: 50px;
+    max-width: 1000px;
+    margin-top: 50px;
+    background: linear-gradient(0deg, rgba(72,193,145,1) 11%, rgba(200,244,247,1) 100%);
+    border-radius: 3px;
+}
+
+.sign-button {
+    border: none !important;
+    border-radius: 3px;
+    width: 70px;
+    height: 30px;
+    color: white;
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 84%, rgba(252,176,69,1) 100%);
+}
+
+.sign-google {
+    max-width: 300px;
+}
+
+.register-form {
+    padding: 75px;
+}

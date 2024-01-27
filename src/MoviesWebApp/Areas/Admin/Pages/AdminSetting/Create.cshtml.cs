@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Business.DTOs.SettingDTOs;
 using MoviesWebApp.Business.Exceptions.FormatExceptions;
+using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
 
@@ -15,7 +16,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSetting
       
 
         [BindProperty]
-        public SettingCreateDto Setting { get; set; }
+        public SettingUpdateDto Setting { get; set; }
         
         public CreateModel(ISettingService settingService)
         {
@@ -35,7 +36,13 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSetting
             }
             try
             {
-                await _settingService.CreateAsync(Setting);
+                await _settingService.UpdateAsync(Setting);
+
+            }
+            catch(NullEntityException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return Page();
 
             }
             catch (MovieFileFormatException ex)

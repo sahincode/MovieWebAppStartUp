@@ -12,24 +12,23 @@ namespace MoviesWebApp.Business.DTOs.MovieDTOs
 {
     public class MovieUpdateDto
     {
-        public int Id { get; set; } 
+        public int? Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Actors { get; set; }
-        public int GenreIds { get; set; }
+        public List<int> GenreIds { get; set; }
         public string Director { get; set; }
         public string Country { get; set; }
-        [Range(0, 300)]
+
         public int Duration { get; set; }
 
         public DateTime ReleaseDate { get; set; }
 
-        [Range(0, 10)]
         public float IMDB { get; set; }
         public IFormFile? Image { get; set; }
         public IFormFile? Video { get; set; }
     }
-    public class MovieUpdateDtoValidator : AbstractValidator<MovieCreateDto>
+    public class MovieUpdateDtoValidator : AbstractValidator<MovieUpdateDto>
     {
         public MovieUpdateDtoValidator()
         {
@@ -39,7 +38,7 @@ namespace MoviesWebApp.Business.DTOs.MovieDTOs
                                     MinimumLength(5).WithMessage("Can not be less than 5 digits");
             RuleFor(e => e.Description).NotNull().WithMessage("Can not be null").
                                    NotEmpty().WithMessage("Can not be empty").
-                                   MaximumLength(200).WithMessage("Can not be greater than 200 digits").
+                                   MaximumLength(300).WithMessage("Can not be greater than 300 digits").
                                    MinimumLength(5).WithMessage("Can not be less than 5 digits");
             RuleFor(e => e.Actors).NotNull().WithMessage("Can not be null").
                                     NotEmpty().WithMessage("Can not be empty").
@@ -56,9 +55,12 @@ namespace MoviesWebApp.Business.DTOs.MovieDTOs
                                     MinimumLength(5).WithMessage("Can not be less than 5 digits");
             RuleFor(e => e.Duration).NotNull().WithMessage("Can not be null").
                                     NotEmpty().WithMessage("Can not be empty").
-                                    GreaterThan(300).WithMessage("Movie duration can't be greater than 300 minutes").
-                                    LessThan(0).WithMessage("Movie duration can't be less than 0 minute");
-
+                                    GreaterThan(0).WithMessage("Movie duration can't be less than 0 minutes").
+                                    LessThan(300).WithMessage("Movie duration can't be greater than 300 minute");
+            RuleFor(e => e.IMDB).NotNull().WithMessage("Can not be null").
+                                  NotEmpty().WithMessage("Can not be empty").
+                                  GreaterThan(0).WithMessage("Movie duration can't be less than 0 points").
+                                  LessThan(10).WithMessage("Movie duration can't be greater than 10 points");
 
         }
     }

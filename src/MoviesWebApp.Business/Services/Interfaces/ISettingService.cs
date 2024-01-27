@@ -12,8 +12,8 @@ namespace MoviesWebApp.Business.Services.Interfaces
 {
     public  interface ISettingService
     {
-        Task CreateAsync(SettingCreateDto entity);
-        //Task UpdateAsync(int? id, GenreUpdateDto entity);
+        //Task CreateAsync(SettingUpdateDto entity);
+        Task UpdateAsync( SettingUpdateDto entity);
         Task Delete(int id);
         //Task ToggleDelete(int id);
         Task<Setting> GetById(int? id);

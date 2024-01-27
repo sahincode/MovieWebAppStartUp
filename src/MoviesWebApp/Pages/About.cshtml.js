@@ -1,7 +1,9 @@
 ﻿const input = document.getElementById("search-input");
 const movieContainer = document.getElementById("row");
 const inputbtn = document.getElementById("search-button");
-inputbtn.addEventListener("click", SearchData);
+if (inputbtn !== null) {
+    inputbtn.addEventListener("click", SearchData);
+}
 
 function SearchData() {
 

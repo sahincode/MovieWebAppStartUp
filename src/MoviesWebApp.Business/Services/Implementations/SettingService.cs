@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace MoviesWebApp.Business.Services.Implementations
 {
-    public  class SettingService :ISettingService
+    public class SettingService : ISettingService
     {
         private readonly IMapper _mapper;
         private readonly ISettingRepository _setting;
@@ -23,20 +23,21 @@ namespace MoviesWebApp.Business.Services.Implementations
         public SettingService(IMapper mapper, ISettingRepository setting)
         {
             this._mapper = mapper;
-            
+
             this._setting = setting;
-            
+
         }
-        public async Task CreateAsync(SettingCreateDto entity)
+        public async Task UpdateAsync(SettingUpdateDto entity)
         {
-            Setting setting = _mapper.Map<Setting>(entity);
-            await _setting.CreateAsync(setting);
+            Setting setting = await this.GetById(entity.Id);
+            if (setting is null) throw new NullEntityException("", "the setting does not exist in database");
+            setting = _mapper.Map(entity, setting);
             await _setting.CommitChange();
 
 
         }
 
-       
+
 
         public async Task Delete(int id)
         {
@@ -53,7 +54,7 @@ namespace MoviesWebApp.Business.Services.Implementations
                  $"{predicate} was not found in the database.");
         }
 
-       
+
 
         public async Task<IEnumerable<Setting>> GetAll(Expression<Func<Setting, bool>>? predicate, params string[]? includes)
         {
@@ -63,13 +64,13 @@ namespace MoviesWebApp.Business.Services.Implementations
                 $" {predicate} was not found in the database.");
         }
 
-     
+
 
         public async Task<Setting> GetById(int? id)
         {
             return await _setting.Get(a => a.Id == id);
         }
 
-       
+
     }
 }

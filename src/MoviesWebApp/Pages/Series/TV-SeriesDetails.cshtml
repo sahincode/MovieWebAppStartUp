@@ -22,7 +22,7 @@
                              alt="@Model.EpisodeIndexDtos?.FirstOrDefault()?.Name">
 
                         <div class=" d-grid gap-2 mt-2 gap-2">
-                            <button class="btn btn-primary" type="button">Trailer</button>
+                            <button class="btn btn-primary btn-details" type="button">Trailer</button>
                         </div>
                     </div>
 
@@ -53,7 +53,7 @@
 
                         </div>
                         <div class="col-12 col-md-4">
-                            <p class="p-genre"> <strong class="text-success">IMDB:</strong>@Model.EpisodeIndexDtos?.FirstOrDefault()?.Season.Serial.IMDB</p>
+                            <p class="p-genre"> <strong class="text-success">IMDB:</strong><small class="btn btn-warning">@Model.EpisodeIndexDtos?.FirstOrDefault()?.Season.Serial.IMDB</small></p>
 
                             <p class="p-genre"> <strong class="text-success">Duration:</strong> @Model.EpisodeIndexDtos?.FirstOrDefault()?.Duration</p>
                             <p class="p-genre"> <strong class="text-success">Release:</strong> @Model.EpisodeIndexDtos?.FirstOrDefault()?.ReleaseDate.Year</p>
@@ -66,8 +66,8 @@
                 </div>
                 <div class=" col-12 col-lg-4  justify-content-end">
                     <div class="d-grid gap-2">
-                        <button class="stream-btn btn btn-primary" type="button">Stream in HD</button>
-                        <button class="stream-btn btn btn-primary" type="button">Download in HD</button>
+                        <button class="stream-btn btn btn-primary btn-details" type="button">Stream in HD</button>
+                        <button class="stream-btn btn btn-primary btn-details" type="button">Download in HD</button>
                     </div>
                 </div>
 
