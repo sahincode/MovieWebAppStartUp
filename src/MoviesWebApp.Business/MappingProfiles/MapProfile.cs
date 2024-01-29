@@ -21,7 +21,7 @@ namespace MoviesWebApp.Business.MappingProfiles
         {
             //movie model mapping profile
             CreateMap<MovieCreateDto, Movie>().ReverseMap();
-            CreateMap<MovieDeleteDto, Movie>().ReverseMap();
+      
             CreateMap<MovieUpdateDto, Movie>().ReverseMap();
             CreateMap<MovieIndexDto, Movie>().ReverseMap();
             CreateMap<HeaderSlideDto, Movie>().ReverseMap();

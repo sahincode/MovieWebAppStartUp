@@ -14,9 +14,9 @@ namespace MoviesWebApp.Business.DTOs.NewsSlideDTOs
         public string Description { get; set; }
 
     }
-    public class SettingCreateDtoValidator : AbstractValidator<NewsSlideCreateDto>
+    public class NewsSlideCreateDtoValidator : AbstractValidator<NewsSlideCreateDto>
     {
-        public SettingCreateDtoValidator()
+        public NewsSlideCreateDtoValidator()
         {
             RuleFor(e => e.Title).NotNull().WithMessage("Can not be null").
                                    NotEmpty().WithMessage("Can not be empty").

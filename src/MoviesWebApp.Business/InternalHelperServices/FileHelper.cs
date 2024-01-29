@@ -22,9 +22,9 @@ namespace MoviesWebApp.Business.InternalHelperServices
                 Directory.CreateDirectory(folderImage);
 
             }
-            imageName  = image.FileName.Length > 64 ?
-            Guid.NewGuid().ToString() + image.FileName.Substring(image.FileName.Length - 64, 64)
-                : Guid.NewGuid().ToString() + image.FileName;
+            imageName = image.FileName.Length > 64 ?
+            Guid.NewGuid().ToString() + image.FileName.Substring(image.FileName.Length - 64, 64).Replace(" ", "")
+                : Guid.NewGuid().ToString() + image.FileName.Replace(" ", "");
             var fileFullPath = Path.Combine(folderImage, imageName);
 
             using (var FileStream = new FileStream(fileFullPath, FileMode.Create))
@@ -38,15 +38,15 @@ namespace MoviesWebApp.Business.InternalHelperServices
         {
 
             var FolderVideo = Path.Combine(filePath, passPath);
-            string videoName = null;    
+            string videoName = null;
             if (!Directory.Exists(FolderVideo))
             {
 
                 Directory.CreateDirectory(FolderVideo);
             }
-            videoName = video.FileName.Length>64 ? 
-                Guid.NewGuid().ToString()+video.FileName.Substring(video.FileName.Length-64 ,64) 
-                : Guid.NewGuid().ToString()+ video.FileName;
+            videoName = video.FileName.Length > 64 ?
+                Guid.NewGuid().ToString() + video.FileName.Substring(video.FileName.Length - 64, 64).Replace(" ", "")
+                : Guid.NewGuid().ToString() + video.FileName.Replace(" ", "");
 
             var fileFullPath = Path.Combine(FolderVideo, videoName);
 

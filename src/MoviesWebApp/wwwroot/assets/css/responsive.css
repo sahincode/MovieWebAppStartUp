@@ -1,0 +1,29 @@
+﻿@media (min-width :992px){
+    .nav-mobile{
+        position:static;
+        right:0;
+        width:70%;
+        display:flex  !important;
+        justify-content:space-between !important;
+        background-color:none;
+    }
+    .navbar-nav {
+        flex-direction:row !important;
+    }
+}
+@media (max-width :991.98px){
+    .nav-mobile{
+        position: fixed;
+        display:block;
+        right: -100%;
+        top: 70px;
+        gap: 0;
+        flex-direction: column;
+        background-color: black;
+        width: 50%;
+        text-align: center;
+        transition: 0.4s;
+        z-index: 20;
+    }
+
+}

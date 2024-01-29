@@ -146,6 +146,7 @@ namespace MoviesWebApp.Business.Services.Implementations
             {
                 if (entity.Image.ContentType != "image/png" && entity.Image.ContentType != "image/jpeg")
                     throw new MovieFileFormatException("Image", "please add png or jpeg file");
+                File.Delete(Path.Combine(rootPath, imagePassPath, updatedMovie.ImageURL));
                 updatedMovie.ImageURL = await FileHelper.SaveImage(rootPath, imagePassPath, entity.Image);
             }
 
@@ -153,6 +154,8 @@ namespace MoviesWebApp.Business.Services.Implementations
             {
                 if (entity.Video.ContentType != "video/mp4" && entity.Video.ContentType != "video/mpeg")
                     throw new MovieFileFormatException("Video", "please add mp4  or mpeg file");
+                File.Delete(Path.Combine(rootPath, videoPassPath, updatedMovie.VideoURL));
+
                 updatedMovie.VideoURL = await FileHelper.SaveVideo(rootPath, videoPassPath, entity.Video);
             }
             await _movieRepository.CommitChange();

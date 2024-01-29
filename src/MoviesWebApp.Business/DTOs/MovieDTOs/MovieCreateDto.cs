@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
-using MoviesWebApp.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,8 +11,7 @@ namespace MoviesWebApp.Business.DTOs.MovieDTOs
 {
     public class MovieCreateDto
     {
-        [StringLength(50, MinimumLength = 1)]
-        [Required]
+
         public string Title { get; set; }
         public string Description { get; set; }
         public string Actors { get; set; }
@@ -34,7 +32,7 @@ namespace MoviesWebApp.Business.DTOs.MovieDTOs
     {
         public MovieCreateDtoValidator()
         {
-            RuleFor(e => e.Title).NotNull().WithMessage("Can not be null").
+            RuleFor(e => e.Title).Null().WithMessage("Can not be null").
                                     NotEmpty().WithMessage("Can not be empty").
                                     MaximumLength(50).WithMessage("Can not be greater than 50 digits").
                                     MinimumLength(5).WithMessage("Can not be less than 5 digits");
