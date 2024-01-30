@@ -66,7 +66,7 @@ namespace MoviesWebApp.Business.Services.Implementations
             var privacy =  await this.GetById(id);
             if (privacy == null) throw new EntityNotFoundException($"The entity with the ID equal to " +
                 $"{id} was not found in the database.");
-            _privacy.Delete(privacy);
+            privacy.IsDeleted = !privacy.IsDeleted;
             await  _privacy.CommitChange();
 
         }

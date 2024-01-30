@@ -86,9 +86,9 @@
                         <form method="post" class="form-delete ms-1" asp-page-handler="Delete" asp-route-id="@item.Id" asp-page="./Index">
                             <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
                         </form>
-                        <button type="button" class="btn btn-info ms-1" data-bs-toggle="modal" data-bs-target="#item@(item.Id)Modal">
+                        <a  class="btn btn-info ms-1" data-bs-toggle="modal" data-bs-target="#item@(item.Id)Modal">
                             <i class="fa-solid fa-circle-info"></i>
-                        </button>
+                        </a>
                     </td>
 
                 </tr>

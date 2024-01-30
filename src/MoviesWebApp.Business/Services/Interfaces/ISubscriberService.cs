@@ -12,6 +12,8 @@ namespace MoviesWebApp.Business.Services.Interfaces
     public interface ISubscriberService
     {
         Task Delete(int id);
+       public Task ToggleDelete(int id);
+
         Task<Subscriber> GetById(int? id);
         Task<Subscriber> Get(Expression<Func<Subscriber, bool>>? predicate, params string[]? includes);
         Task<IEnumerable<Subscriber>> GetAll(Expression<Func<Subscriber, bool>>? predicate, params string[]? includes);

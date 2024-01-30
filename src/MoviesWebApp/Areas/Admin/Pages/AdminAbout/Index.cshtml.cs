@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MoviesWebApp.Business.DTOs.AboutDTOs;
-using MoviesWebApp.Business.Exceptions;
 using MoviesWebApp.Business.Exceptions.AboutModelExceptions;
+using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
 

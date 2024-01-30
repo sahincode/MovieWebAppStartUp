@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MoviesWebApp.Business.DTOs.SeasonDTOs;
-using MoviesWebApp.Business.Exceptions;
+using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.Exceptions.SeasonModelExceptions;
-using MoviesWebApp.Business.Exceptions.SerialModelException;
+
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
 
@@ -63,7 +63,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSeason
             {
                 return NotFound(ex.Message);
             }
-            catch (SerialNotFoundException ex)
+            catch (EntityNotFoundException ex)
             {
                 return NotFound(ex.Message);
             }

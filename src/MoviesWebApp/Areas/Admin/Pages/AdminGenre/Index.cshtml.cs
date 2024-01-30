@@ -12,7 +12,8 @@ using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data;
 using MoviesWebApp.Data.DAL;
-
+using MoviesWebApp.Business.Services.Implementations;
+using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminGenre
 {
@@ -40,6 +41,44 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminGenre
             }
             GenreIndexDtos = genreIndexDtos;
             return Page();
+        }
+        public async Task<IActionResult> OnPostDelete( int id)
+        {
+
+            try
+            {
+                await _genreService.Delete(id);
+            }
+            catch (NullIdException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+
+            return RedirectToPage("./Index");
+        }
+        public async Task<IActionResult> OnPostToggleDelete(int id)
+        {
+
+            try
+            {
+                await _genreService.ToggleDelete(id);
+            }
+            catch (NullIdException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+
+            return RedirectToAction("OnGet");
         }
     }
 }

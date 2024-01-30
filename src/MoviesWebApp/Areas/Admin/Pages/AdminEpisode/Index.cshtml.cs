@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Business.DTOs.EpisodeDTOs;
+using MoviesWebApp.Business.Exceptions.AboutModelExceptions;
+using MoviesWebApp.Business.Services.Implementations;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
+using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminEpisode
 {
@@ -38,6 +41,44 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminEpisode
                 Episodes.Add(episodeIndex);
             }
             return Page();
+        }
+        public async Task<IActionResult> OnPostDelete([FromBody] int id)
+        {
+
+            try
+            {
+                await _episodeService.Delete(id);
+            }
+            catch (NullIdException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+
+            return RedirectToPage("./Index");
+        }
+        public async Task<IActionResult> OnPostToggleDelete(int id)
+        {
+
+            try
+            {
+                await _episodeService.ToggleDelete(id);
+            }
+            catch (NullIdException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+
+            return RedirectToAction("OnGet");
         }
     }
 }

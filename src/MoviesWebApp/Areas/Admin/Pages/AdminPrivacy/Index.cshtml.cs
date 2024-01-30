@@ -13,6 +13,9 @@ using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data;
 using MoviesWebApp.Data.DAL;
 using MoviesWebApp.Business.DTOs.PrivacyDTOs;
+using MoviesWebApp.Business.Exceptions.AboutModelExceptions;
+using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
+using MoviesWebApp.Business.Services.Implementations;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminPrivacy
 { 
@@ -40,6 +43,44 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminPrivacy
             }
             PrivacyIndexDtos = privacyIndexDtos;
             return Page();
+        }
+        public async Task<IActionResult> OnPostDelete([FromBody] int id)
+        {
+
+            try
+            {
+                await _privacyService.Delete(id);
+            }
+            catch (NullIdException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+
+            return RedirectToPage("./Index");
+        }
+        public async Task<IActionResult> OnPostToggleDelete(int id)
+        {
+
+            try
+            {
+                await _privacyService.ToggleDelete(id);
+            }
+            catch (NullIdException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
+
+            return RedirectToAction("OnGet");
         }
     }
 }

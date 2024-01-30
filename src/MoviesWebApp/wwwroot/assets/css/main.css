@@ -3,21 +3,20 @@
     flex-direction: column;
     min-height: 100vh;
 }
-.o-hidden{
-    overflow:hidden;
+
+.o-hidden {
+    overflow: hidden;
     background-color: black;
-   
 }
-.dark-back{
-    content:"";
-    background-color:black;
-    position:fixed;
-    opacity:0.3;
-    width:100%;
-    height:100%;
-    z-index:10;
 
-
+.dark-back {
+    content: "";
+    background-color: black;
+    position: fixed;
+    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
 }
 
 .logo-text-layout {
@@ -57,6 +56,10 @@
     height: 600px;
     padding: 75px 75px 0px 75px;
 }
+.swiper-container-news {
+    height: 600px;
+    padding: 75px 75px 0px 75px;
+}
 
 .swiper-slide {
     display: flex;
@@ -66,12 +69,12 @@
     background-position: right;
 }
 
-    .swiper-slide img {
-        width: 100%;
-        height: 100%;
-    }
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+}
 
-.slide-card {
+.slide-card{
     position: absolute !important;
     border-radius: 5px;
     margin-left: 25px;
@@ -89,6 +92,21 @@
     visibility: visible;
     opacity: 0.7;
 }
+.news-slide .slide-card {
+    opacity: 0.4;
+    visibility: visible;
+    background-color: #236852;
+}
+.btn-news {
+    width:150px !important;
+    height: 40px !important;
+    border-radius: 10px;
+    font-size:16px;
+    font-weight:400;
+    color: white;
+    text-decoration:none;
+    background-color: #ECD91C;
+}
 
 .div-home-slide-bottom {
     display: flex;
@@ -99,6 +117,18 @@
     width: 100%;
     border-radius: 4px;
     color: white;
+}
+.suggest {
+    width: 200px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:static !important;
+    height: 50px;
+    background-color: #ECD51C;
+    border-radius:3px;
+   color:white;
+   margin:20px 0px  20px 75px;
 }
 /*home page css code end*/
 /*nav-bar design section */
@@ -139,17 +169,17 @@
 
 
 
-    .nav-mobile.active {
-        right: 0;
-    }
+.nav-mobile.active {
+    right: 0;
+}
 
 a.navbar-brand {
     white-space: normal;
     text-align: center;
 }
-.dropdown-menu{
-   flex-wrap:wrap !important;
-}
+
+
+
 .navbar {
     top: 0;
     width: 100%;

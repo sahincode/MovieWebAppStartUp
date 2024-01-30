@@ -56,5 +56,14 @@ namespace MoviesWebApp.Business.Services.Implementations
         {
             return await _subscriber.Get(a => a.Id == id);
         }
+        public async Task ToggleDelete(int id)
+        {
+            var subscriber = await this.GetById(id);
+            if (subscriber == null) throw new EntityNotFoundException($"The entity with the ID equal to " +
+                $"{id} was not found in the database.");
+            subscriber.IsDeleted=!subscriber.IsDeleted;
+            await _subscriber.CommitChange();
+
+        }
     }
 }

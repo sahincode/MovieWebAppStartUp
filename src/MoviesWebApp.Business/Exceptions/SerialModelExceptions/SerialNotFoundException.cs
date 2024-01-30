@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoviesWebApp.Business.Exceptions.SerialModelException
+namespace MoviesWebApp.Business.Exceptions.SerialModelExceptions
 {
     public class SerialNotFoundException :Exception
     {

@@ -64,7 +64,7 @@ namespace MoviesWebApp.Business.Services.Implementations
             var about = await this.GetById(id);
             if (about == null) throw new EntityNotFoundException($"The entity with the ID equal to " +
                 $"{id} was not found in the database.");
-            _genre.Delete(about);
+            about.IsDeleted = !about.IsDeleted;
             await _genre.CommitChange();
 
         }

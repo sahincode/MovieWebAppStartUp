@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MoviesWebApp.Business.DTOs.NewsSlideDTOs;
 using MoviesWebApp.Business.DTOs.SerialDTOs;
-using MoviesWebApp.Business.Exceptions;
-using MoviesWebApp.Business.Exceptions.SerialModelException;
+using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
+
+using MoviesWebApp.Business.Exceptions.SerialModelExceptions;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
 
@@ -35,7 +36,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminNewsSlide
             NewsSlideIndexDtos = newsSlideIndexDtos;
             return Page();
         }
-        public async Task<IActionResult> OnPostDelete([FromBody]int id)
+        public async Task<IActionResult> OnPostDelete(int id)
         {
             
             try
@@ -44,7 +45,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminNewsSlide
             }catch(NullIdException ex){
                 return NotFound(ex.Message);
             }
-            catch (SerialNotFoundException ex)
+            catch (EntityNotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
@@ -63,7 +64,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminNewsSlide
             {
                 return NotFound(ex.Message);
             }
-            catch (SerialNotFoundException ex)
+            catch (EntityNotFoundException ex)
             {
                 return NotFound(ex.Message);
             }

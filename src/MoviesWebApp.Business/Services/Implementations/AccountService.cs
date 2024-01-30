@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoviesWebApp.Business.Services.Implementations
 {
-    internal class AccountService
+    public class AccountService
     {
     }
 }

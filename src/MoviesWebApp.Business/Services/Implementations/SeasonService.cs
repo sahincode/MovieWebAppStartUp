@@ -89,7 +89,7 @@ namespace MoviesWebApp.Business.Services.Implementations
             var season = await this.GetById(id);
             if (season == null) throw new EntityNotFoundException($"The entity with the ID equal to " +
                 $"{id} was not found in the database.");
-            _season.Delete(season);
+            season.IsDeleted = !season.IsDeleted;
             await _season.CommitChange();
 
         }

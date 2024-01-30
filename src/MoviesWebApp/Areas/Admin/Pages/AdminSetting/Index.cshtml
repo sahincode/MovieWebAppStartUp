@@ -30,7 +30,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Settings[0].Email)
                 </th>
-                
+
                 <th>
                     Controls
                 </th>
@@ -39,6 +39,47 @@
         <tbody>
             @foreach (var setting in Model.Settings)
             {
+                <div class="modal fade" id="item@(setting.Id)Modal" tabindex="-1" aria-labelledby="item@(setting.Id)ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl ">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title btn btn-success" id="item@(setting.Id)ModalLabel">About</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="border-bottom-info">
+                                <div>
+                                    <h5 class="font-weight-bold">Created Time:<span class="text-danger"> @(setting.CreationTime.ToString("dddd, dd MMMM yyyy hh:mm:ss"))</span></h5>
+                                </div>
+                                <div>
+                                    <h5 class="font-weight-bold">Updated Time:<span class="text-danger"> @(setting.UpdateTime.ToString("dddd, dd MMMM yyyy hh:mm:ss"))</span></h5>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                Address: @setting.Address
+                            </div>
+                            <div class="modal-body">
+                                Email: @setting.Email
+
+                            </div>
+                            <div class="modal-body">
+                                Contact : @setting.Contact
+                            </div>
+                            <div class="modal-body">
+                                Facebook : @setting.FaceUrl
+                            </div>
+                             <div class="modal-body">
+                                Instagram : @setting.InstaUrl
+                            </div> 
+                            <div class="modal-body">
+                                Twitter : @setting.XUrl
+                            </div> 
+                            <div class="modal-body">
+                                Whatsapp : @setting.WhatUrl
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
                 counter++;
                 <tr>
                     <td>@counter</td>
@@ -49,14 +90,14 @@
                     <td>
                         @Html.DisplayFor(modelItem => setting.Contact)
                     </td>
-                   
+
 
                     <td>
                         @Html.DisplayFor(modelItem => setting.Email)
 
                     </td>
-                    
-                    
+
+
                     <td style="min-width:165px;">
 
                         <a class="btn btn-danger btn-delete">

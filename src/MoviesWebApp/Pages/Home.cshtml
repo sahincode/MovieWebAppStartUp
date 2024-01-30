@@ -22,19 +22,69 @@
                 </div>
             </div>
         }
-        
+
     </div>
     <div class="swiper-button-next text-success slide-control"></div>
     <div class="swiper-button-prev text-success slide-control"></div>
     <div class="swiper-pagination"></div>
     <div class="div-home-slide-bottom">Ads can be a pain, but they are our only way to maintain the server. Your patience is highly appreciated and we hope our service can be worth it.</div>
+
 </div>
+<section id="news-section">
+    <div class="swiper-container-news  mt-3">
+
+        <div class="swiper-wrapper">
+            @foreach (var slide in Model.HeaderSlides)
+            {
+                <div class="swiper-slide news-slide" @*style="background-image:url(/assets/uploads/movies/images/@slide.ImageURL);"*@>
+                    <img src="~/assets/uploads/movies/images/@slide.ImageURL" />
+                    <div class="slide-card">
+                        <h5 class="text-white font-weight-bolder">@slide.Title</h5>
+                        <p class="text-white ">@slide.Description</p>
+                        <a class=" btn btn-news" asp-page="/Movies/MovieDetails" asp-route-id="@slide.Id"> Read More...</a>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="swiper-pagination"></div>
+
+    </div>
+</section>
+<div class="suggest">Suggestions</div>
+
+
 
 
 @section swiperJS{
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper(".swiper-container", {
+            spaceBetween: 30,
+            effect: "cube",
+            grabCursor: true,
+            cubeEffect: {
+                shadow: true,
+                slideShadows: true,
+                shadowOffset: 20,
+                shadowScale: 0.94,
+            },
+
+            autoplay: {
+                delay: 5000,
+
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+
+        });
+        var swiperNews = new Swiper(".swiper-container-news", {
             spaceBetween: 30,
             effect: "cube",
             grabCursor: true,

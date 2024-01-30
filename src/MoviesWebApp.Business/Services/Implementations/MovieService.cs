@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Business.Exceptions.FormatExceptions;
 using MoviesWebApp.Business.Exceptions.GenreModelExceptions;
+using MoviesWebApp.Business.Exceptions.MovieModelExceptions;
 using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.InternalHelperServices;
 using MoviesWebApp.Business.Services.Interfaces;
@@ -73,7 +74,7 @@ namespace MoviesWebApp.Business.Services.Implementations
         {
             string rootPath = _environment.WebRootPath;
             var movie = await _movieRepository.Get(m => m.Id == id);
-            if (movie == null) throw new NullEntityException("", $"The movie with the ID equal to" +
+            if (movie == null) throw new EntityNotFoundException("", $"The movie with the ID equal to" +
                $" {id} was not found in the database.");
             string imageFullPath = Path.Combine(rootPath, imagePassPath, movie.ImageURL);
             string videoFullPath = Path.Combine(rootPath, imagePassPath, movie.VideoURL);
@@ -102,10 +103,10 @@ namespace MoviesWebApp.Business.Services.Implementations
                throw new EntityNotFoundException($"The movie with the ID equal to" +
                $" {id} was not found in the database.");
         }
-        public async Task SoftDelete(int id)
+        public async Task ToggleDelete(int id)
         {
             var movie = await _movieRepository.Get(m => m.Id == id);
-            if (movie == null) throw new NullEntityException("", $"The movie with the ID equal to" +
+            if (movie == null) throw new EntityNotFoundException("", $"The movie with the ID equal to" +
                $" {id} was not found in the database.");
             movie.IsDeleted = !movie.IsDeleted;
             await _movieRepository.CommitChange();

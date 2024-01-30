@@ -3,14 +3,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Business.DTOs.SettingDTOs;
-using MoviesWebApp.Business.Exceptions.FormatExceptions;
+using MoviesWebApp.Business.Exceptions.MovieModelExceptions;
 using MoviesWebApp.Business.Exceptions.ReferenceExceptions;
 using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Core.Models;
 
 namespace MoviesWebApp.Areas.Admin.Pages.AdminSetting
 {
-    public class CreateModel : PageModel
+    public class UpdateModel : PageModel
     {
         private readonly ISettingService _settingService;
       
@@ -18,7 +18,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminSetting
         [BindProperty]
         public SettingUpdateDto Setting { get; set; }
         
-        public CreateModel(ISettingService settingService)
+        public UpdateModel(ISettingService settingService)
         {
             this._settingService = settingService;
             

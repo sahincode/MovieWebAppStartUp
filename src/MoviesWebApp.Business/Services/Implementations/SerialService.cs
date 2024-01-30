@@ -65,7 +65,7 @@ namespace MoviesWebApp.Business.Services.Implementations
             var serial = await this.GetById(id);
             if (serial == null) throw new EntityNotFoundException($"The entity with the ID equal to " +
                 $"{id} was not found in the database.");
-            _serial.Delete(serial);
+            serial.IsDeleted = !serial.IsDeleted;
             await _serial.CommitChange();
 
         }

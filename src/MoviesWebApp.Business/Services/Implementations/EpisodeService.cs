@@ -96,7 +96,7 @@ namespace EpisodesWebApp.Business.Services.Implementations
         public async Task ToggleDelete(int id)
         {
             var Episode = await _episodeRepository.Get(m => m.Id == id);
-            if (Episode == null) throw new NullEntityException("", $"The Episode with the ID equal to" +
+            if (Episode == null) throw new EntityNotFoundException("", $"The Episode with the ID equal to" +
                $" {id} was not found in the database.");
             Episode.IsDeleted = !Episode.IsDeleted;
             await _episodeRepository.CommitChange();
@@ -150,7 +150,7 @@ namespace EpisodesWebApp.Business.Services.Implementations
         {
             string rootPath = _environment.WebRootPath;
             var movie = await _episodeRepository.Get(m => m.Id == id);
-            if (movie == null) throw new NullEntityException("", $"The movie with the ID equal to" +
+            if (movie == null) throw new EntityNotFoundException("", $"The movie with the ID equal to" +
                $" {id} was not found in the database.");
             string imageFullPath = Path.Combine(rootPath, imagePassPath, movie.ImageURL);
             string videoFullPath = Path.Combine(rootPath, imagePassPath, movie.VideoURL);
