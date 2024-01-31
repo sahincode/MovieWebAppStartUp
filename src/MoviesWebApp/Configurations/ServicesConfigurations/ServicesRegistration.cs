@@ -50,6 +50,8 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<IEpisodeService, EpisodeService>();
             services.AddScoped<INewsSlideService, NewsSlideService>();
             services.AddScoped<IFAQService, FAQService>();
+            services.AddScoped<IAccountService, AccountService>();
+
 
 
 

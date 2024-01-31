@@ -18,11 +18,11 @@
             <div asp-validation-summary="ModelOnly"></div>
             <div class="mb-3 d-flex ">
                 <i class="fas fa-envelope prefix grey-text me-1 mt-2"></i>
-                <input asp-for="Input.Email" class="form-control validate" placeholder="Your Email" autocomplete="current-password"  />
+                <input asp-for="LoginModelDto.Email" class="form-control validate" placeholder="Your Email" autocomplete="current-password"  />
             </div>
             <div class="mb-3 mt-4 d-flex ">
                 <i class="fas fa-lock prefix grey-text me-1 mt-2"></i>
-                <input asp-for="Input.Password"  placeholder="Your Password" class="form-control validate">
+                <input asp-for="LoginModelDto.Password" placeholder="Your Password" class="form-control validate">
 
             </div>
             <div class="ms-2">
@@ -31,12 +31,12 @@
                 </div>
                 <div class=" d-block d-sm-flex mb-3">
                     <p class="font-weight-bold mb-1">New to  <b>FALCONOINSCOPE</b></p>
-                    <a class="text-decoration-none ms-3" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Sign Up</a>
+                    <a class="text-decoration-none ms-3" asp-page="./Register" asp-route-returnUrl="LoginModelDto.ReturnUrl">Sign Up</a>
                 </div>
                 <div class=" mb-3 checkbox d-block">
-                    <label asp-for="Input.RememberMe" class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    <label asp-for="LoginModelDto.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="LoginModelDto.RememberMe" />
+                        @Html.DisplayNameFor(m => m.LoginModelDto.RememberMe)
                     </label>
                 </div>
                 <div class="modal-footer">

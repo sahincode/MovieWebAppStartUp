@@ -53,11 +53,12 @@
                     <li class="nav-item ms-3 mt-3 mb-3">
                         <a class="nav-bar-link link-subline" asp-area="" asp-page="/About">About</a>
                     </li>
-                    <li class="nav-item ms-3 mt-3 mb-3">
-                        <a class="nav-bar-link link-subline" asp-area="" asp-page="/Home">Home</a>
-                    </li>
-                    @if (SignInManager.IsSignedIn(User) == false)
+
+                    @if (SignInManager.IsSignedIn(User))
                     {
+                        <li class="nav-item ms-3 mt-3 mb-3">
+                            <a class="nav-bar-link link-subline" asp-area="" asp-page="/Home">Home</a>
+                        </li>
                         <li class="nav-item ms-3 mt-3 mb-3">
                             <a class="nav-bar-link link-subline" asp-area="" asp-page="/Movies/Movie">Movies</a>
 
@@ -178,7 +179,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class=" col-xl-3 col-lg-4 col-sm-6">
                     <div class="footer-title mt-4 mb-4 d-flex justify-content-center">
                         <h3 style="color:#198754;">Newsletter Subscribe</h3>

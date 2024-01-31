@@ -1,16 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MoviesWebApp.ViewModels
+namespace MoviesWebApp.Business.DTOs.IdentityDTOs
 {
-    public class SignUpUserModel
+    public  class SignUpModelDto
     {
+        //[Required(ErrorMessage = "Please enter your first name")]
+        //[Display(Name = "First name")]
+        //public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Please enter your first name")]
-        [Display(Name = "First name")]
-        public string FirstName { get; set; }
-
-        [Display(Name = "Last name")]
-        public string LastName { get; set; }
+        //[Display(Name = "Last name")]
+        //public string LastName { get; set; }
+        [Required(ErrorMessage = "Please enter your email")]
+        [Display(Name = "Email address")]
+        public string Username { get; set; }
 
         [Required(ErrorMessage = "Please enter your email")]
         [Display(Name = "Email address")]
