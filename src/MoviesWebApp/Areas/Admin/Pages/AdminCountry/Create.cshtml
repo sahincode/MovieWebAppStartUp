@@ -12,9 +12,9 @@
 
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
+        <div class="form-group row">
             <label asp-for="CountryCreateDto.Name" class="control-label"></label>
-            <input  asp-for="CountryCreateDto.Name" class="form-control"/>
+            <input asp-for="CountryCreateDto.Name" class="form-control col-4 col-md-6" />
             <span asp-validation-for="CountryCreateDto.Name" class="text-danger"></span>
         </div>
         <div class="form-group">

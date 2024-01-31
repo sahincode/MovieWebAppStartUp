@@ -2,7 +2,7 @@
     .nav-mobile {
         position: static;
         right: 0;
-        width: 60%;
+        width: 66%;
         display: flex !important;
         justify-content: space-between !important;
         background-color: none;

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoviesWebApp.Data.DAL;
 
@@ -11,9 +12,10 @@ using MoviesWebApp.Data.DAL;
 namespace MoviesWebApp.Data.Migrations
 {
     [DbContext(typeof(MoviesWebAppContext))]
-    partial class MoviesWebAppContextModelSnapshot : ModelSnapshot
+    [Migration("20240131070532_FAQsTableCreated")]
+    partial class FAQsTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,0 +1,38 @@
+﻿@page
+@model MoviesWebApp.Pages.FAQsModel
+@{
+}
+
+<div class="faq-html">
+    <div class="container faq-body">
+        <div class="faq__header">
+            <img src="~/assets/uploads/faq.png" />
+            <h1 class="faq-logo">Frequently Asked Questions</h1>
+            <div class="faq-article">
+                <p class="faq-info">In our ongoing commitment to providing a seamless and user-friendly experience, we understand the importance of easily accessible information. Our Frequently Asked Questions (FAQ) section serves as a valuable resource for users seeking answers to common queries. To help you make the most of this resource, we've put together a guide on navigating our FAQ section effectively.</p>
+                <p class="faq-warning">
+                    Each question is presented in an accordion or collapse format. Click on the question to reveal its answer, allowing you to efficiently scan through the information. This design minimizes scrolling and enhances the readability of the FAQs.
+                </p>
+            </div>
+        </div>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            @foreach (var faq in Model.FAQLayoutDtos)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingitem@(faq.Id)">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseitem@(faq.Id)" aria-expanded="false" aria-controls="panelsStayOpen-collapseitem@(faq.Id)">
+                            @faq.Question
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseitem@(faq.Id)" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingitem@(faq.Id)">
+                        <div class="accordion-body">
+                            @Html.Raw(faq.Answer)
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

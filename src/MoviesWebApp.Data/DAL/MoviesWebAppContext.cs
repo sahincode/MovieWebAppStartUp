@@ -27,6 +27,8 @@ public class MoviesWebAppContext : IdentityDbContext<ApplicationUser>
     public DbSet<EpisodeGenre> EpisodeGenres { get; set; }
     public DbSet<Country> Countries { get; set; }
     public DbSet<NewsSlide> NewsSlides { get; set; }
+    public DbSet<FAQ> FAQs { get; set; }
+
 
 
 

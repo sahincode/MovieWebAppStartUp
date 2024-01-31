@@ -1,4 +1,5 @@
-﻿const deleteForm = document.querySelectorAll('.form-delete');
+﻿const deleteForm = document.querySelectorAll('.btn-delete');
+console.log(deleteForm);
 deleteForm.forEach(df => {
     const urlDelete = df.getAttribute('action');
     console.log(urlDelete);
@@ -19,7 +20,7 @@ deleteForm.forEach(df => {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    
+
                 }).then(response => {
                     if (response.status == 200) {
                         Swal.fire({

@@ -77,9 +77,9 @@ namespace MoviesWebApp.Business.Services.Implementations
             if (movie == null) throw new EntityNotFoundException("", $"The movie with the ID equal to" +
                $" {id} was not found in the database.");
             string imageFullPath = Path.Combine(rootPath, imagePassPath, movie.ImageURL);
-            string videoFullPath = Path.Combine(rootPath, imagePassPath, movie.VideoURL);
-            System.IO.File.Delete(imageFullPath);
-            System.IO.File.Delete(videoFullPath);
+
+            if (movie.VideoURL.Length > 0) File.Delete(Path.Combine(rootPath, videoPassPath, movie.VideoURL));
+            if (movie.ImageURL.Length > 0) File.Delete(imageFullPath);
             _movieRepository.Delete(movie);
             await _movieRepository.CommitChange();
         }
@@ -147,7 +147,8 @@ namespace MoviesWebApp.Business.Services.Implementations
             {
                 if (entity.Image.ContentType != "image/png" && entity.Image.ContentType != "image/jpeg")
                     throw new MovieFileFormatException("Image", "please add png or jpeg file");
-                File.Delete(Path.Combine(rootPath, imagePassPath, updatedMovie.ImageURL));
+                if (updatedMovie.ImageURL.Length > 0)
+                    File.Delete(Path.Combine(rootPath, imagePassPath, updatedMovie.ImageURL));
                 updatedMovie.ImageURL = await FileHelper.SaveImage(rootPath, imagePassPath, entity.Image);
             }
 
@@ -155,7 +156,10 @@ namespace MoviesWebApp.Business.Services.Implementations
             {
                 if (entity.Video.ContentType != "video/mp4" && entity.Video.ContentType != "video/mpeg")
                     throw new MovieFileFormatException("Video", "please add mp4  or mpeg file");
-                File.Delete(Path.Combine(rootPath, videoPassPath, updatedMovie.VideoURL));
+                if (updatedMovie.VideoURL.Length>0)
+                {
+                    File.Delete(Path.Combine(rootPath, videoPassPath, updatedMovie.VideoURL));
+                }
 
                 updatedMovie.VideoURL = await FileHelper.SaveVideo(rootPath, videoPassPath, entity.Video);
             }

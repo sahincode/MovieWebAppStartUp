@@ -1,11 +1,8 @@
 ﻿using EpisodesWebApp.Business.Services.Implementations;
-using FluentValidation;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MoviesWebApp.Business.DTOs.MovieDTOs;
-using MoviesWebApp.Business.DTOs.SettingDTOs;
 using MoviesWebApp.Business.MappingProfiles;
 using MoviesWebApp.Business.Services.Implementations;
 using MoviesWebApp.Business.Services.Interfaces;
@@ -52,6 +49,8 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<ICountryService, CountryService>();
             services.AddScoped<IEpisodeService, EpisodeService>();
             services.AddScoped<INewsSlideService, NewsSlideService>();
+            services.AddScoped<IFAQService, FAQService>();
+
 
 
 
@@ -72,6 +71,8 @@ namespace MoviesWebApp.Configurations.ServicesConfigurations
             services.AddScoped<IEpisodeGenreRepository, EpisodeGenreRepository>();
             services.AddScoped<INewsSlideRepository, NewsSlideRepository>();
             services.AddScoped<IMovieGenreRepository, MovieGenreRepository>();
+            services.AddScoped<IFAQRepository, FAQRepository>();
+
 
 
             //Externa login services addition 

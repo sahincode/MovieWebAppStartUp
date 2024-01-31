@@ -8,12 +8,6 @@
     <Platforms>Any CPU</Platforms>
   </PropertyGroup>
 
- 
-
-  <ItemGroup>
-    <Content Remove="wwwroot\admin\js\main.js" />
-  </ItemGroup>
-
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\admin\js\main.js" />
   </ItemGroup>

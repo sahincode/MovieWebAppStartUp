@@ -1,7 +1,7 @@
 ﻿const input = document.getElementById('subscribe-input');
 const button = document.getElementById('subscribe-button');
 
-button.addEventListener('click', function (e) {
+button?.addEventListener('click', function (e) {
     e.preventDefault();
     fetch(`/Home?handler=Subscribe&email=${input.value}`).
         then(response => {
@@ -39,7 +39,7 @@ const divOver = document.querySelector('.div-over');
 
 
 
-menuBtn.addEventListener('click', function () {
+menuBtn?.addEventListener('click', function () {
 
     menuBtn.classList.toggle('is-active');
     menuDiv.forEach(menu => menu.classList.toggle('active'));

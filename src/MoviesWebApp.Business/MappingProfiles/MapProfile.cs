@@ -2,6 +2,7 @@
 using MoviesWebApp.Business.DTOs.AboutDTOs;
 using MoviesWebApp.Business.DTOs.CountryDTOs;
 using MoviesWebApp.Business.DTOs.EpisodeDTOs;
+using MoviesWebApp.Business.DTOs.FAQDTOs;
 using MoviesWebApp.Business.DTOs.GenreDTOs;
 using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Business.DTOs.NewsSlideDTOs;
@@ -65,6 +66,11 @@ namespace MoviesWebApp.Business.MappingProfiles
             CreateMap<NewsSlideUpdateDto, NewsSlide>().ReverseMap();
             CreateMap<NewsSlideIndexDto, NewsSlide>().ReverseMap();
             CreateMap<NewsSlideIndexDto, NewsSlide>().ReverseMap();
+            //FAQ model mappping profile
+            CreateMap<FAQCreateDto, FAQ>().ReverseMap();
+            CreateMap<FAQUpdateDto, FAQ>().ReverseMap();
+            CreateMap<FAQIndexDto, FAQ>().ReverseMap();
+            CreateMap<FAQLayoutDto, FAQ>().ReverseMap();
         }
     }
 }

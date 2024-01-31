@@ -38,7 +38,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
             }
             return Page();
         }
-        public async Task<IActionResult> OnPostDelete([FromBody] int id)
+        public async Task<IActionResult> OnPostDelete( int id)
         {
 
             try
@@ -55,7 +55,7 @@ namespace MoviesWebApp.Areas.Admin.Pages.AdminMovie
             }
 
 
-            return RedirectToPage("./Index");
+            return  RedirectToPage("./Index");
         }
         public async Task<IActionResult> OnPostToggleDelete(int id)
         {

@@ -24,7 +24,7 @@ namespace MoviesWebApp.Business.Services.Implementations
             this._mapper = mapper;
             this._newsSlide = newsSlide;
         }
-        public async Task CreateAsync(SerialCreateDto entity)
+        public async Task CreateAsync(NewsSlideCreateDto entity)
         {
             NewsSlide slide = _mapper.Map<NewsSlide>(entity);
             await _newsSlide.CreateAsync(slide);
@@ -33,11 +33,7 @@ namespace MoviesWebApp.Business.Services.Implementations
 
         }
 
-        public Task CreateAsync(NewsSlideCreateDto entity)
-        {
-            throw new NotImplementedException();
-        }
-
+   
         public async Task Delete(int id)
         {
             NewsSlide slide = await _newsSlide.Get(a => a.Id == id);
