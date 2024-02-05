@@ -6,9 +6,11 @@ using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Core.Repositories.Interfaces;
 using MoviesWebApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MoviesWebApp.Pages.Movies
 {
+    [Authorize]
     public class MovieModel : PageModel
     {
        

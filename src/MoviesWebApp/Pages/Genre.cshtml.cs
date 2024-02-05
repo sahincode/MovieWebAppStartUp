@@ -6,9 +6,11 @@ using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.ViewModels;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MoviesWebApp.Pages
 {
+    [Authorize]
     public class GenreModel : PageModel
     {
 

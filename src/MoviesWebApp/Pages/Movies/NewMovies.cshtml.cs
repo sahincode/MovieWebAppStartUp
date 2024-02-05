@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MoviesWebApp.Business.DTOs.MovieDTOs;
@@ -10,6 +11,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace MoviesWebApp.Pages.Movies
 {
+    [Authorize]
     public class NewMoviesModel : PageModel
     {
         private readonly IMovieService _movieService;

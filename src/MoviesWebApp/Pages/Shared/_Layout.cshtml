@@ -54,37 +54,36 @@
                         <a class="nav-bar-link link-subline" asp-area="" asp-page="/About">About</a>
                     </li>
 
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        <li class="nav-item ms-3 mt-3 mb-3">
-                            <a class="nav-bar-link link-subline" asp-area="" asp-page="/Home">Home</a>
-                        </li>
-                        <li class="nav-item ms-3 mt-3 mb-3">
-                            <a class="nav-bar-link link-subline" asp-area="" asp-page="/Movies/Movie">Movies</a>
 
-                        </li>
+                    <li class="nav-item ms-3 mt-3 mb-3">
+                        <a class="nav-bar-link link-subline" asp-area="" asp-page="/Home">Home</a>
+                    </li>
+                    <li class="nav-item ms-3 mt-3 mb-3">
+                        <a class="nav-bar-link link-subline" asp-area="" asp-page="/Movies/Movie">Movies</a>
 
-                        <li class="dropdown nav-item ms-3 mt-3 mb-3">
-                            <a class="nav-bar-link link-subline" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                Genres
-                            </a>
+                    </li>
 
-                            <ul class="dropdown-menu  dropdown-nav-bar mt-5 me-3" aria-labelledby="dropdownMenuLink">
-                                @foreach (var genre in genres)
-                                {
-                                    <li><a class="dropdown-item " asp-page="/Genre" asp-route-id="@genre.Id">@genre.Name</a></li>
-                                }
+                    <li class="dropdown nav-item ms-3 mt-3 mb-3">
+                        <a class="nav-bar-link link-subline" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            Genres
+                        </a>
 
-                            </ul>
-                        </li>
-                        <li class="nav-item ms-3 mt-3 mb-3">
-                            <a class="nav-bar-link link-subline" asp-page="/Movies/TopIMDB">Top IMDB</a>
-                        </li>
-                        <li class="nav-item ms-3 mt-3 mb-3">
-                            <a class="nav-bar-link link-subline" asp-page="/Series/Index">TV-Series</a>
-                        </li>
+                        <ul class="dropdown-menu  dropdown-nav-bar mt-5 me-3" aria-labelledby="dropdownMenuLink">
+                            @foreach (var genre in genres)
+                            {
+                                <li><a class="dropdown-item " asp-page="/Genre" asp-route-id="@genre.Id">@genre.Name</a></li>
+                            }
 
-                    }
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-3 mt-3 mb-3">
+                        <a class="nav-bar-link link-subline" asp-page="/Movies/TopIMDB">Top IMDB</a>
+                    </li>
+                    <li class="nav-item ms-3 mt-3 mb-3">
+                        <a class="nav-bar-link link-subline" asp-page="/Series/Index">TV-Series</a>
+                    </li>
+
+
                 </ul>
                 <ul class="navbar-nav ">
 
@@ -98,9 +97,8 @@
 
                             <ul class="dropdown-menu dropdown-nav-bar" aria-labelledby="dropdownMenuLink">
                                 <li><a class="dropdown-item " href="#">Account</a></li>
-                                <form class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                                    <button type="submit" class="dropdown-item">Logout</button>
-                                </form>
+
+                                <a asp-area="Identity" asp-page="/Account/Logout" type="submit" class="dropdown-item">Logout</a>
 
                             </ul>
                         </li>

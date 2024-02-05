@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MoviesWebApp.Business.DTOs.SerialDTOs;
@@ -8,6 +9,7 @@ using MoviesWebApp.ViewModels;
 
 namespace MoviesWebApp.Pages.Series
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly ISerialService _serialService;

@@ -6,9 +6,11 @@ using MoviesWebApp.Business.Services.Interfaces;
 using MoviesWebApp.Business.DTOs.MovieDTOs;
 using MoviesWebApp.Core.Models;
 using MoviesWebApp.Data.DAL;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MoviesWebApp.Pages.Movies
 {
+    [Authorize]
     public class MovieDetailsModel : PageModel
     {
         private readonly IMovieService _service;

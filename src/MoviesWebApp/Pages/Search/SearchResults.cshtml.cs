@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using MoviesWebApp.ViewModels;
 
 namespace MoviesWebApp.Pages.Search
 {
+    [Authorize]
     public class SearchResultsModel : PageModel
     {
         private readonly IMovieRepository _movieRepository;

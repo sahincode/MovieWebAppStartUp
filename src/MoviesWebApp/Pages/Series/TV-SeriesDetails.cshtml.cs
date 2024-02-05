@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using MoviesWebApp.ViewModels;
 
 namespace MoviesWebApp.Pages.Series
 {
+    [Authorize]
     public class SerialDetailModel : PageModel
     {
         private readonly IEpisodeService _episodeService;
